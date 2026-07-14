@@ -1,0 +1,186 @@
+{
+  "main": {
+    "id": "3a1ace1285fe5d66",
+    "type": "split",
+    "children": [
+      {
+        "id": "99f49eb13aa8829e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4b29dead65311305",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bob - 1.0.1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bob - 1.0.1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6f51fb5f4458b57d",
+    "type": "split",
+    "children": [
+      {
+        "id": "51ec720fc5b44f53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "59105b532501baa8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "aaceb583b518f3ec",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "8d767df56ee77cda",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5884c54489c9251c",
+    "type": "split",
+    "children": [
+      {
+        "id": "57ab43b350f389b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8b23b9e52d5498a2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Bob - 1.0.1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Bob - 1.0.1"
+            }
+          },
+          {
+            "id": "bf05abfb4f5f9162",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Bob - 1.0.1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Bob - 1.0.1"
+            }
+          },
+          {
+            "id": "46fedf4f871bdc9c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "98d888d253e96584",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Bob - 1.0.1.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Bob - 1.0.1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "github-sync:Sync with Remote": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "4b29dead65311305",
+  "lastOpenFiles": [
+    "Welcome.md",
+    "Bob - 1.0.1.md",
+    "Mr-Robot/README.md",
+    "Mr-Robot/Pasted image.png",
+    "Mr-Robot/Pasted image (9).png",
+    "Mr-Robot/Pasted image (8).png",
+    "Mr-Robot/Pasted image (7).png",
+    "Mr-Robot/Pasted image (6).png",
+    "Mr-Robot/Pasted image (5).png",
+    "Mr-Robot/Pasted image (4).png",
+    "Mr-Robot/Pasted image (3).png",
+    "Mr-Robot/Pasted image (2).png",
+    "Mr-Robot/Pasted image (12).png",
+    "Mr-Robot",
+    "Mr-Robot - 1.md",
+    "Untitled"
+  ]
+}
