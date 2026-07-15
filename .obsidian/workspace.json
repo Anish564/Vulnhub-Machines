@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "test1.md",
+                "file": "Mr-Robot - 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "test1"
+              "title": "Mr-Robot - 1"
             }
           }
         ],
@@ -69,7 +69,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -122,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "test1.md",
+                "file": "Mr-Robot - 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -132,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for test1"
+              "title": "Backlinks for Mr-Robot - 1"
             }
           },
           {
@@ -141,12 +142,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "test1.md",
+                "file": "Mr-Robot - 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from test1"
+              "title": "Outgoing links from Mr-Robot - 1"
             }
           },
           {
@@ -168,10 +169,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "test1.md"
+                "file": "Mr-Robot - 1.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of test1"
+              "title": "Outline of Mr-Robot - 1"
             }
           }
         ]
@@ -183,23 +184,22 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "github-sync:Sync with Remote": false,
       "obsidian-git:Open Git source control": false
     }
   },
   "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
-    "Untitled.md",
     "test1.md",
+    "Untitled.md",
     "test3.md",
     "test2.md",
-    "test1.md",
     "Bob - 1.0.1.md",
     "Welcome.md",
     "Mr-Robot/README.md",
