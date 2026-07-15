@@ -165,8 +165,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3c8299f1c0e520dc",
+  "active": "59105b532501baa8",
   "lastOpenFiles": [
+    "Vulnhub-Machine/gitignore",
     "Vulnhub-Machine/VulnOS-2.md",
     "Vulnhub-Machine/VulnCMS-1.md",
     "Vulnhub-Machine/Venom-1.md",
@@ -192,7 +193,6 @@
     "Vulnhub-Machine/MoneyBox-1.md",
     "Vulnhub-Machine/Matrix-1.md",
     "Vulnhub-Machine/Looz-1.md",
-    "Vulnhub-Machine/LemonSqueezy-1.md",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
