@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Djinn-1.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Empire-LupinOne.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Djinn-1"
+              "title": "Empire-LupinOne"
             }
           }
         ]
@@ -167,6 +167,9 @@
   },
   "active": "59105b532501baa8",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Empire-Breakout.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Election-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Djinn-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/DerpNStink-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Deathnote-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/DC-2.md",
@@ -205,9 +208,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--SolidState_1_806.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--W34kn3ss_1_848.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--VulnOS_2_704.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--VulnCMS_1_827.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Venom_1_823.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Toppo_1_821.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML",
     "Mr-Robot",
     "Untitled"
