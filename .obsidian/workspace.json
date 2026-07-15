@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Mr Robot-1.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/My School-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mr Robot-1"
+              "title": "My School-1"
             }
           }
         ]
@@ -167,6 +167,7 @@
   },
   "active": "59105b532501baa8",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Mr Robot-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Moria-1.1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/MoneyBox-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Matrix-1.md",
@@ -192,7 +193,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/DC-2.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/DC-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Covfefe-1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Chronos-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res",
