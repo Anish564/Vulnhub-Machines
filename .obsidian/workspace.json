@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/Raven-1.md",
+                "file": "Vulnhub-Machine/W34kn3ss-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Raven-1"
+              "title": "W34kn3ss-1"
             }
           }
         ]
@@ -167,6 +167,18 @@
   },
   "active": "59105b532501baa8",
   "lastOpenFiles": [
+    "Vulnhub-Machine/VulnOS-2.md",
+    "Vulnhub-Machine/VulnCMS-1.md",
+    "Vulnhub-Machine/Venom-1.md",
+    "Vulnhub-Machine/Toppo-1.md",
+    "Vulnhub-Machine/Symfonos-3.1.md",
+    "Vulnhub-Machine/Sunset-1.md",
+    "Vulnhub-Machine/SolidState-1.md",
+    "Vulnhub-Machine/So Simple-1.md",
+    "Vulnhub-Machine/SkyTower-1.md",
+    "Vulnhub-Machine/Shenron-1.md",
+    "Vulnhub-Machine/SecTalks-BNE0x03 Simple.md",
+    "Vulnhub-Machine/Raven-1.md",
     "Vulnhub-Machine/PwnLab-init.md",
     "Vulnhub-Machine/Prime-1.md",
     "Vulnhub-Machine/Potato-1.md",
@@ -181,18 +193,6 @@
     "Vulnhub-Machine/Matrix-1.md",
     "Vulnhub-Machine/Looz-1.md",
     "Vulnhub-Machine/LemonSqueezy-1.md",
-    "Vulnhub-Machine/LazySysAdmin-1.md",
-    "Vulnhub-Machine/Kioptrix_Level-1.2.md",
-    "Vulnhub-Machine/It's October-1.md",
-    "Vulnhub-Machine/ICA-1.md",
-    "Vulnhub-Machine/Hack Me Please-1.md",
-    "Vulnhub-Machine/Grotesque-1.0.1.md",
-    "Vulnhub-Machine/Gaara-1.md",
-    "Vulnhub-Machine/Funbox-Lunchbreaker.md",
-    "Vulnhub-Machine/Fowsniff-1.md",
-    "Vulnhub-Machine/FourAndSix-1.md",
-    "Vulnhub-Machine/FirstBlood-1.md",
-    "Vulnhub-Machine/Empire-Breakout.md",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
