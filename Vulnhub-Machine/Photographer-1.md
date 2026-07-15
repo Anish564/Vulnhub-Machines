@@ -255,4 +255,3 @@ A reverse shell is received.
 # Summary
 
 Initial access was achieved by enumerating anonymous SMB shares, where an email containing valid application credentials was discovered. These credentials allowed authentication to the CMS administration panel running on port **8000**. After identifying the CMS version, a known unrestricted file upload vulnerability was used. By modifying the upload request with Burp Suite, a PHP reverse shell was successfully uploaded and executed from the content directory, resulting in remote code execution and an interactive shell on the target system.
-```

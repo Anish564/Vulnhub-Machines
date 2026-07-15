@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/Photographer-1.md",
+                "file": "Vulnhub-Machine/NullByte-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Photographer-1"
+              "title": "NullByte-1"
             }
           }
         ]
@@ -165,8 +165,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "59105b532501baa8",
+  "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnhub-Machine/Photographer-1.md",
     "Vulnhub-Machine/NullByte-1.md",
     "Vulnhub-Machine/Node-1.md",
     "Vulnhub-Machine/My School-1.md",
@@ -192,7 +193,6 @@
     "Vulnhub-Machine/Empire-LupinOne.md",
     "Vulnhub-Machine/Djinn-1.md",
     "Vulnhub-Machine/DerpNStink-1.md",
-    "Vulnhub-Machine/Deathnote-1.md",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
