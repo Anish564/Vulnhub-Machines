@@ -107,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 467.5
   },
   "right": {
     "id": "5884c54489c9251c",
@@ -196,21 +196,21 @@
   },
   "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Bob__1.0.1_680.md",
+    "Bob - 1.0.1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting_2_776.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine_681.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/index.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting_2_776.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic_Pentesting-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Bulldog_1_834.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BSides_Vancouver_2018_(Workshop)_858.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Bob__1.0.1_680.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Pinky's_Palace_v3_831.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Node_1_775.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--DC_2_819.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--FourAndSix_1_839.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Funbox_Lunchbreaker_832.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--FirstBlood_1_766.md",
-    "Bob - 1.0.1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res",
