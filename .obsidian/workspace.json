@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--MoneyBox_1_789.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Mr-Robot__1_676.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vulnerable_Machine--Vulnhub_Machine--MoneyBox_1_789"
+              "title": "Vulnerable_Machine--Vulnhub_Machine--Mr-Robot__1_676"
             }
           }
         ]
@@ -167,6 +167,8 @@
   },
   "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Moria-1.1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/MoneyBox-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Matrix-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Looz-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/LemonSqueezy-1.md",
@@ -191,8 +193,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/DC-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Covfefe-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Chronos-1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Bulldog-1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res",
