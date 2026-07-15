@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BSides_Vancouver_2018_(Workshop)_858.md",
-                "mode": "source",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic Pentesting-2.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vulnerable_Machine--Vulnhub_Machine--BSides_Vancouver_2018_(Workshop)_858"
+              "title": "Basic Pentesting-2"
             }
           }
         ],
@@ -182,11 +182,11 @@
   },
   "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BSides_Vancouver_2018_(Workshop)_858.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic Pentesting-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic Pentesting-2.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Bob-1.0.1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic_Pentesting-2.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic_Pentesting-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/BSides Vancouver-2018 (Workshop).md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
     "Bob - 1.0.1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine_681.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/index.md",
