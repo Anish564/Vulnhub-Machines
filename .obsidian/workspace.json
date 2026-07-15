@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Vulnhub-Machine/Momentum-1.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -28,15 +28,14 @@
               "type": "markdown",
               "state": {
                 "file": "Vulnhub-Machine/Matrix-1.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Matrix-1"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -190,10 +189,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ff357d41736b12a8",
+  "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
-    "Vulnhub-Machine/Momentum-1.md",
     "Vulnhub-Machine/Matrix-1.md",
+    "Vulnhub-Machine/Momentum-1.md",
     "Vulnhub-Machine/My School-1.md",
     "Untitled.canvas",
     "Vulnhub-Machine/W34kn3ss-1.md",
