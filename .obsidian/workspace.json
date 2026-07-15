@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/FourAndSix-1.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Grotesque_1.0.1_866.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "FourAndSix-1"
+              "title": "Vulnerable_Machine--Vulnhub_Machine--Grotesque_1.0.1_866"
             }
           }
         ]
@@ -165,8 +165,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "59105b532501baa8",
+  "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Gaara-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Funbox-Lunchbreaker.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Fowsniff-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/FourAndSix-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/FirstBlood-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Empire-Breakout.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Election-1.md",
@@ -189,8 +193,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/index.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Pinky's_Palace_v3_831.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Node_1_775.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/FourAndSix-1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Funbox_Lunchbreaker_832.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res",
@@ -206,8 +208,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/images/866-34.png",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/images/866-29.png",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/images",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--SolidState_1_806.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--W34kn3ss_1_848.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML",
     "Mr-Robot",
     "Untitled"
