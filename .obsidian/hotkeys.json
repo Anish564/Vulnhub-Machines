@@ -1,0 +1,50 @@
+{
+  "editor:set-heading-1": [
+    {
+      "modifiers": [],
+      "key": "F1"
+    }
+  ],
+  "editor:set-heading-2": [
+    {
+      "modifiers": [],
+      "key": "F2"
+    }
+  ],
+  "editor:set-heading-3": [
+    {
+      "modifiers": [],
+      "key": "F3"
+    }
+  ],
+  "editor:set-heading-4": [
+    {
+      "modifiers": [],
+      "key": "F4"
+    }
+  ],
+  "editor:set-heading-5": [
+    {
+      "modifiers": [],
+      "key": "F5"
+    }
+  ],
+  "editor:set-heading-6": [
+    {
+      "modifiers": [],
+      "key": "F6"
+    }
+  ],
+  "editor:insert-codeblock": [
+    {
+      "modifiers": [],
+      "key": "F10"
+    }
+  ],
+  "editor:toggle-bullet-list": [
+    {
+      "modifiers": [],
+      "key": "F12"
+    }
+  ]
+}
