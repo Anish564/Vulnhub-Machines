@@ -11,14 +11,17 @@
             "id": "3c8299f1c0e520dc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Vulnhub-Machine/W34kn3ss-1.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "W34kn3ss-1"
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled"
             }
           }
         ]
@@ -145,13 +148,23 @@
               "icon": "lucide-list",
               "title": "Outline of Mr-Robot - 1"
             }
+          },
+          {
+            "id": "53758b9a92d058b6",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -165,8 +178,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "59105b532501baa8",
+  "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "Vulnhub-Machine/W34kn3ss-1.md",
     "Vulnhub-Machine/gitignore",
     "Vulnhub-Machine/VulnOS-2.md",
     "Vulnhub-Machine/VulnCMS-1.md",
@@ -192,7 +207,6 @@
     "Vulnhub-Machine/Moria-1.1.md",
     "Vulnhub-Machine/MoneyBox-1.md",
     "Vulnhub-Machine/Matrix-1.md",
-    "Vulnhub-Machine/Looz-1.md",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
