@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/Vulnerable_Machine--Vulnhub_Machine--PwnLab_init_844.md",
+                "file": "Vulnhub-Machine/Raven-1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vulnerable_Machine--Vulnhub_Machine--PwnLab_init_844"
+              "title": "Raven-1"
             }
           }
         ]
@@ -165,8 +165,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3c8299f1c0e520dc",
+  "active": "59105b532501baa8",
   "lastOpenFiles": [
+    "Vulnhub-Machine/PwnLab-init.md",
     "Vulnhub-Machine/Prime-1.md",
     "Vulnhub-Machine/Potato-1.md",
     "Vulnhub-Machine/Pinky's Palace-v3.md",
@@ -192,7 +193,6 @@
     "Vulnhub-Machine/FourAndSix-1.md",
     "Vulnhub-Machine/FirstBlood-1.md",
     "Vulnhub-Machine/Empire-Breakout.md",
-    "Vulnhub-Machine/Election-1.md",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
