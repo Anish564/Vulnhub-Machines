@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Pinky's_Palace_v3_831.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting__1_702.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vulnerable_Machine--Vulnhub_Machine--Pinky's_Palace_v3_831"
+              "title": "Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting__1_702"
             }
           }
         ],
@@ -196,13 +196,19 @@
   },
   "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine_681.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Bulldog_1_834.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BSides_Vancouver_2018_(Workshop)_858.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Bob__1.0.1_680.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting_2_776.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting__1_702.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Pinky's_Palace_v3_831.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Node_1_775.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--DC_2_819.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Basic_Pentesting_2_776.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--FourAndSix_1_839.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Funbox_Lunchbreaker_832.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--FirstBlood_1_766.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine_681.md",
     "Bob - 1.0.1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
@@ -220,7 +226,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/images/866-29.png",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/images",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--SolidState_1_806.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/index.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--W34kn3ss_1_848.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--VulnOS_2_704.md",
@@ -232,11 +237,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--So_Simple_1_795.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--SkyTower_1_845.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Shenron_1_774.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--SecTalks_BNE0x03_-_Simple_796.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Raven_1_824.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--PwnLab_init_844.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Prime_1_853.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--Potato_1_765.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML",
     "Mr-Robot",
     "Untitled"
