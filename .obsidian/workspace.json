@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Kioptrix_Level-1.2.md",
+                "file": "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--MoneyBox_1_789.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Kioptrix_Level-1.2"
+              "title": "Vulnerable_Machine--Vulnhub_Machine--MoneyBox_1_789"
             }
           }
         ]
@@ -165,8 +165,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "59105b532501baa8",
+  "active": "3c8299f1c0e520dc",
   "lastOpenFiles": [
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Matrix-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Looz-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/LemonSqueezy-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/LazySysAdmin-1.md",
+    "Vulnerable_Machine--Vulnhub_Machine_HTML/Kioptrix_Level-1.2.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/It's October-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/ICA-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Hack Me Please-1.md",
@@ -188,11 +193,6 @@
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Chronos-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Bulldog-1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/Vulnerable_Machine--Vulnhub_Machine--BTRSys_v1_835.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic Pentesting-2.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Basic Pentesting-1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/Bob-1.0.1.md",
-    "Vulnerable_Machine--Vulnhub_Machine_HTML/BSides Vancouver-2018 (Workshop).md",
-    "Bob - 1.0.1.md",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/styles4.css",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res/script3.js",
     "Vulnerable_Machine--Vulnhub_Machine_HTML/res",
