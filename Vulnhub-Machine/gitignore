@@ -42,6 +42,7 @@
 .obsidian/cache/
 .obsidian/plugins/
 .obsidian/backups/
+.obsidian
 
 # Ignore unwanted folders
 Whatsapp/
