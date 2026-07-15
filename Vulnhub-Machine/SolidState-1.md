@@ -3,7 +3,7 @@
 - **Machine:** SolidState: 1
 - **Download:** https://www.vulnhub.com/entry/solidstate-1,261/
 
-![](806-1.png)
+![](images/806-1.png)
 
 ---
 
@@ -26,7 +26,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](806-2.png)
+![](images/806-2.png)
 
 ---
 
@@ -38,7 +38,7 @@ Perform a complete service, version, script, OS detection, and port scan.
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.237
 ```
 
-![](806-3.png)
+![](images/806-3.png)
 
 ---
 
@@ -66,7 +66,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.237
 ```
 
-![](806-4.png)
+![](images/806-4.png)
 
 ---
 
@@ -102,7 +102,7 @@ List all configured users.
 listusers
 ```
 
-![](806-5.png)
+![](images/806-5.png)
 
 Discovered users:
 
@@ -140,7 +140,7 @@ setpassword mindy 1234
 setpassword mailadmin 1234
 ```
 
-![](806-6.png)
+![](images/806-6.png)
 
 ---
 
@@ -162,7 +162,7 @@ USER john
 PASS 1234
 ```
 
-![](806-7.png)
+![](images/806-7.png)
 
 ---
 
@@ -172,7 +172,7 @@ PASS 1234
 LIST
 ```
 
-![](806-8.png)
+![](images/806-8.png)
 
 Retrieve the first email.
 
@@ -180,7 +180,7 @@ Retrieve the first email.
 RETR 1
 ```
 
-![](806-9.png)
+![](images/806-9.png)
 
 The email contains information pointing toward the **mindy** account.
 
@@ -210,7 +210,7 @@ List available messages.
 LIST
 ```
 
-![](806-10.png)
+![](images/806-10.png)
 
 Retrieve all messages.
 
@@ -222,7 +222,7 @@ RETR 1
 RETR 2
 ```
 
-![](806-11.png)
+![](images/806-11.png)
 
 One of the emails contains Mindy's SSH credentials.
 
@@ -248,7 +248,7 @@ Username : mindy
 Password : P@55W0rd1!2@
 ```
 
-![](806-12.png)
+![](images/806-12.png)
 
 ---
 
@@ -266,7 +266,7 @@ Display the user flag.
 cat user.txt
 ```
 
-![](806-13.png)
+![](images/806-13.png)
 
 Successfully obtained the user flag.
 

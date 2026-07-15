@@ -3,7 +3,7 @@
 - **Machine:** FourAndSix: 1
 - **Download:** https://www.vulnhub.com/entry/fourandsix-1,236/
 
-![](839-1.png)
+![](images/839-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](839-2.png)
+![](images/839-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.191
 ```
 
-![](839-3.png)
+![](images/839-3.png)
 
 ---
 
@@ -61,7 +61,7 @@ Check which NFS shares are publicly accessible.
 showmount -e 192.168.2.191
 ```
 
-![](839-4.png)
+![](images/839-4.png)
 
 ---
 
@@ -91,7 +91,7 @@ List the available files.
 ls
 ```
 
-![](839-5.png)
+![](images/839-5.png)
 
 ---
 
@@ -121,7 +121,7 @@ List its contents.
 ls -lh
 ```
 
-![](839-6.png)
+![](images/839-6.png)
 
 No useful information is found inside the mounted USB image.
 
@@ -155,7 +155,7 @@ List its contents.
 ls -la
 ```
 
-![](839-7.png)
+![](images/839-7.png)
 
 The root filesystem is publicly accessible.
 
@@ -181,7 +181,7 @@ Read the proof file.
 cat proof.txt
 ```
 
-![](839-8.png)
+![](images/839-8.png)
 
 ### Root Flag
 

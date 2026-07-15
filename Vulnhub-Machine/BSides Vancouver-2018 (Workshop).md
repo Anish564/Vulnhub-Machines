@@ -3,7 +3,7 @@
 - **Machine:** BSides Vancouver: 2018 (Workshop)
 - **Download:** https://www.vulnhub.com/entry/bsides-vancouver-2018-workshop,231/
 
-![](858-1.png)
+![](images/858-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](858-2.png)
+![](images/858-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.172
 ```
 
-![](858-3.png)
+![](images/858-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.172
 ```
 
-![](858-4.png)
+![](images/858-4.png)
 
 ---
 
@@ -95,7 +95,7 @@ Download the backup file.
 get users.txt.bk
 ```
 
-![](858-5.png)
+![](images/858-5.png)
 
 ---
 
@@ -105,7 +105,7 @@ get users.txt.bk
 cat users.txt.bk
 ```
 
-![](858-6.png)
+![](images/858-6.png)
 
 ### Users Discovered
 
@@ -139,7 +139,7 @@ Perform directory brute-forcing against the WordPress backup directory.
 gobuster dir -u http://192.168.2.172/backup_wordpress/ -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,zip
 ```
 
-![](858-7.png)
+![](images/858-7.png)
 
 ---
 
@@ -149,7 +149,7 @@ Visit the following endpoint:
 
 - http://192.168.2.172/backup_wordpress/wp-admin/
 
-![](858-8.png)
+![](images/858-8.png)
 
 A WordPress login page is discovered.
 
@@ -165,7 +165,7 @@ Attempt authentication testing against the `john` account.
 wpscan --url http://192.168.2.172/backup_wordpress/ -U john -P /opt/rockyou.txt
 ```
 
-![](858-9.png)
+![](images/858-9.png)
 
 ---
 
@@ -180,7 +180,7 @@ Password : enigma
 
 Login to the WordPress dashboard using the recovered credentials.
 
-![](858-10.png)
+![](images/858-10.png)
 
 Successful authentication provides administrative access to the WordPress dashboard.
 
@@ -332,7 +332,7 @@ function printit($string)
 ?>
 ```
 
-![](858-11.png)
+![](images/858-11.png)
 
 ---
 
@@ -346,7 +346,7 @@ http://192.168.2.172/backup_wordpress/
 
 A reverse shell is successfully established.
 
-![](858-12.png)
+![](images/858-12.png)
 
 ---
 
@@ -368,7 +368,7 @@ Attempt SSH authentication using each discovered username.
 
 Only the **anne** account allows password authentication.
 
-![](858-13.png)
+![](images/858-13.png)
 
 ---
 
@@ -382,7 +382,7 @@ Run Hydra against the `anne` account.
 hydra -l anne -P /opt/rockyou.txt ssh://192.168.2.172
 ```
 
-![](858-14.png)
+![](images/858-14.png)
 
 ---
 
@@ -403,7 +403,7 @@ Authenticate using the recovered credentials.
 ssh anne@192.168.2.172
 ```
 
-![](858-15.png)
+![](images/858-15.png)
 
 Successful SSH access is obtained.
 

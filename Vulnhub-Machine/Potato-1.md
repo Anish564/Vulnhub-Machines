@@ -3,7 +3,7 @@
 - **Machine:** Potato: 1
 - **Download:** https://www.vulnhub.com/entry/potato-1,529/
 
-![](765-1.png)
+![](images/765-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](765-2.png)
+![](images/765-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Scan all TCP ports.
 nmap -v -p- 192.168.2.124
 ```
 
-![](765-3.png)
+![](images/765-3.png)
 
 ---
 
@@ -47,7 +47,7 @@ Identify running services, operating system, and execute the default NSE scripts
 nmap -sC -sV -A 192.168.2.124
 ```
 
-![](765-4.png)
+![](images/765-4.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.124
 ```
 
-![](765-5.png)
+![](images/765-5.png)
 
 ---
 
@@ -71,7 +71,7 @@ Open the target website.
 http://192.168.2.124/
 ```
 
-![](765-6.png)
+![](images/765-6.png)
 
 ---
 
@@ -83,7 +83,7 @@ Enumerate directories using Gobuster.
 gobuster dir -u http://192.168.2.124/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](765-7.png)
+![](images/765-7.png)
 
 Discovered directories:
 
@@ -102,7 +102,7 @@ Perform another directory scan against the admin panel.
 gobuster dir -u http://192.168.2.124/admin/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](765-8.png)
+![](images/765-8.png)
 
 Discovered endpoint:
 
@@ -110,7 +110,7 @@ Discovered endpoint:
 http://192.168.2.124/admin/logs/
 ```
 
-![](765-9.png)
+![](images/765-9.png)
 
 ---
 
@@ -122,7 +122,7 @@ Run the SSH brute-force NSE script.
 nmap --script=ssh-brute.nse -p 22 192.168.2.124
 ```
 
-![](765-10.png)
+![](images/765-10.png)
 
 The script successfully discovers valid SSH credentials.
 
@@ -132,9 +132,9 @@ Login via SSH.
 ssh webadmin@192.168.2.124
 ```
 
-![](765-11.png)
+![](images/765-11.png)
 
-![](765-12.png)
+![](images/765-12.png)
 
 ---
 
@@ -160,7 +160,7 @@ Read its contents.
 cat dashboard.php
 ```
 
-![](765-13.png)
+![](images/765-13.png)
 
 Recovered administrator credentials:
 
@@ -180,11 +180,11 @@ Username : admin
 Password : serdesfsefhijosefjtfgyuhjiosefdfthgyjh
 ```
 
-![](765-14.png)
+![](images/765-14.png)
 
 Successfully authenticated to the admin dashboard.
 
-![](765-15.png)
+![](images/765-15.png)
 
 ---
 

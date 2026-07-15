@@ -3,7 +3,7 @@
 - **Machine:** Moria: 1.1
 - **Download:** https://www.vulnhub.com/entry/moria-1,187/
 
-![](816-1.png)
+![](images/816-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](816-2.png)
+![](images/816-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a complete scan to enumerate open ports, services, OS details, and default N
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.192
 ```
 
-![](816-3.png)
+![](images/816-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.192
 ```
 
-![](816-4.png)
+![](images/816-4.png)
 
 ---
 
@@ -70,7 +70,7 @@ Visit the target website.
 
 - http://192.168.2.192
 
-![](816-5.png)
+![](images/816-5.png)
 
 A password hint is displayed.
 
@@ -87,7 +87,7 @@ Visit the following paths:
 - http://192.168.2.192/w/
 - http://192.168.2.192/w/h/i/s/p/e/r/the_abyss/
 
-![](816-6.png)
+![](images/816-6.png)
 
 ---
 
@@ -99,13 +99,13 @@ Brute-force the hidden directory.
 gobuster dir -u http://192.168.2.192/w/h/i/s/p/e/r/the_abyss/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](816-7.png)
+![](images/816-7.png)
 
 Discovered endpoint:
 
 - http://192.168.2.192/w/h/i/s/p/e/r/the_abyss/random.txt
 
-![](816-8.png)
+![](images/816-8.png)
 
 The file contains a list of usernames.
 
@@ -131,7 +131,7 @@ Attempt anonymous login.
 ftp 192.168.2.192
 ```
 
-![](816-9.png)
+![](images/816-9.png)
 
 Anonymous login is not allowed.
 
@@ -146,7 +146,7 @@ Password : Mellon69
 ftp 192.168.2.192
 ```
 
-![](816-10.png)
+![](images/816-10.png)
 
 > **Note:** The password **Mellon69** works on version **1.1**, although it cannot be directly derived through enumeration.
 
@@ -166,7 +166,7 @@ List the available files.
 ls
 ```
 
-![](816-11.png)
+![](images/816-11.png)
 
 A hidden directory is discovered.
 
@@ -174,7 +174,7 @@ Visit it in the browser.
 
 - http://192.168.2.192/QlVraKW4fbIkXau9zkAPNGzviT3UKntl/
 
-![](816-12.png)
+![](images/816-12.png)
 
 Inspect the page source.
 
@@ -182,7 +182,7 @@ Inspect the page source.
 view-source:http://192.168.2.192/QlVraKW4fbIkXau9zkAPNGzviT3UKntl/
 ```
 
-![](816-13.png)
+![](images/816-13.png)
 
 Several password hashes are exposed.
 
@@ -196,7 +196,7 @@ Save the hashes into a file.
 nano hashes.txt
 ```
 
-![](816-14.png)
+![](images/816-14.png)
 
 Crack the hashes using John the Ripper.
 
@@ -204,7 +204,7 @@ Crack the hashes using John the Ripper.
 john --format=dynamic_6 hashes.txt --wordlist=/opt/rockyou.txt
 ```
 
-![](816-15.png)
+![](images/816-15.png)
 
 Recovered credentials:
 
@@ -235,7 +235,7 @@ Password:
 spanky
 ```
 
-![](816-16.png)
+![](images/816-16.png)
 
 Successfully obtained SSH access.
 

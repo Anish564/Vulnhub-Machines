@@ -3,7 +3,7 @@
 - **Machine:** DC: 2
 - **Download:** https://www.vulnhub.com/entry/dc-2,311/
 
-![](819-1.png)
+![](images/819-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](819-2.png)
+![](images/819-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.248
 ```
 
-![](819-3.png)
+![](images/819-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.248
 ```
 
-![](819-4.png)
+![](images/819-4.png)
 
 ---
 
@@ -74,7 +74,7 @@ Add the target hostname to the hosts file.
 nano /etc/hosts
 ```
 
-![](819-5.png)
+![](images/819-5.png)
 
 ---
 
@@ -95,7 +95,7 @@ Use WPScan to enumerate valid usernames.
 wpscan --url http://dc-2 --enumerate u
 ```
 
-![](819-6.png)
+![](images/819-6.png)
 
 ---
 
@@ -107,7 +107,7 @@ Perform directory brute-forcing.
 gobuster dir -u http://dc-2/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](819-7.png)
+![](images/819-7.png)
 
 ---
 
@@ -115,13 +115,13 @@ gobuster dir -u http://dc-2/ -w /usr/share/wordlists/dirbuster/directory-list-2.
 
 Visit the homepage.
 
-![](819-8.png)
+![](images/819-8.png)
 
 Also visit the flag page:
 
 - http://dc-2/index.php/flag/
 
-![](819-9.png)
+![](images/819-9.png)
 
 ---
 
@@ -139,7 +139,7 @@ Create a username file.
 nano users.txt
 ```
 
-![](819-10.png)
+![](images/819-10.png)
 
 ---
 
@@ -153,7 +153,7 @@ Run WPScan using the discovered usernames and generated password list.
 wpscan --url http://dc-2/ -U users.txt -P passwords.txt
 ```
 
-![](819-11.png)
+![](images/819-11.png)
 
 ### Valid Credentials
 
@@ -170,9 +170,9 @@ Login to:
 
 - http://dc-2/wp-login.php
 
-![](819-12.png)
+![](images/819-12.png)
 
-![](819-13.png)
+![](images/819-13.png)
 
 Successful authentication confirms the recovered credentials.
 
@@ -193,7 +193,7 @@ Username : tom
 Password : parturient
 ```
 
-![](819-14.png)
+![](images/819-14.png)
 
 ---
 
@@ -203,7 +203,7 @@ Password : parturient
 echo $SHELL
 ```
 
-![](819-15.png)
+![](images/819-15.png)
 
 ---
 
@@ -221,7 +221,7 @@ The file contains the following hint:
 Poor old Tom is always running after Jerry. Perhaps he should su for all the stress he causes.
 ```
 
-![](819-16.png)
+![](images/819-16.png)
 
 Press **q** to exit the file.
 
@@ -277,7 +277,7 @@ Verify the active shell.
 echo $SHELL
 ```
 
-![](819-17.png)
+![](images/819-17.png)
 
 ---
 
@@ -294,9 +294,9 @@ Username : jerry
 Password : adipiscing
 ```
 
-![](819-18.png)
+![](images/819-18.png)
 
-![](819-19.png)
+![](images/819-19.png)
 
 ---
 
@@ -320,7 +320,7 @@ Read the final flag.
 cat flag4.txt
 ```
 
-![](819-20.png)
+![](images/819-20.png)
 
 ---
 

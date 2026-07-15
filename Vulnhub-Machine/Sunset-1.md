@@ -3,7 +3,7 @@
 - **Machine:** Sunset: 1
 - **Download:** https://www.vulnhub.com/entry/sunset-1,339/
 
-![](822-1.png)
+![](images/822-1.png)
 
 ---
 
@@ -26,7 +26,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](822-2.png)
+![](images/822-2.png)
 
 ---
 
@@ -38,7 +38,7 @@ Perform a complete scan to enumerate open ports, running services, operating sys
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.115
 ```
 
-![](822-3.png)
+![](images/822-3.png)
 
 ---
 
@@ -82,7 +82,7 @@ Download the backup file.
 get backup
 ```
 
-![](822-4.png)
+![](images/822-4.png)
 
 ---
 
@@ -94,7 +94,7 @@ Display its contents.
 cat backup
 ```
 
-![](822-5.png)
+![](images/822-5.png)
 
 The backup contains several SHA-512 password hashes.
 
@@ -116,7 +116,7 @@ Save the hashes.
 nano hash.txt
 ```
 
-![](822-6.png)
+![](images/822-6.png)
 
 Crack the password hashes with John the Ripper.
 
@@ -124,7 +124,7 @@ Crack the password hashes with John the Ripper.
 john --wordlist=/opt/rockyou.txt hash.txt
 ```
 
-![](822-7.png)
+![](images/822-7.png)
 
 One of the recovered passwords belongs to the **sunset** user.
 
@@ -138,7 +138,7 @@ Authenticate using the recovered credentials.
 ssh sunset@192.168.2.115
 ```
 
-![](822-8.png)
+![](images/822-8.png)
 
 ---
 
@@ -156,7 +156,7 @@ Read the user flag.
 cat user.txt
 ```
 
-![](822-9.png)
+![](images/822-9.png)
 
 Recovered user flag:
 
@@ -228,7 +228,7 @@ Recovered root flag:
 25d7ce0ee3cbf71efbac61f85d0c14fe
 ```
 
-![](822-10.png)
+![](images/822-10.png)
 
 ---
 

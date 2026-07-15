@@ -3,7 +3,7 @@
 - **Machine:** Toppo: 1
 - **Download:** https://www.vulnhub.com/entry/toppo-1,245/
 
-![](821-1.png)
+![](images/821-1.png)
 
 ---
 
@@ -26,7 +26,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](821-2.png)
+![](images/821-2.png)
 
 ---
 
@@ -38,7 +38,7 @@ Perform a complete scan to identify open ports, running services, operating syst
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.114
 ```
 
-![](821-3.png)
+![](images/821-3.png)
 
 ---
 
@@ -66,7 +66,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.114
 ```
 
-![](821-4.png)
+![](images/821-4.png)
 
 ---
 
@@ -88,7 +88,7 @@ Visit the exposed admin directory.
 http://192.168.2.114/admin/
 ```
 
-![](821-5.png)
+![](images/821-5.png)
 
 ---
 
@@ -100,7 +100,7 @@ Open the notes file.
 http://192.168.2.114/admin/notes.txt
 ```
 
-![](821-6.png)
+![](images/821-6.png)
 
 The file contains the following clue:
 
@@ -126,7 +126,7 @@ Password:
 12345ted123
 ```
 
-![](821-7.png)
+![](images/821-7.png)
 
 SSH access is successfully obtained.
 
@@ -142,7 +142,7 @@ Search for executables with the SUID permission bit set.
 find / -perm -4000 -type f 2>/dev/null
 ```
 
-![](821-8.png)
+![](images/821-8.png)
 
 The enumeration reveals that **python2.7** is running with the SUID bit enabled.
 
@@ -162,7 +162,7 @@ Verify the current privileges.
 id
 ```
 
-![](821-9.png)
+![](images/821-9.png)
 
 Root privileges are successfully obtained.
 
@@ -200,7 +200,7 @@ Recovered root flag:
 0wnedlab{p4ssi0n_c0me_with_pract1ce}
 ```
 
-![](821-10.png)
+![](images/821-10.png)
 
 ---
 

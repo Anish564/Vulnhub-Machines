@@ -3,7 +3,7 @@
 - **Machine:** My School: 1
 - **Download:** https://www.vulnhub.com/entry/my-school-1,604/
 
-![](770-1.png)
+![](images/770-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](770-2.png)
+![](images/770-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a complete scan to enumerate open ports, services, operating system details,
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.107
 ```
 
-![](770-3.png)
+![](images/770-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.107
 ```
 
-![](770-4.png)
+![](images/770-4.png)
 
 ---
 
@@ -71,7 +71,7 @@ Visit the discovered web applications.
 - http://192.168.2.107/admin/login.php
 - http://192.168.2.107:8080/wp-admin/setup-config.php
 
-![](770-5.png)
+![](images/770-5.png)
 
 The WordPress installation is incomplete and requires database configuration.
 
@@ -91,7 +91,7 @@ Verify that MySQL is listening.
 netstat -nltup | grep 3306
 ```
 
-![](770-6.png)
+![](images/770-6.png)
 
 ---
 
@@ -103,7 +103,7 @@ Open the MariaDB configuration.
 nano /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 
-![](770-7.png)
+![](images/770-7.png)
 
 Restart MariaDB after making the required configuration changes.
 
@@ -117,7 +117,7 @@ Verify the service again.
 netstat -nltup | grep 3306
 ```
 
-![](770-8.png)
+![](images/770-8.png)
 
 ---
 
@@ -157,7 +157,7 @@ Exit MySQL.
 EXIT;
 ```
 
-![](770-9.png)
+![](images/770-9.png)
 
 ---
 
@@ -167,23 +167,23 @@ Visit the WordPress setup page.
 
 - http://192.168.2.107:8080/wp-admin/setup-config.php
 
-![](770-10.png)
+![](images/770-10.png)
 
 Fill in the database information created previously.
 
-![](770-11.png)
+![](images/770-11.png)
 
-![](770-12.png)
+![](images/770-12.png)
 
 Complete the installation.
 
-![](770-13.png)
+![](images/770-13.png)
 
 Login to the WordPress dashboard.
 
-![](770-14.png)
+![](images/770-14.png)
 
-![](770-15.png)
+![](images/770-15.png)
 
 ---
 
@@ -201,7 +201,7 @@ Replace the contents of **404.php** with a PHP reverse shell.
 
 Save and update the theme.
 
-![](770-16.png)
+![](images/770-16.png)
 
 ---
 
@@ -221,7 +221,7 @@ http://192.168.2.107:8080/wp-content/themes/twentyseventeen/404.php
 
 A reverse shell is received.
 
-![](770-17.png)
+![](images/770-17.png)
 
 ---
 
@@ -245,7 +245,7 @@ Read the user flag.
 cat user.txt
 ```
 
-![](770-18.png)
+![](images/770-18.png)
 
 ---
 
@@ -279,7 +279,7 @@ Read the configuration file.
 cat config.php
 ```
 
-![](770-19.png)
+![](images/770-19.png)
 
 Recovered credentials:
 
@@ -301,11 +301,11 @@ Username : armour
 Password : SW)#$of4-9056d
 ```
 
-![](770-20.png)
+![](images/770-20.png)
 
 Successfully authenticated to the CMS administration panel.
 
-![](770-21.png)
+![](images/770-21.png)
 
 ---
 

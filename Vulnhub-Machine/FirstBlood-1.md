@@ -3,7 +3,7 @@
 - **Machine:** FirstBlood: 1
 - **Download:** https://www.vulnhub.com/entry/firstblood-1,564/
 
-![](766-1.png)
+![](images/766-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](766-2.png)
+![](images/766-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.219
 ```
 
-![](766-3.png)
+![](images/766-3.png)
 
 ---
 
@@ -70,13 +70,13 @@ Visit the following URLs:
 - http://192.168.2.219/rambo.html
 - http://192.168.2.219/robots.txt
 
-![](766-4.png)
+![](images/766-4.png)
 
 Visit the hidden directory:
 
 - http://192.168.2.219/johnnyrambo/
 
-![](766-5.png)
+![](images/766-5.png)
 
 ---
 
@@ -110,7 +110,7 @@ Visit:
 http://192.168.2.219/johnnyrambo/ssh.html
 ```
 
-![](766-6.png)
+![](images/766-6.png)
 
 The page reveals that the SSH username is:
 
@@ -130,7 +130,7 @@ Use Hydra with the custom wordlist to identify the SSH password.
 hydra -l johnny -P words.txt -v ssh://192.168.2.219 -s 60022 -t 4
 ```
 
-![](766-7.png)
+![](images/766-7.png)
 
 Hydra successfully identifies the valid SSH password.
 
@@ -144,7 +144,7 @@ Connect to the SSH service running on port **60022**.
 ssh johnny@192.168.2.219 -p 60022
 ```
 
-![](766-8.png)
+![](images/766-8.png)
 
 Successful authentication provides shell access to the target system.
 

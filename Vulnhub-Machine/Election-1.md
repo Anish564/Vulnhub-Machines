@@ -3,7 +3,7 @@
 - **Machine:** Election: 1
 - **Download:** https://www.vulnhub.com/entry/election-1,503/
 
-![](703-1.png)
+![](images/703-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.31.0/24
 ```
 
-![](703-2.png)
+![](images/703-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -p- 192.168.31.60
 ```
 
-![](703-3.png)
+![](images/703-3.png)
 
 ---
 
@@ -46,7 +46,7 @@ nmap -v -p- 192.168.31.60
 nmap -sC -sV -A 192.168.31.60
 ```
 
-![](703-4.png)
+![](images/703-4.png)
 
 ---
 
@@ -58,7 +58,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.31.60
 ```
 
-![](703-5.png)
+![](images/703-5.png)
 
 ---
 
@@ -71,7 +71,7 @@ Visit the following URLs:
 - http://192.168.31.60/phpmyadmin/
 - http://192.168.31.60/robots.txt
 
-![](703-6.png)
+![](images/703-6.png)
 
 ---
 
@@ -81,7 +81,7 @@ Visit:
 
 - http://192.168.31.60/election/
 
-![](703-7.png)
+![](images/703-7.png)
 
 ---
 
@@ -93,7 +93,7 @@ Perform directory brute-forcing against the Election application.
 gobuster dir -u http://192.168.31.60/election/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](703-8.png)
+![](images/703-8.png)
 
 ---
 
@@ -104,7 +104,7 @@ Visit the discovered directories:
 - http://192.168.31.60/election/data/
 - http://192.168.31.60/election/admin/
 
-![](703-9.png)
+![](images/703-9.png)
 
 ---
 
@@ -116,7 +116,7 @@ Continue directory enumeration inside the `/admin` directory.
 gobuster dir -u http://192.168.31.60/election/admin/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](703-10.png)
+![](images/703-10.png)
 
 ---
 
@@ -126,13 +126,13 @@ Visit the discovered log directory.
 
 - http://192.168.31.60/election/admin/logs/
 
-![](703-11.png)
+![](images/703-11.png)
 
 Open the system log file.
 
 - http://192.168.31.60/election/admin/logs/system.log
 
-![](703-12.png)
+![](images/703-12.png)
 
 The log file contains valid user credentials.
 
@@ -153,7 +153,7 @@ Username : love
 Password : P@$$w0rd@123
 ```
 
-![](703-13.png)
+![](images/703-13.png)
 
 Successful authentication provides an interactive shell.
 

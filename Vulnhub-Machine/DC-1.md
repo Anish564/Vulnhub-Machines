@@ -3,7 +3,7 @@
 - **Machine:** DC: 1
 - **Download:** https://www.vulnhub.com/entry/dc-1,292/
 
-![](701-1.png)
+![](images/701-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](701-2.png)
+![](images/701-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -p- 192.168.2.179
 ```
 
-![](701-3.png)
+![](images/701-3.png)
 
 ---
 
@@ -46,7 +46,7 @@ nmap -v -p- 192.168.2.179
 nmap -sC -sV -A 192.168.2.179
 ```
 
-![](701-4.png)
+![](images/701-4.png)
 
 ---
 
@@ -58,7 +58,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.179
 ```
 
-![](701-5.png)
+![](images/701-5.png)
 
 ---
 
@@ -79,7 +79,7 @@ Use Nikto to enumerate the web application and identify the CMS version.
 nikto -h http://192.168.2.179
 ```
 
-![](701-6.png)
+![](images/701-6.png)
 
 ### Findings
 
@@ -96,7 +96,7 @@ Download the exploit from Exploit-DB:
 
 - https://www.exploit-db.com/exploits/44449
 
-![](701-7.png)
+![](images/701-7.png)
 
 > **Note:** The exploit is written in Ruby.
 
@@ -112,7 +112,7 @@ Execute the Ruby exploit against the target.
 ruby 44449.rb 192.168.2.179
 ```
 
-![](701-8.png)
+![](images/701-8.png)
 
 A reverse shell is successfully established.
 

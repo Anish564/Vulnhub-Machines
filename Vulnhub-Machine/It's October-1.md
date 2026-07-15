@@ -3,7 +3,7 @@
 - **Machine:** It's October: 1
 - **Download:** https://www.vulnhub.com/entry/its-october-1,460/
 
-![](783-1.png)
+![](images/783-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](783-2.png)
+![](images/783-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to identify all open ports, services, operating sy
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.179
 ```
 
-![](783-3.png)
+![](images/783-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the `http-enum` NSE script to discover hidden web resources.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.179
 ```
 
-![](783-4.png)
+![](images/783-4.png)
 
 ---
 
@@ -72,7 +72,7 @@ Visit the following endpoints.
 
 Inspect the source code on **port 8080**.
 
-![](783-5.png)
+![](images/783-5.png)
 
 ---
 
@@ -82,7 +82,7 @@ Visit the following file.
 
 - http://192.168.2.179:8080/mynote.txt
 
-![](783-6.png)
+![](images/783-6.png)
 
 Recovered credentials:
 
@@ -101,19 +101,19 @@ Brute-force directories.
 gobuster dir -u http://192.168.2.179 -w /usr/share/wordlists/dirb/common.txt -x php,txt,bak,zip
 ```
 
-![](783-7.png)
+![](images/783-7.png)
 
 Discovered endpoint:
 
 - http://192.168.2.179/backend/backend/auth/signin
 
-![](783-8.png)
+![](images/783-8.png)
 
 Login to the backend.
 
 - http://192.168.2.179/backend/backend
 
-![](783-9.png)
+![](images/783-9.png)
 
 ---
 
@@ -123,7 +123,7 @@ Navigate to:
 
 **CMS → Add New Page**
 
-![](783-10.png)
+![](images/783-10.png)
 
 Insert the following payload inside the page code.
 
@@ -157,7 +157,7 @@ http://192.168.2.179/test
 
 A reverse shell is received.
 
-![](783-12.png)
+![](images/783-12.png)
 
 ---
 
@@ -189,7 +189,7 @@ cd config
 
 The `database.php` file is present.
 
-![](783-13.png)
+![](images/783-13.png)
 
 Read the configuration file.
 
@@ -199,7 +199,7 @@ cat database.php
 
 The database username and password are disclosed.
 
-![](783-14.png)
+![](images/783-14.png)
 
 ---
 
@@ -211,7 +211,7 @@ Login to MySQL.
 mysql -u root -proot
 ```
 
-![](783-15.png)
+![](images/783-15.png)
 
 Enumerate the database.
 
@@ -233,9 +233,9 @@ Retrieve backend user credentials.
 SELECT login, password FROM backend_users;
 ```
 
-![](783-16.png)
+![](images/783-16.png)
 
-![](783-17.png)
+![](images/783-17.png)
 
 Password hashes are obtained.
 
@@ -249,7 +249,7 @@ Save the hash.
 nano hash.txt
 ```
 
-![](783-18.png)
+![](images/783-18.png)
 
 Crack the hash using John the Ripper.
 

@@ -3,7 +3,7 @@
 - **Machine:** Venom: 1
 - **Download:** https://www.vulnhub.com/entry/venom-1,701/
 
-![](823-1.png)
+![](images/823-1.png)
 
 ---
 
@@ -15,7 +15,7 @@
 unzip venom.zip
 ```
 
-![](823-2.png)
+![](images/823-2.png)
 
 2. Import the **OVA** file into VirtualBox.
 3. Click **Finish**.
@@ -33,7 +33,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](823-3.png)
+![](images/823-3.png)
 
 ---
 
@@ -45,7 +45,7 @@ Perform a complete scan to enumerate open ports, running services, operating sys
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.164
 ```
 
-![](823-4.png)
+![](images/823-4.png)
 
 ---
 
@@ -89,7 +89,7 @@ View the page source.
 view-source:http://192.168.2.164/
 ```
 
-![](823-5.png)
+![](images/823-5.png)
 
 An MD5 hash is discovered.
 
@@ -101,7 +101,7 @@ An MD5 hash is discovered.
 hash-identifier 5f2a66f947fa5690c26506f660de5c23
 ```
 
-![](823-6.png)
+![](images/823-6.png)
 
 ---
 
@@ -113,7 +113,7 @@ Use Hashcat to recover the plaintext value.
 hashcat -m 0 5f2a66f947fa5690c26506f66bde5c23 /opt/rockyou.txt --force
 ```
 
-![](823-7.png)
+![](images/823-7.png)
 
 ---
 
@@ -149,7 +149,7 @@ Download the hint file.
 get hint.txt
 ```
 
-![](823-8.png)
+![](images/823-8.png)
 
 ---
 
@@ -161,7 +161,7 @@ Display its contents.
 cat hint.txt
 ```
 
-![](823-9.png)
+![](images/823-9.png)
 
 Several Base64-encoded strings are present.
 
@@ -183,7 +183,7 @@ echo "c3RhbmRhcmQgdmlnZW5lcmUgY2lwaGVy" | base64 -d
 echo "aHR0cHM6Ly9jcnlwdGlpLmNvbS9waXBlcy92aWdlbmVyZS1jaXBoZXI=" | base64 -d
 ```
 
-![](823-10.png)
+![](images/823-10.png)
 
 The decoded output references a **Vigenère cipher** and provides an online decoder.
 
@@ -191,7 +191,7 @@ The decoded output references a **Vigenère cipher** and provides an online deco
 https://cryptii.com/pipes/vigenere-cipher
 ```
 
-![](823-11.png)
+![](images/823-11.png)
 
 After decoding the ciphertext, the password is recovered.
 
@@ -206,7 +206,7 @@ Username : dora
 Password : E7r9t8@Q#h%Hy+M1234
 ```
 
-![](823-12.png)
+![](images/823-12.png)
 
 ---
 
@@ -222,7 +222,7 @@ nano /etc/hosts
 192.168.2.164 venom.box
 ```
 
-![](823-13.png)
+![](images/823-13.png)
 
 Browse the application.
 
@@ -238,7 +238,7 @@ Discovered endpoint:
 http://venom.box/panel/
 ```
 
-![](823-14.png)
+![](images/823-14.png)
 
 ---
 
@@ -264,7 +264,7 @@ Content → Uploads → Upload Files
 
 Upload the `reverse_shell.phar` file.
 
-![](823-15.png)
+![](images/823-15.png)
 
 ---
 
@@ -286,7 +286,7 @@ http://venom.box/uploads/reverse_shell.phar
 
 A reverse shell is established.
 
-![](823-16.png)
+![](images/823-16.png)
 
 ---
 
@@ -298,7 +298,7 @@ Inspect the system users.
 cat /etc/passwd
 ```
 
-![](823-17.png)
+![](images/823-17.png)
 
 Navigate to the backup directory.
 
@@ -312,7 +312,7 @@ Display hidden files.
 ls -lha
 ```
 
-![](823-18.png)
+![](images/823-18.png)
 
 Read the backup file.
 
@@ -320,7 +320,7 @@ Read the backup file.
 cat .backup.txt
 ```
 
-![](823-19.png)
+![](images/823-19.png)
 
 ---
 
@@ -342,7 +342,7 @@ Switch to the recovered user.
 su hostinger
 ```
 
-![](823-20.png)
+![](images/823-20.png)
 
 ---
 

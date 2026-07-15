@@ -3,7 +3,7 @@
 - **Machine:** Node: 1
 - **Download:** https://www.vulnhub.com/entry/node-1,252/
 
-![](775-1.png)
+![](images/775-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](775-2.png)
+![](images/775-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a complete scan to enumerate open ports, services, operating system details,
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.229
 ```
 
-![](775-3.png)
+![](images/775-3.png)
 
 ---
 
@@ -69,7 +69,7 @@ Visit the Node.js application.
 
 Inspect the page source.
 
-![](775-4.png)
+![](images/775-4.png)
 
 ---
 
@@ -81,7 +81,7 @@ Visit the JavaScript controller.
 http://192.168.2.229:3000/assets/js/app/controllers/home.js
 ```
 
-![](775-5.png)
+![](images/775-5.png)
 
 ---
 
@@ -93,7 +93,7 @@ Enumerate the exposed API endpoint.
 http://192.168.2.229:3000/api/users
 ```
 
-![](775-6.png)
+![](images/775-6.png)
 
 The API exposes usernames and password hashes.
 
@@ -149,11 +149,11 @@ Login to the application.
 http://192.168.2.229:3000/login
 ```
 
-![](775-7.png)
+![](images/775-7.png)
 
 After logging in, click **Download Backup**.
 
-![](775-8.png)
+![](images/775-8.png)
 
 ---
 
@@ -195,7 +195,7 @@ Extract the archive.
 unzip backup.zip
 ```
 
-![](775-9.png)
+![](images/775-9.png)
 
 ---
 
@@ -213,7 +213,7 @@ Recovered credentials:
 const url = 'mongodb://mark:5AYRFt73VtFpc84k@localhost:27017/myplace?authMechanism=DEFAULT&authSource=myplace';
 ```
 
-![](775-10.png)
+![](images/775-10.png)
 
 ---
 
@@ -231,7 +231,7 @@ Password:
 5AYRFt73VtFpc84k
 ```
 
-![](775-11.png)
+![](images/775-11.png)
 
 Successfully obtained an interactive SSH shell.
 

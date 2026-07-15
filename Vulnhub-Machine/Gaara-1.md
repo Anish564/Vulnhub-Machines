@@ -3,7 +3,7 @@
 - **Machine:** Gaara: 1
 - **Download:** https://www.vulnhub.com/entry/gaara-1,629/
 
-![](771-1.png)
+![](images/771-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](771-2.png)
+![](images/771-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.234
 ```
 
-![](771-3.png)
+![](images/771-3.png)
 
 ---
 
@@ -77,7 +77,7 @@ Use Dirsearch to discover hidden directories.
 dirsearch -u http://192.168.2.234 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ```
 
-![](771-4.png)
+![](images/771-4.png)
 
 ---
 
@@ -87,7 +87,7 @@ Visit:
 
 - http://192.168.2.234/Cryoserver
 
-![](771-5.png)
+![](images/771-5.png)
 
 ---
 
@@ -115,7 +115,7 @@ Inside the `/iamGaara` page, an encoded string is discovered.
 f1MgN9mTf9SNbzRygcU
 ```
 
-![](771-6.png)
+![](images/771-6.png)
 
 Decode the Base58-encoded value.
 
@@ -123,7 +123,7 @@ Decode the Base58-encoded value.
 python3 -c "import base58; print(base58.b58decode('f1MgN9mTf9SNbzRygcU').decode())"
 ```
 
-![](771-7.png)
+![](images/771-7.png)
 
 The decoded output reveals useful authentication information.
 
@@ -139,7 +139,7 @@ Use Hydra to recover the SSH password for the discovered user.
 hydra -l gaara -P /opt/rockyou.txt ssh://192.168.2.234
 ```
 
-![](771-8.png)
+![](images/771-8.png)
 
 Hydra successfully identifies the valid password.
 
@@ -153,11 +153,11 @@ Authenticate to the SSH service.
 ssh gaara@192.168.2.234
 ```
 
-![](771-9.png)
+![](images/771-9.png)
 
 Successful SSH login.
 
-![](771-10.png)
+![](images/771-10.png)
 
 ---
 

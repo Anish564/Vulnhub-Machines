@@ -3,7 +3,7 @@
 - **Machine:** SecTalks: BNE0x03 - Simple
 - **Download:** https://www.vulnhub.com/entry/sectalks-bne0x03-simple,141/
 
-![](796-1.png)
+![](images/796-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](796-2.png)
+![](images/796-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Perform a complete scan to identify open ports, services, operating system detai
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.220
 ```
 
-![](796-3.png)
+![](images/796-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.220
 ```
 
-![](796-4.png)
+![](images/796-4.png)
 
 ---
 
@@ -71,7 +71,7 @@ Visit the target website.
 http://192.168.2.220/
 ```
 
-![](796-5.png)
+![](images/796-5.png)
 
 ---
 
@@ -83,7 +83,7 @@ Brute-force directories using Gobuster.
 gobuster dir -u http://192.168.2.220 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,bak
 ```
 
-![](796-6.png)
+![](images/796-6.png)
 
 ---
 
@@ -97,7 +97,7 @@ Reference:
 https://www.exploit-db.com/raw/37474
 ```
 
-![](796-7.png)
+![](images/796-7.png)
 
 The exploit abuses the avatar upload functionality available to authenticated users.
 
@@ -115,7 +115,7 @@ Confirm  : test
 Email    : test@test1.com
 ```
 
-![](796-8.png)
+![](images/796-8.png)
 
 After registration, log in and navigate to:
 
@@ -123,7 +123,7 @@ After registration, log in and navigate to:
 Personal Options
 ```
 
-![](796-9.png)
+![](images/796-9.png)
 
 ---
 
@@ -229,7 +229,7 @@ proc_close($process);
 
 Upload the PHP shell through the **Personal Options** avatar upload feature.
 
-![](796-10.png)
+![](images/796-10.png)
 
 After the upload completes, browse to the uploads directory.
 
@@ -237,7 +237,7 @@ After the upload completes, browse to the uploads directory.
 http://192.168.2.220/uploads/
 ```
 
-![](796-11.png)
+![](images/796-11.png)
 
 ---
 
@@ -253,7 +253,7 @@ Open the uploaded PHP file from the browser.
 
 The reverse shell connects back to the listener.
 
-![](796-12.png)
+![](images/796-12.png)
 
 ---
 

