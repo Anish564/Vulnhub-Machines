@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/My_File_Server_2_10.md",
+                "file": "Vulnhub-Machine/My_Tomcat_Host_7.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "My_File_Server_2_10"
+              "title": "My_Tomcat_Host_7"
             }
           }
         ]
@@ -177,6 +177,7 @@
   },
   "active": "b2679752f6df4b15",
   "lastOpenFiles": [
+    "Vulnhub-Machine/My_File_Server_2_10.md",
     "Vulnhub-Machine/My_File_Server_1_9.md",
     "Vulnhub-Machine/FristiLeaks_1.3_2.md",
     "Vulnhub-Machine/Dripping_Blues_1_4.md",
@@ -188,7 +189,6 @@
     "Vulnhub-Machine/SickOS__1.2_6.md",
     "Vulnhub-Machine/MyWeb_Server_5.md",
     "Vulnhub-Machine/My_Tomcat_Host_7.md",
-    "Vulnhub-Machine/My_File_Server_2_10.md",
     "Vulnhub-Machine/index.md",
     "Vulnhub-Machine/images/10-18.png",
     "Vulnhub-Machine/images/10-17.png",
