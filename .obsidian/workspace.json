@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/index.md",
+                "file": "hackthe box/Untitled.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Untitled"
             }
           }
         ]
@@ -177,6 +177,9 @@
   },
   "active": "b2679752f6df4b15",
   "lastOpenFiles": [
+    "Vulnhub-Machine/index.md",
+    "hackthe box/Untitled.md",
+    "hackthe box",
     "Vulnhub-Machine/Sumo__1.md",
     "Vulnhub-Machine/SickOS__1.2_6.md",
     "Vulnhub-Machine/MyWeb_Server_5.md",
@@ -189,7 +192,6 @@
     "Vulnhub-Machine/Born2Root_1_1.md",
     "Vulnhub-Machine/Bob-1.0.1.md",
     "Vulnhub-Machine/W34kn3ss-1.md",
-    "Vulnhub-Machine/index.md",
     "Vulnhub-Machine/images/10-18.png",
     "Vulnhub-Machine/images/10-17.png",
     "Vulnhub-Machine/images/10-16.png",
@@ -216,13 +218,11 @@
     "res",
     "images",
     "Untitled.md",
-    "2026-07-22.md",
     "Untitled.canvas",
     "Vulnhub-Machine/gitignore",
     "Vulnhub-Machine/res/styles4.css",
     "Vulnhub-Machine/res/script3.js",
     "Vulnhub-Machine/res",
-    "Vulnhub-Machine/EmbeddedFiles",
-    "Vulnhub-Machine/images"
+    "Vulnhub-Machine/EmbeddedFiles"
   ]
 }
