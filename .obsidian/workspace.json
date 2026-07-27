@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vulnhub-Machine/Sumo__1.md",
-                "mode": "preview",
+                "file": "Vulnhub-Machine/index.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sumo__1"
+              "title": "index"
             }
           }
         ]
@@ -177,6 +177,7 @@
   },
   "active": "b2679752f6df4b15",
   "lastOpenFiles": [
+    "Vulnhub-Machine/Sumo__1.md",
     "Vulnhub-Machine/SickOS__1.2_6.md",
     "Vulnhub-Machine/MyWeb_Server_5.md",
     "Vulnhub-Machine/My_Tomcat_Host_7.md",
@@ -188,7 +189,6 @@
     "Vulnhub-Machine/Born2Root_1_1.md",
     "Vulnhub-Machine/Bob-1.0.1.md",
     "Vulnhub-Machine/W34kn3ss-1.md",
-    "Vulnhub-Machine/Sumo__1.md",
     "Vulnhub-Machine/index.md",
     "Vulnhub-Machine/images/10-18.png",
     "Vulnhub-Machine/images/10-17.png",
