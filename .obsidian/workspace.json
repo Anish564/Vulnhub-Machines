@@ -11,14 +11,10 @@
             "id": "b2679752f6df4b15",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "hackthe box/Untitled.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Untitled"
+              "title": "New tab"
             }
           }
         ]
@@ -175,7 +171,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b2679752f6df4b15",
+  "active": "59105b532501baa8",
   "lastOpenFiles": [
     "Vulnhub-Machine/index.md",
     "hackthe box/Untitled.md",
