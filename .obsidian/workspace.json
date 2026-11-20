@@ -11,14 +11,17 @@
             "id": "b2679752f6df4b15",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Vulnhub-Machine/LazySysAdmin-1.md",
-                "mode": "source",
-                "source": false
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 0
+                }
               },
-              "icon": "lucide-file",
-              "title": "LazySysAdmin-1"
+              "icon": "lucide-layout-dashboard",
+              "title": "Untitled"
             }
           }
         ]
@@ -59,6 +62,21 @@
               "state": {},
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "f1254a8642a904a8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           }
         ]
@@ -202,7 +220,6 @@
     "FristiLeaks_1.3_2.md",
     "Dripping_Blues_1_4.md",
     "CengBox_1_3.md",
-    "Born2Root_1_1.md",
     "res/styles4.css",
     "res/script3.js",
     "res",
