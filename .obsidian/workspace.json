@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Vulnhub-Machine/LazySysAdmin-1.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -34,19 +34,6 @@
         "id": "51ec720fc5b44f53",
         "type": "tabs",
         "children": [
-          {
-            "id": "59105b532501baa8",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {
-                "sortOrder": "alphabetical",
-                "autoReveal": false
-              },
-              "icon": "lucide-folder-closed",
-              "title": "Files"
-            }
-          },
           {
             "id": "aaceb583b518f3ec",
             "type": "leaf",
@@ -177,6 +164,7 @@
   },
   "active": "b2679752f6df4b15",
   "lastOpenFiles": [
+    "Vulnhub-Machine/LazySysAdmin-1.md",
     "Untitled.canvas",
     "Untitled.base",
     "hackthe box/Untitled.md",
