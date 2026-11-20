@@ -11,17 +11,14 @@
             "id": "b2679752f6df4b15",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Untitled.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": "Vulnhub-Machine/LazySysAdmin-1.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Untitled"
+              "icon": "lucide-file",
+              "title": "LazySysAdmin-1"
             }
           }
         ]
@@ -79,7 +76,8 @@
               "title": "Files"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -182,8 +180,8 @@
   },
   "active": "b2679752f6df4b15",
   "lastOpenFiles": [
-    "Vulnhub-Machine/LazySysAdmin-1.md",
     "Untitled.canvas",
+    "Vulnhub-Machine/LazySysAdmin-1.md",
     "Untitled.base",
     "hackthe box/Untitled.md",
     "Vulnhub-Machine/index.md",
